@@ -49,9 +49,40 @@ public class TblRegistfamilyDao extends CustomTemplateDao<TblRegistfamilyDto> {
 
 	@Override
 	public boolean insert(TblRegistfamilyDto dto) {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
-	}
+		Connection conn = null;
+		boolean result = false;
+
+		try {
+			// JDBCドライバを読み込む
+			// データベースに接続する
+			conn = conn();
+
+			// SQL文を準備する
+			String sql = """
+					INSERT tbl_registuser (familyId)
+										VALUES(?)
+					""";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			pStmt.setString(1, dto.getFamilyId());
+			
+			// SQL文を実行する
+			if (pStmt.executeUpdate() == 1) {
+				ResultSet res = pStmt.getGeneratedKeys();
+				res.next();
+				dto.setFamilyId(res.getString(1));
+				result = true;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+			// データベースを切断
+			close(conn);
+			}
+			// 結果を返す
+			return result;
+}
 
 	@Override
 	public boolean update(TblRegistfamilyDto dto) {
@@ -64,5 +95,4 @@ public class TblRegistfamilyDao extends CustomTemplateDao<TblRegistfamilyDto> {
 		// TODO 自動生成されたメソッド・スタブ
 		return false;
 	}
-
 }

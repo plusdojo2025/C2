@@ -1,1 +1,19 @@
 @charset "UTF-8";
+
+
+header {
+	height: 140px;
+	background-color: #fdc435;
+}
+
+.logo-header {
+	position: relative;
+	top:40px;
+	left:600px;
+	
+}
+
+.function-menu {
+	display:flex;
+}
+

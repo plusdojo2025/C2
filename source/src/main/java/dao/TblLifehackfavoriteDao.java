@@ -31,7 +31,8 @@ public class TblLifehackfavoriteDao extends CustomTemplateDao<TblLifehackfavorit
 
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
-				TblLifehackfavoriteDto f = new TblLifehackfavoriteDto(rs.getString("familyId"), 
+				TblLifehackfavoriteDto f = new TblLifehackfavoriteDto(rs.getInt("lifehackfavoriteNumber"), 
+								rs.getString("familyId"),
 								rs.getInt("lifehackNumber")
 				);				
 				favorite.add(f);
@@ -50,19 +51,108 @@ public class TblLifehackfavoriteDao extends CustomTemplateDao<TblLifehackfavorit
 
 	@Override
 	public boolean insert(TblLifehackfavoriteDto dto) {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
-	}
+		Connection conn = null;
+		boolean result = false;
+
+		try {
+			// JDBCドライバを読み込む
+			// データベースに接続する
+			conn = conn();
+
+			// SQL文を準備する
+			String sql = """
+					INSERT tbl_registuser (familyId,lifehackNumber)
+										VALUES(?,0)
+					""";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			pStmt.setString(1, dto.getFamilyId());
+			pStmt.setInt(2, dto.getLifehackNumber());
+			
+			// SQL文を実行する
+			if (pStmt.executeUpdate() == 1) {
+				ResultSet res = pStmt.getGeneratedKeys();
+				res.next();
+				dto.setLifehackfavoriteNumber(res.getInt(1));
+				result = true;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+			// データベースを切断
+			close(conn);
+			}
+			// 結果を返す
+			return result;
+}
 
 	@Override
 	public boolean update(TblLifehackfavoriteDto dto) {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
-	}
+		Connection conn = null;
+		boolean result = false;
+
+		try {
+			// JDBCドライバを読み込む
+			// データベースに接続する
+			conn = conn();
+
+			// SQL文を準備する
+			String sql = """
+					UPDATE tbl_lifehackfavorite
+					SET 
+						familyId = ?,
+						lifehackNumber = ?,
+					WHERE lifehackfavoriteNumber = ?
+					""";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			pStmt.setString(1, dto.getFamilyId());
+			pStmt.setInt(2, dto.getLifehackNumber());
+			
+			// SQL文を実行する
+			if (pStmt.executeUpdate() == 1) {
+					result = true;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+			// データベースを切断
+			close(conn);
+			}
+			// 結果を返す
+			return result;
+}
 
 	@Override
 	public boolean delete(TblLifehackfavoriteDto dto) {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
-	}
+		Connection conn = null;
+		boolean result = false;
+
+		try {
+			// JDBCドライバを読み込む
+			// データベースに接続する
+			conn = conn();
+
+			// SQL文を準備する
+			String sql = "DELETE FROM Bc WHERE lifehackfavoriteNumber=?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			pStmt.setInt(1, dto.getLifehackfavoriteNumber());
+
+			// SQL文を実行する
+			if (pStmt.executeUpdate() == 1) {
+					result = true;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+			// データベースを切断
+			close(conn);
+			}
+			// 結果を返す
+			return result;
+}
 }

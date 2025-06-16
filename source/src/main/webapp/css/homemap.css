@@ -102,4 +102,11 @@ footer h3 {
 	 
 }
 
+.grid-item {
+	width:150px;
+	height:100px;
+	background-color: #fdc435;
+	border-radius: 10px;
+	text-align:center;
+}
 

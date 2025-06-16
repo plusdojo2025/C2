@@ -12,7 +12,9 @@
 
 <header class= "page-header">
 	<div class= "logo-header">
-	<a href="${pageContext.request.contextPath}/home"><img id="logo-img"src="${pageContext.request.contextPath}/img/logo.png"></a>
+		<a href="${pageContext.request.contextPath}/home">
+			<img id="logo-img"src="${pageContext.request.contextPath}/img/logo.png">
+		</a>
 	</div>
 </header>
 
@@ -55,14 +57,22 @@
 
 <section>
     <div class="grid-container">
-        <div class="grid-item">1</div>
-        <div class="grid-item">2</div>
-        <div class="grid-item">3</div>
-        <div class="grid-item">4</div>
-        <div class="grid-item">5</div>
-        <div class="grid-item">6</div>
-        <div class="grid-item">7</div>
-        <div class="grid-item">8</div>
+        <div class="grid-item">
+        <input  style=" width:80px; margin-top:20px; border:none; background-color:#fdc435;" type=text name="name" value="${e.name}">
+        <input style=" width:80px; margin-top:10px;border:none; background-color:#fdc435;" type=text name="name" value="${e.name}">
+        </div>
+		<div class="grid-item">
+        <input  style=" width:80px; margin-top:20px; border:none; background-color:#fdc435;" type=text name="name" value="${e.name}">
+        <input style=" width:80px; margin-top:10px;border:none; background-color:#fdc435;" type=text name="name" value="${e.name}">
+        </div>
+        <div class="grid-item">
+        <input  style=" width:80px; margin-top:20px; border:none; background-color:#fdc435;" type=text name="name" value="${e.name}">
+        <input style=" width:80px; margin-top:10px;border:none; background-color:#fdc435;" type=text name="name" value="${e.name}">
+        </div>
+        <div class="grid-item">
+        <input  style=" width:80px; margin-top:20px; border:none; background-color:#fdc435;" type=text name="name" value="${e.name}">
+        <input style=" width:80px; margin-top:10px;border:none; background-color:#fdc435;" type=text name="name" value="${e.name}">
+        </div>
     </div>
 
 </section>

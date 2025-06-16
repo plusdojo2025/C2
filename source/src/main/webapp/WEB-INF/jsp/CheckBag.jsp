@@ -20,6 +20,7 @@
 	</div>
 	
 <a href="${pageContext.request.contextPath}/home">ホームへ戻る</a>
+<a href="${pageContext.request.contextPath}/CheckBagServlet">登録</a>
 	
 	
 </body>

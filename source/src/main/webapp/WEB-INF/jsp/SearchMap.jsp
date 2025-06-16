@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<a>href="${pageContext.request.contextPath}/home">ホームへ戻る</a>
 </body>
 </html>

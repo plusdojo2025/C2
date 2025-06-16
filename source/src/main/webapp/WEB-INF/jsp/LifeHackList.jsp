@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<a href="${pageContext.request.contextPath}/LifeHackRequestServlet">ライフハック申請</a>
+<a href="${pageContext.request.contextPath}/LifeHackFavoriteServlet">お気に入りライフハック</a>
 </body>
 </html>

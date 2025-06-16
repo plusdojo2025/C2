@@ -8,5 +8,8 @@
 </head>
 <body>
 
+
+<a href="${pageContext.request.contextPath}/LifeHackRequestServlet">ライフハック申請</a>
+<a href="${pageContext.request.contextPath}/home">ホームへ戻る</a>
 </body>
 </html>

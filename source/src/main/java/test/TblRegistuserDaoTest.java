@@ -9,19 +9,8 @@ import dto.TblRegistuserDto;
 
 
 public class TblRegistuserDaoTest {
-	public static void main(String[] args) {
-		//テストしたいDAOでインスタンスを生成
-		TblRegistuserDao dao = new TblRegistuserDao();
 		
-		// select()のテスト1
-		System.out.println("---------- select()のテスト1 ----------");
-		List<TblRegistuserDto> user = dao.select(new TblRegistuserDto(2, "", "", "", ""));
-		TblRegistuserDAOTest.showAllData(user);
-	}
-	
-	
-	public class TblRegistuserDAOTest {
-		public static void showAllData(List<TblRegistuserDto> userList) {
+		static void showAllData(List<TblRegistuserDto> userList) {
 			for (TblRegistuserDto user : userList) {
 				System.out.println("番号：" + user.getUserNumber());
 				System.out.println("メールアドレス：" + user.getMail());
@@ -31,7 +20,42 @@ public class TblRegistuserDaoTest {
 				System.out.println();
 			}
 		}
-
+		
+	public static void main(String[] args) {
+		//テストしたいDAOでインスタンスを生成
+		TblRegistuserDao dao = new TblRegistuserDao();
+		
+		// select()のテスト1
+		System.out.println("---------- select()のテスト1 ----------");
+		List<TblRegistuserDto> user = dao.select(new TblRegistuserDto(2, "", "", "", ""));
+		TblRegistuserDaoTest.showAllData(user);
+	
+	
+		// insert()のテスト
+		System.out.println("---------- insert()のテスト ----------");
+		TblRegistuserDto insRec = new TblRegistuserDto(0, "newemail`gmail.com", "passworddayo", "", "Satake09");
+		if (dao.insert(insRec)) {
+			System.out.println("登録成功！");
+			List<TblRegistuserDto> cardListIns = dao.select(new TblRegistuserDto(0, "", "", "", ""));
+			TblRegistuserDaoTest.showAllData(cardListIns);
+		} else {
+			System.out.println("登録失敗！");
+			
+		// update()のテスト
+		System.out.println("---------- update()のテスト ----------");
+		List<TblRegistuserDto> cardListUp = dao.select(new TblRegistuserDto(0, "","Wakusei03","",""));
+		TblRegistuserDto upRec = cardListUp.get(0);
+		upRec.setPassword("Satakedayo09");
+		if (dao.update(upRec)) {
+			System.out.println("更新成功！");
+			cardListUp = dao.select(new TblRegistuserDto(0, "", "", "", ""));
+			TblRegistuserDaoTest.showAllData(cardListUp);
+		} else {
+			System.out.println("更新失敗！");
+		}
+	}
+		
 	
 	}
+	
 }

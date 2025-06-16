@@ -106,7 +106,7 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 			conn = conn();
 
 			// SQL文を準備する
-			String sql = "DELETE FROM Bc WHERE prefoodNumber=?";
+			String sql = "DELETE FROM tbl_stockprefood WHERE prefoodNumber=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる

@@ -1,17 +1,16 @@
 package dto;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class TblStockprefoodDto extends CustomTemplateDto implements Serializable {
 	//フィールド生成
 	private int prefoodNumber;
 	private String prefoodName;
-	private Date prefoodDate;
+	private java.sql.Date prefoodDate;
 	private int userNumber;
 	
 	//フィールドを使用したコンストラクタ
-	public TblStockprefoodDto(int prefoodNumber, String prefoodName, Date prefoodDate, int userNumber) {
+	public TblStockprefoodDto(int prefoodNumber, String prefoodName, java.sql.Date prefoodDate, int userNumber) {
 		super();
 		this.prefoodNumber = prefoodNumber;
 		this.prefoodName = prefoodName;
@@ -40,11 +39,11 @@ public class TblStockprefoodDto extends CustomTemplateDto implements Serializabl
 		this.prefoodName = prefoodName;
 	}
 
-	public Date getPrefoodDate() {
+	public java.sql.Date getPrefoodDate() {
 		return prefoodDate;
 	}
 
-	public void setPrefoodDate(Date prefoodDate) {
+	public void setPrefoodDate(java.sql.Date prefoodDate) {
 		this.prefoodDate = prefoodDate;
 	}
 

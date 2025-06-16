@@ -53,20 +53,116 @@ public class TblRegistuserDao extends CustomTemplateDao<TblRegistuserDto> {
 
 	@Override
 	public boolean insert(TblRegistuserDto dto) {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
-	}
+		Connection conn = null;
+		boolean result = false;
 
+		try {
+			// JDBCドライバを読み込む
+			// データベースに接続する
+			conn = conn();
+
+			// SQL文を準備する
+			String sql = """
+					INSERT tbl_registuser (mail,password,name,familyId)
+										VALUES(?,?,?,?)
+					""";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			pStmt.setString(1, dto.getMail());
+			pStmt.setString(2, dto.getPassword());
+			pStmt.setString(3, dto.getName());
+			pStmt.setString(4, dto.getFamilyId());
+			
+			// SQL文を実行する
+			if (pStmt.executeUpdate() == 1) {
+				ResultSet res = pStmt.getGeneratedKeys();
+				res.next();
+				dto.setUserNumber(res.getInt(1));
+				result = true;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+			// データベースを切断
+			close(conn);
+			}
+			// 結果を返す
+			return result;
+}
+	
 	@Override
 	public boolean update(TblRegistuserDto dto) {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
-	}
+		Connection conn = null;
+		boolean result = false;
+
+		try {
+			// JDBCドライバを読み込む
+			// データベースに接続する
+			conn = conn();
+
+			// SQL文を準備する
+			String sql = """
+					UPDATE tbl_registuser 
+					SET 
+						mail = ?,
+						password = ?,
+						name = ?,
+						familyId = ?
+					WHERE userNumber = ?
+					""";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			pStmt.setString(1, dto.getMail());
+			pStmt.setString(2, dto.getPassword());
+			pStmt.setString(3, dto.getName());
+			pStmt.setString(4, dto.getFamilyId());
+			pStmt.setInt(5, dto.getUserNumber());
+			
+			// SQL文を実行する
+			if (pStmt.executeUpdate() == 1) {
+					result = true;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+			// データベースを切断
+			close(conn);
+			}
+			// 結果を返す
+			return result;
+}
 
 	@Override
 	public boolean delete(TblRegistuserDto dto) {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
+			Connection conn = null;
+			boolean result = false;
+
+			try {
+				// JDBCドライバを読み込む
+				// データベースに接続する
+				conn = conn();
+
+				// SQL文を準備する
+				String sql = "DELETE FROM Bc WHERE userNumber=?";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+
+				// SQL文を完成させる
+				pStmt.setInt(1, dto.getUserNumber());
+
+				// SQL文を実行する
+				if (pStmt.executeUpdate() == 1) {
+						result = true;
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+				// データベースを切断
+				close(conn);
+				}
+				// 結果を返す
+				return result;
 	}
 
 }

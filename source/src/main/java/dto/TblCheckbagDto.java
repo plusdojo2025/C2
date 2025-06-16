@@ -39,7 +39,7 @@ public class TblCheckbagDto extends CustomTemplateDto implements Serializable {
 	}
 
 
-	public boolean isBagCheck() {
+	public boolean getBagCheck() {
 		return bagCheck;
 	}
 

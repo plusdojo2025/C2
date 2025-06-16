@@ -91,4 +91,15 @@ footer h3 {
 	left:650px;
 }
 
+.grid-container {
+	 width:800px;
+	 margin: auto;
+	 margin-top: 30px;
+	 margin-bottom: 20px;
+	 display: grid;
+     grid-template-columns: repeat(4, 1fr);
+	 gap: 30px;
+	 
+}
+
 

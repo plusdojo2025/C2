@@ -54,6 +54,20 @@
 </section>
 
 <section>
+    <div class="grid-container">
+        <div class="grid-item">1</div>
+        <div class="grid-item">2</div>
+        <div class="grid-item">3</div>
+        <div class="grid-item">4</div>
+        <div class="grid-item">5</div>
+        <div class="grid-item">6</div>
+        <div class="grid-item">7</div>
+        <div class="grid-item">8</div>
+    </div>
+
+</section>
+
+<section>
 	<div class="box" style="display:flex; position:relative; left:220px;">
 		<div  style="width:500px;margin-right:100px; margin-top:100px;">
 		<img   src="${pageContext.request.contextPath}/img/Japan.png">

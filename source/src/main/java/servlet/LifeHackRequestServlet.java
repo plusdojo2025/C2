@@ -25,5 +25,9 @@ public class LifeHackRequestServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// リクエストパラメータを取得する
+			request.setCharacterEncoding("UTF-8");
+			String title = request.getParameter("title");
+			String explanation = request.getParameter("explanation");
 	}
 }

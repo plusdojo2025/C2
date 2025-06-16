@@ -4,11 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>Insert title here</title>
 <title>ログイン</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/loginlifehack.css">
 </head>
 <body>
-	<div class="login-frame">
+<div class="login-frame">
 	 <div class="login-box">
 	  <div class="left">
 	  	<img src="img/MamoSona.png" alt="MamoSona" class="MamoSona">
@@ -22,7 +23,7 @@
 		<label for="pw">パスワード</label><br>
 		<input type="text" id="pw" name="pw" class="underline" value="">
 	</div>
-	<div class="login-button">
+	<div >
 		<input type="submit" id="submit" name="submit" value="ログイン" class="login-button">
 	 </div>
 	 </form>
@@ -30,8 +31,8 @@
 	 	<a href="RegistFamilyServlet">新しく家族IDを取得する</a><br>
 	 	<a href="RegistUserServlet">家族IDに新しくユーザーを登録する</a>
 	 </div>
-	</div>
-	</div>
-	</div>
+	 </div>
+</div>
+</div>
 </body>
 </html>

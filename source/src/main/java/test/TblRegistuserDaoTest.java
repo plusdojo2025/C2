@@ -27,35 +27,35 @@ public class TblRegistuserDaoTest {
 		
 		// select()のテスト1
 		System.out.println("---------- select()のテスト1 ----------");
-		List<TblRegistuserDto> user = dao.select(new TblRegistuserDto(2, "", "", "", ""));
+		List<TblRegistuserDto> user = dao.select(new TblRegistuserDto(1, "", "", "", ""));
 		TblRegistuserDaoTest.showAllData(user);
 	
 	
 		// insert()のテスト
 		System.out.println("---------- insert()のテスト ----------");
-		TblRegistuserDto insRec = new TblRegistuserDto(0, "newemail`gmail.com", "passworddayo", "", "Satake09");
-		if (dao.insert(insRec)) {
+		TblRegistuserDto insUser = new TblRegistuserDto(0, "satake1010@gmail.com", "passworddayo", "", "Satake09");
+		if (dao.insert(insUser)) {
 			System.out.println("登録成功！");
-			List<TblRegistuserDto> cardListIns = dao.select(new TblRegistuserDto(0, "", "", "", ""));
-			TblRegistuserDaoTest.showAllData(cardListIns);
+			List<TblRegistuserDto> userListIns = dao.select(new TblRegistuserDto(0, "", "", "", ""));
+			TblRegistuserDaoTest.showAllData(userListIns);
 		} else {
 			System.out.println("登録失敗！");
+		}
 			
 		// update()のテスト
 		System.out.println("---------- update()のテスト ----------");
-		List<TblRegistuserDto> cardListUp = dao.select(new TblRegistuserDto(0, "","Wakusei03","",""));
-		TblRegistuserDto upRec = cardListUp.get(0);
-		upRec.setPassword("Satakedayo09");
-		if (dao.update(upRec)) {
+		List<TblRegistuserDto> userListUp = dao.select(new TblRegistuserDto(1, "","Wakusei03","",""));
+		TblRegistuserDto upUser = userListUp.get(0);
+		upUser.setPassword("Satakedayo09");
+		if (dao.update(upUser)) {
 			System.out.println("更新成功！");
-			cardListUp = dao.select(new TblRegistuserDto(0, "", "", "", ""));
-			TblRegistuserDaoTest.showAllData(cardListUp);
+			userListUp = dao.select(new TblRegistuserDto(0, "", "", "", ""));
+			TblRegistuserDaoTest.showAllData(userListUp);
 		} else {
 			System.out.println("更新失敗！");
 		}
 	}
 		
 	
-	}
-	
 }
+	

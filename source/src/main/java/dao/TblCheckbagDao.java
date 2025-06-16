@@ -111,7 +111,7 @@ public class TblCheckbagDao extends CustomTemplateDao<TblCheckbagDto> {
 						bagCheck = ?,
 						bagName = ?,
 						bagStock = ?,
-						bagLink = ?
+						bagLink = ?,
 						userNumber = ?
 					WHERE bagNumber = ?
 					""";

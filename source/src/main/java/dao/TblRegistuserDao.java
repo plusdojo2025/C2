@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dto.IdPw;
 import dto.TblRegistuserDto;
 
 public class TblRegistuserDao extends CustomTemplateDao<TblRegistuserDto> {
@@ -164,5 +165,37 @@ public class TblRegistuserDao extends CustomTemplateDao<TblRegistuserDto> {
 				// 結果を返す
 				return result;
 	}
+	
+	public boolean insert (IdPw dto) {
+		Connection conn = null;
+		boolean loginResult = false;
 
+		try {
+		conn = conn();
+
+		// SELECT文を準備する
+			String sql = "SELECT count(*) FROM tbl_registuser WHERE mail=? AND password=?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, dto.getMail());
+			pStmt.setString(2, dto.getPassword());
+	
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// ユーザーIDとパスワードが一致するユーザーがいれば結果をtrueにする
+			rs.next();
+			if (rs.getInt("count(*)") == 1) {
+				loginResult = true;
+			}
+		}  catch (SQLException e) {
+			e.printStackTrace();
+			loginResult = false;
+		} finally {
+			// データベースを切断
+			close(conn);
+		}
+
+		// 結果を返す
+		return loginResult;
+	}
 }

@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<a href="${pageContext.request.contextPath}/StockPreFoodRegistServlet">登録ボタン</a>
+<a href="${pageContext.request.contextPath}/home">ホーム</a>
+<a href="${pageContext.request.contextPath}/StockPreFoodRegistServlet">削除ボタン</a>
 </body>
 </html>

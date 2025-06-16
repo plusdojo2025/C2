@@ -10,86 +10,45 @@ import javax.servlet.http.HttpSession;
 
 public abstract class CustomTemplateServlet extends HttpServlet {
 
-	
-
-	public boolean checkLogout(HttpServletRequest request,HttpServletResponse response) 
-
-			 throws IOException {
+	public boolean checkLogout(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		String logout = request.getParameter("logout");
-
 		boolean result = (logout != null);
-
-		if(result ) {
-
+		if (result) {
 			HttpSession session = request.getSession();
-
 			session.removeAttribute("id");
-
-			checkNoneLogin(request , response);
-
+			checkNoneLogin(request, response);
 		}
-
 		return result;
-
 	}
 
-	
-
-	protected final boolean checkNoneLogin(HttpServletRequest request, HttpServletResponse response) 
-
-			   throws IOException {
-
-		HttpSession session = request.getSession();		
-
-		boolean result = (session.getAttribute("id") == null);
-
-		if (result) {
-
-			// LOGINにリダイレクトする
-
-			response.sendRedirect("login");
-
-		}
-
-		return result;
-
-	}
-
-	
-
-	protected final boolean checkDoneLogin(HttpServletRequest request, HttpServletResponse response) 
-
-			   throws IOException {
-
+	protected final boolean checkNoneLogin(HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
 		HttpSession session = request.getSession();
-
-		boolean result = (session.getAttribute("id") != null);
-
+		boolean result = (session.getAttribute("id") == null);
 		if (result) {
-
-			// MENUにリダイレクトする
-
-			response.sendRedirect("home");
-
+			// LOGINにリダイレクトする
+			response.sendRedirect("login");
 		}
-
 		return result;
-
 	}
 
-	
+	protected final boolean checkDoneLogin(HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
+		HttpSession session = request.getSession();
+		boolean result = (session.getAttribute("id") != null);
+		if (result) {
+			// MENUにリダイレクトする
+			response.sendRedirect("home");
+		}
+		return result;
+	}
 
 	@Override
-
 	protected abstract void doGet(HttpServletRequest request, HttpServletResponse response)
-
 			throws ServletException, IOException;
 
 	@Override
-
 	protected abstract void doPost(HttpServletRequest request, HttpServletResponse response)
-
 			throws ServletException, IOException;
-
 }

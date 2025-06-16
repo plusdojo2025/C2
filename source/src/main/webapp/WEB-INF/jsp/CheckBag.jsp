@@ -11,13 +11,14 @@
 	<div class=header>
 	</div>
 	<h2>防災バック</h2>
-	<div class=bag-list>
-<c:forEach var="e" items="${cardList}" >
+	
+<%--
+<div class=bag-list><c:forEach var="e" items="${cardList}" >
 	<form method="POST" action="">
 	<input type="hidden" name="number" value="${e.number}">
 	</form>
 </c:forEach>
-	</div>
+	</div> --%>
 	
 <a href="${pageContext.request.contextPath}/home">ホームへ戻る</a>
 <a href="${pageContext.request.contextPath}/CheckBagServlet">登録</a>

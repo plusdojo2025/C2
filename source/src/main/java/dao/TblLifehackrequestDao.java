@@ -7,53 +7,51 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import dto.TblCheckbagDto;
+import dto.TblLifehackrequestDto;
 
-public class TblCheckbagDao extends CustomTemplateDao<TblCheckbagDto> {
-
+public class TblLifehackrequestDao extends CustomTemplateDao<TblLifehackrequestDto>{
+	
 	@Override
-	public List<TblCheckbagDto> select(TblCheckbagDto dto) {
+	public List<TblLifehackrequestDto> select(TblLifehackrequestDto dto) {
 		Connection conn = null;
-		List<TblCheckbagDto> checkbag = new ArrayList<>();
+		List<TblLifehackrequestDto> requests = new ArrayList<>();
 
 		try {
 		conn = conn();
 
 			// SQL文を準備する
-			String sql = "SELECT * FROM tbl_checkbag WHERE bagNumber = ?";
+			String sql = "SELECT * FROM tbl_lifehackrequest WHERE registNumber = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setInt(1, dto.getBagNumber());
+			pStmt.setInt(1, dto.getRegistNumber());
 			
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
-				TblCheckbagDto d = new TblCheckbagDto(rs.getInt("bagNumber"), 
-								rs.getBoolean("bagCheck"), 
-								rs.getString("bagName"), 
-								rs.getInt("bagStock"), 
-								rs.getString("bagLink"),
-								rs.getInt("userNumber")
+				TblLifehackrequestDto request = new TblLifehackrequestDto(rs.getInt("registNumber"),
+								rs.getString("title"), 
+								rs.getString("photo"), 
+								rs.getString("textline")
 				);				
-				checkbag.add(d);
+				requests.add(request);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			checkbag = null;
+			requests = null;
 		} finally {
 			// データベースを切断
 			close(conn);
 		}
 
 		// 結果を返す
-		return checkbag;
+		return requests;
 	}
-
+	
 	@Override
-	public boolean insert(TblCheckbagDto dto) {
+	public boolean insert(TblLifehackrequestDto dto) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -64,23 +62,21 @@ public class TblCheckbagDao extends CustomTemplateDao<TblCheckbagDto> {
 
 			// SQL文を準備する
 			String sql = """
-					INSERT tbl_checkbag (bagCheck,bagName,bagStock,bagLink,userNumber)
-										VALUES(?,?,?,?,?)
+					INSERT tbl_lifehackrequest (title,photo,textline)
+										VALUES(?,?,?)
 					""";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setBoolean(1, dto.getBagCheck());
-			pStmt.setString(2, dto.getBagName());
-			pStmt.setInt(3, dto.getBagStock());
-			pStmt.setString(4, dto.getBagLink());
-			pStmt.setInt(5, dto.getUserNumber());
+			pStmt.setString(1, dto.getTitle());
+			pStmt.setString(2, dto.getPhoto());
+			pStmt.setString(3, dto.getTextline());
 			
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 				ResultSet res = pStmt.getGeneratedKeys();
 				res.next();
-				dto.setUserNumber(res.getInt(1));
+				dto.setRegistNumber(res.getInt(1));
 				result = true;
 				}
 			} catch (SQLException e) {
@@ -92,10 +88,15 @@ public class TblCheckbagDao extends CustomTemplateDao<TblCheckbagDto> {
 			// 結果を返す
 			return result;
 	}
-
+	
 	@Override
-	public boolean update(TblCheckbagDto dto) {
+	public boolean update(TblLifehackrequestDto dto) {
 		// TODO 自動生成されたメソッド・スタブ
+		return false;
+	}
+	
+	@Override
+	public boolean delete(TblLifehackrequestDto dto) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -105,26 +106,12 @@ public class TblCheckbagDao extends CustomTemplateDao<TblCheckbagDto> {
 			conn = conn();
 
 			// SQL文を準備する
-			String sql = """
-					UPDATE tbl_checkbag 
-					SET 
-						bagCheck = ?,
-						bagName = ?,
-						bagStock = ?,
-						bagLink = ?,
-						userNumber = ?
-					WHERE bagNumber = ?
-					""";
+			String sql = "DELETE FROM tbl_lifehackrequest WHERE registNumber=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setBoolean(1, dto.getBagCheck());
-			pStmt.setString(2, dto.getBagName());
-			pStmt.setInt(3, dto.getBagStock());
-			pStmt.setString(4, dto.getBagLink());
-			pStmt.setInt(5, dto.getUserNumber());
-			pStmt.setInt(6, dto.getUserNumber());
-			
+			pStmt.setInt(1, dto.getRegistNumber());
+
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 					result = true;
@@ -137,11 +124,6 @@ public class TblCheckbagDao extends CustomTemplateDao<TblCheckbagDto> {
 			}
 			// 結果を返す
 			return result;
-	}
-
-	@Override
-	public boolean delete(TblCheckbagDto dto) {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
-	}
+}
+			
 }

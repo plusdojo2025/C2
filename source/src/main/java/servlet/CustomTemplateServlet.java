@@ -25,7 +25,7 @@ public abstract class CustomTemplateServlet extends HttpServlet {
 	protected final boolean checkNoneLogin(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 		HttpSession session = request.getSession();
-		boolean result = (session.getAttribute("id") == null);
+		boolean result = (session.getAttribute("mail") == null);
 		if (result) {
 			// LOGINにリダイレクトする
 			response.sendRedirect("login");
@@ -36,9 +36,9 @@ public abstract class CustomTemplateServlet extends HttpServlet {
 	protected final boolean checkDoneLogin(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 		HttpSession session = request.getSession();
-		boolean result = (session.getAttribute("id") != null);
+		boolean result = (session.getAttribute("mail") != null);
 		if (result) {
-			// MENUにリダイレクトする
+			// Homeにリダイレクトする
 			response.sendRedirect("home");
 		}
 		return result;
@@ -51,4 +51,6 @@ public abstract class CustomTemplateServlet extends HttpServlet {
 	@Override
 	protected abstract void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException;
-}
+
+		
+	}

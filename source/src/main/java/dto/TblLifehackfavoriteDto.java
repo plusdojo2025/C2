@@ -7,6 +7,8 @@ public class TblLifehackfavoriteDto extends CustomTemplateDto implements Seriali
 	private int lifehackfavoriteNumber;
 	private String familyId;
 	private int lifehackNumber;
+	private TblLifehacklistDto lifehack;
+
 	
 	//フィールドを使用したコンストラクタ
 	public TblLifehackfavoriteDto(int lifehackfavoriteNumber, String familyId, int lifehackNumber) {
@@ -14,11 +16,14 @@ public class TblLifehackfavoriteDto extends CustomTemplateDto implements Seriali
 		this.lifehackfavoriteNumber = lifehackfavoriteNumber;
 		this.familyId = familyId;
 		this.lifehackNumber = lifehackNumber;
+		this.lifehack = new TblLifehacklistDto();
+		this.lifehack.setLifehackNumber(lifehackNumber);
+		
 	}
 	
 	//スーパークラスから生成したコンストラクタ
 	public TblLifehackfavoriteDto() {
-		this(0,"",0);
+		this(0,"", 0);
 	}
 	
 	//ゲッタとセッタ
@@ -37,13 +42,22 @@ public class TblLifehackfavoriteDto extends CustomTemplateDto implements Seriali
 	public void setFamilyId(String familyId) {
 		this.familyId = familyId;
 	}
-
+	
+	
 	public int getLifehackNumber() {
 		return lifehackNumber;
 	}
 
 	public void setLifehackNumber(int lifehackNumber) {
 		this.lifehackNumber = lifehackNumber;
+	}
+
+	public TblLifehacklistDto getLifehack() {
+		return lifehack;
+	}
+
+	public void setLifehack(TblLifehacklistDto lifehack) {
+		this.lifehack = lifehack;
 	}
 	
 }

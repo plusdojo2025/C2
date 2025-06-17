@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dto.TblLifehackfavoriteDto;
+import dto.TblLifehacklistDto;
 
 public class TblLifehackfavoriteDao extends CustomTemplateDao<TblLifehackfavoriteDto> {
 	
@@ -20,21 +21,33 @@ public class TblLifehackfavoriteDao extends CustomTemplateDao<TblLifehackfavorit
 		conn = conn();
 
 			// SQL文を準備する
-			String sql = "SELECT * FROM tbl_lifehackfavorite WHERE familyId = ?";
+			String sql = "SELECT title, photo, textline, lifehackfavoriteNumber, familyId FROM tbl_lifehacklist "
+					+ "JOIN tbl_lifehackfavorite ON tbl_lifehacklist.lifehackNumber = tbl_lifehackfavorite.lifehackNumber"
+					+ " WHERE lifehackfavoriteNumber = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setString(1, dto.getFamilyId());
+			pStmt.setInt(1, dto.getLifehackfavoriteNumber());
 			
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
-				TblLifehackfavoriteDto f = new TblLifehackfavoriteDto(rs.getInt("lifehackfavoriteNumber"), 
-								rs.getString("familyId"),
-								rs.getInt("lifehackNumber")
-				);				
+				//リストのDTOを作成
+				TblLifehacklistDto list = new TblLifehacklistDto();
+				list.setTitle(rs.getString("title"));
+				list.setPhoto(rs.getString("photo"));
+				list.setTextline(rs.getString("textline"));
+				
+				//favoriteDTOを作成
+				TblLifehackfavoriteDto f = new TblLifehackfavoriteDto();
+				f.setLifehackfavoriteNumber(rs.getInt("lifehackfavoriteNumber"));
+				f.setFamilyId(rs.getString("familyId"));
+				
+				//listに入っているtitleなどをｆに追加
+				f.setLifehack(list);
+				
 				favorite.add(f);
 			}
 		} catch (SQLException e) {
@@ -68,7 +81,7 @@ public class TblLifehackfavoriteDao extends CustomTemplateDao<TblLifehackfavorit
 
 			// SQL文を完成させる
 			pStmt.setString(1, dto.getFamilyId());
-			pStmt.setInt(2, dto.getLifehackNumber());
+			//pStmt.setInt(2, dto.getLifehackNumber());
 			
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
@@ -102,14 +115,14 @@ public class TblLifehackfavoriteDao extends CustomTemplateDao<TblLifehackfavorit
 					UPDATE tbl_lifehackfavorite
 					SET 
 						familyId = ?,
-						lifehackNumber = ?,
+						lifehackNumber = ?
 					WHERE lifehackfavoriteNumber = ?
 					""";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
 			pStmt.setString(1, dto.getFamilyId());
-			pStmt.setInt(2, dto.getLifehackNumber());
+			//pStmt.setInt(2, dto.getLifehackNumber());
 			
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {

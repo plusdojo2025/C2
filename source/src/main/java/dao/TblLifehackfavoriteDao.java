@@ -74,15 +74,14 @@ public class TblLifehackfavoriteDao extends CustomTemplateDao<TblLifehackfavorit
 
 			// SQL文を準備する
 			String sql = """
-					INSERT tbl_registuser (familyId,lifehackNumber)
-										VALUES(?,0)
+					INSERT tbl_lifehackfavorite (familyId,lifehackNumber)
+										VALUES(?,?)
 					""";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
 			pStmt.setString(1, dto.getFamilyId());
-			//pStmt.setInt(2, dto.getLifehackNumber());
-			
+			pStmt.setInt(2, dto.getLifehackNumber());
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 				ResultSet res = pStmt.getGeneratedKeys();
@@ -122,8 +121,8 @@ public class TblLifehackfavoriteDao extends CustomTemplateDao<TblLifehackfavorit
 
 			// SQL文を完成させる
 			pStmt.setString(1, dto.getFamilyId());
-			//pStmt.setInt(2, dto.getLifehackNumber());
-			
+			pStmt.setInt(2, dto.getLifehackNumber());
+			pStmt.setInt(3, dto.getLifehackfavoriteNumber());
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 					result = true;
@@ -149,7 +148,7 @@ public class TblLifehackfavoriteDao extends CustomTemplateDao<TblLifehackfavorit
 			conn = conn();
 
 			// SQL文を準備する
-			String sql = "DELETE FROM Bc WHERE lifehackfavoriteNumber=?";
+			String sql = "DELETE FROM tbl_lifehackfavorite WHERE lifehackfavoriteNumber=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる

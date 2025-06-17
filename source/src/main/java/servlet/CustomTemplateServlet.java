@@ -51,4 +51,6 @@ public abstract class CustomTemplateServlet extends HttpServlet {
 	@Override
 	protected abstract void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException;
-}
+
+		
+	}

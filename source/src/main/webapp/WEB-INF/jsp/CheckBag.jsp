@@ -17,14 +17,296 @@
 	</div>
 </header>
 
+<div class="bag-title">
+	<h1>防災バッグリスト</h1>
+	<button>登録</button>
+</div>
+
+<h2>必須の備え</h2>
+
+<section>
+	<div class="grid-container">
+		<div class="grid-item">
+			<div class="first-item">
+				<input type="checkbox">
+				<input type=text name="bagname" value="${e.name}">
+			</div>
+			<div class="second-item">
+				<img src="${pageContext.request.contextPath}/img/number.png">
+				<select >
+				<option>1 個</option>
+				<option>2 個</option>
+				<option>3 個</option>
+				<option>4 個</option>
+				<option>6 個</option>
+				<option>7 個</option>
+				<option>8 個</option>
+				<option>9 個</option>
+				<option>10 個</option>
+				<option>11 個</option>
+				<option>12 個</option>
+				<option>13 個</option>
+				<option>14 個</option>
+				<option>15 個</option>
+				<option>16 個</option>
+				<option>17 個</option>
+				<option>18 個</option>
+				<option>19 個</option>
+				<option>20 個</option>
+				</select>
+			</div>
+			<div class="third-item">
+				<img src="${pageContext.request.contextPath}/img/Link.png">
+				<textarea  name="link"></textarea>
+			</div>
+	</div>
+	<div class="grid-item">
+			<div class="first-item">
+				<input type="checkbox">
+				<input type=text name="bagname" value="${e.name}">
+			</div>
+			<div class="second-item">
+				<img src="${pageContext.request.contextPath}/img/number.png">
+				<select >
+				<option>1 個</option>
+				<option>2 個</option>
+				<option>3 個</option>
+				<option>4 個</option>
+				<option>6 個</option>
+				<option>7 個</option>
+				<option>8 個</option>
+				<option>9 個</option>
+				<option>10 個</option>
+				<option>11 個</option>
+				<option>12 個</option>
+				<option>13 個</option>
+				<option>14 個</option>
+				<option>15 個</option>
+				<option>16 個</option>
+				<option>17 個</option>
+				<option>18 個</option>
+				<option>19 個</option>
+				<option>20 個</option>
+				</select>
+			</div>
+			<div class="third-item">
+				<img src="${pageContext.request.contextPath}/img/Link.png">
+				<textarea  name="link"></textarea>
+			</div>
+	</div>
+	<div class="grid-item">
+			<div class="first-item">
+				<input type="checkbox">
+				<input type=text name="bagname" value="${e.name}">
+			</div>
+			<div class="second-item">
+				<img src="${pageContext.request.contextPath}/img/number.png">
+				<select >
+				<option>1 個</option>
+				<option>2 個</option>
+				<option>3 個</option>
+				<option>4 個</option>
+				<option>6 個</option>
+				<option>7 個</option>
+				<option>8 個</option>
+				<option>9 個</option>
+				<option>10 個</option>
+				<option>11 個</option>
+				<option>12 個</option>
+				<option>13 個</option>
+				<option>14 個</option>
+				<option>15 個</option>
+				<option>16 個</option>
+				<option>17 個</option>
+				<option>18 個</option>
+				<option>19 個</option>
+				<option>20 個</option>
+				</select>
+			</div>
+			<div class="third-item">
+				<img src="${pageContext.request.contextPath}/img/Link.png">
+				<textarea  name="link"></textarea>
+			</div>
+	</div>
+	<div class="grid-item">
+			<div class="first-item">
+				<input type="checkbox">
+				<input type=text name="bagname" value="${e.name}">
+			</div>
+			<div class="second-item">
+				<img src="${pageContext.request.contextPath}/img/number.png">
+				<select >
+				<option>1 個</option>
+				<option>2 個</option>
+				<option>3 個</option>
+				<option>4 個</option>
+				<option>6 個</option>
+				<option>7 個</option>
+				<option>8 個</option>
+				<option>9 個</option>
+				<option>10 個</option>
+				<option>11 個</option>
+				<option>12 個</option>
+				<option>13 個</option>
+				<option>14 個</option>
+				<option>15 個</option>
+				<option>16 個</option>
+				<option>17 個</option>
+				<option>18 個</option>
+				<option>19 個</option>
+				<option>20 個</option>
+				</select>
+			</div>
+			<div class="third-item">
+				<img src="${pageContext.request.contextPath}/img/Link.png">
+				<textarea  name="link"></textarea>
+			</div>
+	</div>
+	<div class="grid-item">
+			<div class="first-item">
+				<input type="checkbox">
+				<input type=text name="bagname" value="${e.name}">
+			</div>
+			<div class="second-item">
+				<img src="${pageContext.request.contextPath}/img/number.png">
+				<select >
+				<option>1 個</option>
+				<option>2 個</option>
+				<option>3 個</option>
+				<option>4 個</option>
+				<option>6 個</option>
+				<option>7 個</option>
+				<option>8 個</option>
+				<option>9 個</option>
+				<option>10 個</option>
+				<option>11 個</option>
+				<option>12 個</option>
+				<option>13 個</option>
+				<option>14 個</option>
+				<option>15 個</option>
+				<option>16 個</option>
+				<option>17 個</option>
+				<option>18 個</option>
+				<option>19 個</option>
+				<option>20 個</option>
+				</select>
+			</div>
+			<div class="third-item">
+				<img src="${pageContext.request.contextPath}/img/Link.png">
+				<textarea  name="link"></textarea>
+			</div>
+	</div>
+	<div class="grid-item">
+			<div class="first-item">
+				<input type="checkbox">
+				<input type=text name="bagname" value="${e.name}">
+			</div>
+			<div class="second-item">
+				<img src="${pageContext.request.contextPath}/img/number.png">
+				<select >
+				<option>1 個</option>
+				<option>2 個</option>
+				<option>3 個</option>
+				<option>4 個</option>
+				<option>6 個</option>
+				<option>7 個</option>
+				<option>8 個</option>
+				<option>9 個</option>
+				<option>10 個</option>
+				<option>11 個</option>
+				<option>12 個</option>
+				<option>13 個</option>
+				<option>14 個</option>
+				<option>15 個</option>
+				<option>16 個</option>
+				<option>17 個</option>
+				<option>18 個</option>
+				<option>19 個</option>
+				<option>20 個</option>
+				</select>
+			</div>
+			<div class="third-item">
+				<img src="${pageContext.request.contextPath}/img/Link.png">
+				<textarea  name="link"></textarea>
+			</div>
+	</div>
+	<div class="grid-item">
+			<div class="first-item">
+				<input type="checkbox">
+				<input type=text name="bagname" value="${e.name}">
+			</div>
+			<div class="second-item">
+				<img src="${pageContext.request.contextPath}/img/number.png">
+				<select >
+				<option>1 個</option>
+				<option>2 個</option>
+				<option>3 個</option>
+				<option>4 個</option>
+				<option>6 個</option>
+				<option>7 個</option>
+				<option>8 個</option>
+				<option>9 個</option>
+				<option>10 個</option>
+				<option>11 個</option>
+				<option>12 個</option>
+				<option>13 個</option>
+				<option>14 個</option>
+				<option>15 個</option>
+				<option>16 個</option>
+				<option>17 個</option>
+				<option>18 個</option>
+				<option>19 個</option>
+				<option>20 個</option>
+				</select>
+			</div>
+			<div class="third-item">
+				<img src="${pageContext.request.contextPath}/img/Link.png">
+				<textarea  name="link"></textarea>
+			</div>
+	</div>
+	<div class="grid-item">
+			<div class="first-item">
+				<input type="checkbox">
+				<input type=text name="bagname" value="${e.name}">
+			</div>
+			<div class="second-item">
+				<img src="${pageContext.request.contextPath}/img/number.png">
+				<select >
+				<option>1 個</option>
+				<option>2 個</option>
+				<option>3 個</option>
+				<option>4 個</option>
+				<option>6 個</option>
+				<option>7 個</option>
+				<option>8 個</option>
+				<option>9 個</option>
+				<option>10 個</option>
+				<option>11 個</option>
+				<option>12 個</option>
+				<option>13 個</option>
+				<option>14 個</option>
+				<option>15 個</option>
+				<option>16 個</option>
+				<option>17 個</option>
+				<option>18 個</option>
+				<option>19 個</option>
+				<option>20 個</option>
+				</select>
+			</div>
+			<div class="third-item">
+				<img src="${pageContext.request.contextPath}/img/Link.png">
+				<textarea  name="link"></textarea>
+			</div>
+	</div>
+	
+		
+	</div>
+</section>
+
+
+
 <footer>
 	<h3>&copy; 2025 WAKUSEI OMOIDE</h3>
 </footer>
-	
-	
-<a href="${pageContext.request.contextPath}/home">ホームへ戻る</a>
-<a href="${pageContext.request.contextPath}/CheckBagServlet">登録</a>
-	
-	
 </body>
 </html>

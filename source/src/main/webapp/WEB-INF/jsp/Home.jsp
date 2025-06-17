@@ -10,88 +10,51 @@
 </head>
 <body>
 
-<header class= "page-header">
+<header >
 	<div class= "logo-header">
 		<a href="${pageContext.request.contextPath}/home">
-			<img id="logo-img"src="${pageContext.request.contextPath}/img/logo.png">
+		<img src="${pageContext.request.contextPath}/img/logo.png">
 		</a>
 	</div>
 </header>
 
 <section>
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe.png">
-	<img src="${pageContext.request.contextPath}/img/stripe2.png">
-	
-</section>
-
-<section>
-    <div class="grid-container">
-        <div class="grid-item">
-        <input  style=" width:80px; margin-top:20px; border:none; background-color:#fdc435;" type=text name="name" value="${e.name}">
-        <input style=" width:80px; margin-top:10px;border:none; background-color:#fdc435;" type=text name="name" value="${e.name}">
-        </div>
+	<div class="grid-container">
 		<div class="grid-item">
-        <input  style=" width:80px; margin-top:20px; border:none; background-color:#fdc435;" type=text name="name" value="${e.name}">
-        <input style=" width:80px; margin-top:10px;border:none; background-color:#fdc435;" type=text name="name" value="${e.name}">
-        </div>
-        <div class="grid-item">
-        <input  style=" width:80px; margin-top:20px; border:none; background-color:#fdc435;" type=text name="name" value="${e.name}">
-        <input style=" width:80px; margin-top:10px;border:none; background-color:#fdc435;" type=text name="name" value="${e.name}">
-        </div>
-        <div class="grid-item">
-        <input  style=" width:80px; margin-top:20px; border:none; background-color:#fdc435;" type=text name="name" value="${e.name}">
-        <input style=" width:80px; margin-top:10px;border:none; background-color:#fdc435;" type=text name="name" value="${e.name}">
-        </div>
-    </div>
-
-</section>
-
-<section>
-	<div class="box" style="display:flex; position:relative; left:220px;">
-		<div  style="width:500px;margin-right:100px; margin-top:100px;">
-		<img   src="${pageContext.request.contextPath}/img/Japan.png">
+			<input type=text name="name" value="${e.name}">
+			<input type=text name="name" value="${e.name}">
 		</div>
-		<div style="width:500px;"> 
-		<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">【16日頃から熱中症に注意】太平洋高気圧の張り出しが強まり、全国的に暖かい空気に覆われる見込みです。16日頃から真夏日が続き、梅雨の晴れ間で今年一番の暑さや猛暑日となる所もあるでしょう。急に真夏の暑さとなるため熱中症や健康管理に十分注意してください。<a href="https://t.co/Rm1kbViXwy">https://t.co/Rm1kbViXwy</a> <a href="https://t.co/mnURygzTXJ">pic.twitter.com/mnURygzTXJ</a></p>&mdash; 気象庁防災情報 (@JMA_bousai) <a href="https://twitter.com/JMA_bousai/status/1933053109670195615?ref_src=twsrc%5Etfw">June 12, 2025</a></blockquote> 
-				<script  src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		<div class="grid-item">
+			<input type=text name="name" value="${e.name}">
+			<input type=text name="name" value="${e.name}">
 		</div>
-		
+		<div class="grid-item">
+			<input type=text name="name" value="${e.name}">
+			<input type=text name="name" value="${e.name}">
+		</div>
+		<div class="grid-item">
+			<input type=text name="name" value="${e.name}">
+			<input type=text name="name" value="${e.name}">
+		</div>
 	</div>
 </section>
 
+<section>
+	<div class="alert-container">
+		<div>
+			<p>現在は</p>
+			<img src="${pageContext.request.contextPath}/img/Japan.png">
+			
+		</div>
+		<div>
+			<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">【16日頃から熱中症に注意】太平洋高気圧の張り出しが強まり、全国的に暖かい空気に覆われる見込みです。16日頃から真夏日が続き、梅雨の晴れ間で今年一番の暑さや猛暑日となる所もあるでしょう。急に真夏の暑さとなるため熱中症や健康管理に十分注意してください。<a href="https://t.co/Rm1kbViXwy">https://t.co/Rm1kbViXwy</a> <a href="https://t.co/mnURygzTXJ">pic.twitter.com/mnURygzTXJ</a></p>&mdash; 気象庁防災情報 (@JMA_bousai) <a href="https://twitter.com/JMA_bousai/status/1933053109670195615?ref_src=twsrc%5Etfw">June 12, 2025</a></blockquote> 
+			<script  src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		</div>
+	</div>
 
-<section class="function">
+</section>
+
+<section class="function-container">
 	<h1>機能一覧</h1>
 	<div class="function-menu">		
 		<a href="${pageContext.request.contextPath}/CheckBagServlet"><img src="${pageContext.request.contextPath}/img/stockbag.png"></a>	
@@ -101,32 +64,10 @@
 	</div>
 </section>
 
-<section id="renewal">
-	<div class="new">
-		<h1>過去の災害情報</h1>
-		<table class="news-table">
-			<tr>
-				<td class="news-date">2025年05月30日</td>
-				<td class="news-content">BusinessCardBoxのサービスが開始されました。</td>
-			</tr>
-			<tr>
-				<td class="news-date">2025年05月30日</td>
-				<td class="news-content">BusinessCardBoxにデータベースを追加しました。</td>
-			</tr>
-			<tr>
-				<td class="news-date">2025年05月27日</td>
-				<td class="news-content">BusinessCardBoxにJavaScriptを追加しました。</td>
-			</tr>
-			<tr>
-				<td class="news-date">2025年05月26日</td>
-				<td class="news-content">BusinessCardBoxのWebアプリサイトを開設しました。</td>
-			</tr>   
-		</table>
-</div>
-</section>
 
 <footer>
 	<h3>&copy; 2025 WAKUSEI OMOIDE</h3>
 </footer>
+
 </body>
 </html>

@@ -1,97 +1,20 @@
 @charset "UTF-8";
 
-
-body {
+body{
 	background-color: #f7efe3;
 }
+
 header {
-	height: 140px;
+	height: 130px;
 	background-color: #fdc435;
 }
 
-#logo-img {
-	position: relative;
-	top: 10px;
-	left:600px;
-}
-.function h1 {
-	text-align: center;
-	font-size: 40px;
-}
-.function-menu {
+.logo-header {
 	display:flex;
-	position: relative;
-	left:200px;
-}
-.function-menu img {
-	margin-left:20px;
+	justify-content:center;
 }
 
-#renewal {
-    max-width: 80%;
-    justify-content: center;
-    height:400px;
-    padding: 3rem 0;
-
-    color: black;
-    text-align: center;
-
-    position: relative;
-    bottom:33px;
-}
-/* ニュースの表 */
-.new h1 {
-    color: black;
-    text-align: center;
-    font-size: 30px;
-    position:relative;
-    top:10px;
-}
-
-.new {
-	background-color:#fdc435;
-	width: 90%;
-	position: relative;
-	top: 20px;
-	left: 230px;
-}
-
-.news-table {
-    color: black;
-    width: 100%;
-}
-
-.news-table tr {
-    display: flex;
-}
-
-.news-table td {
-    display: block;
-    line-height: 1.5;
-    font-size: 20px;
-    padding-bottom: 20px;
-    position:relative;
-    left: 150px;
-    
-}
-
-.news-date {
-    padding-right: 60px;
-}
-
-
-footer {
-	height: 140px;
-	background-color: #fdc435;
-}
-
-footer h3 {
-	position:relative;
-	top:50px;
-	left:650px;
-}
-
-.grid-container {
+.grid-container{
 	 width:800px;
 	 margin: auto;
 	 margin-top: 30px;
@@ -99,7 +22,6 @@ footer h3 {
 	 display: grid;
      grid-template-columns: repeat(4, 1fr);
 	 gap: 30px;
-	 
 }
 
 .grid-item {
@@ -108,5 +30,41 @@ footer h3 {
 	background-color: #fdc435;
 	border-radius: 10px;
 	text-align:center;
+}
+
+input {
+	width:80px;
+	margin-top:20px;
+	border:none; 
+	background-color:#fdc435;
+}
+
+.alert-container {
+	display: flex;
+	margin-left: 200px;
+	margin-top: 50px;
+	gap:60px;
+}
+
+.function-container {
+	width:1200px;
+	margin-left: 200px;
+}
+
+.function-menu {
+	display:flex;
+	gap:30px;
+}
+
+.function-menu img {
+	width:250px;
+	height:200px;
+}
+
+
+footer {
+	height: 140px;
+	background-color: #fdc435;
+	margin-top:100px;
 }
 

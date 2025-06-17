@@ -71,6 +71,7 @@ public class LoginServlet extends CustomTemplateServlet {
 			dispatcher.forward(request, response);
 		}
 	}
+
 }
 /*
  * // メールアドレスが入力されていなかった時 if (mail == null) { HttpSession session =

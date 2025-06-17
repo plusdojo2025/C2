@@ -31,7 +31,8 @@ public class TblLifehackrequestDao extends CustomTemplateDao<TblLifehackrequestD
 
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
-				TblLifehackrequestDto request = new TblLifehackrequestDto(rs.getInt("registNumber"), 
+				TblLifehackrequestDto request = new TblLifehackrequestDto(rs.getInt("registNumber"),
+								rs.getString("title"), 
 								rs.getString("photo"), 
 								rs.getString("textline")
 				);				
@@ -61,14 +62,15 @@ public class TblLifehackrequestDao extends CustomTemplateDao<TblLifehackrequestD
 
 			// SQL文を準備する
 			String sql = """
-					INSERT tbl_lifehackrequest (photo,textline)
-										VALUES(?,?)
+					INSERT tbl_lifehackrequest (title,photo,textline)
+										VALUES(?,?,?)
 					""";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setString(1, dto.getPhoto());
-			pStmt.setString(2, dto.getTextline());
+			pStmt.setString(1, dto.getTitle());
+			pStmt.setString(2, dto.getPhoto());
+			pStmt.setString(3, dto.getTextline());
 			
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {

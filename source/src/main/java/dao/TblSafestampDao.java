@@ -105,7 +105,7 @@ public class TblSafestampDao extends CustomTemplateDao<TblSafestampDto> {
 					SET 
 						status = ?,
 						familyId = ?,
-						userNumber = ?,
+						userNumber = ?
 					WHERE safeNumber = ?
 					""";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -141,7 +141,7 @@ public class TblSafestampDao extends CustomTemplateDao<TblSafestampDto> {
 			conn = conn();
 
 			// SQL文を準備する
-			String sql = "DELETE FROM Bc WHERE safeNumber=?";
+			String sql = "DELETE FROM tbl_safestamp WHERE safeNumber=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる

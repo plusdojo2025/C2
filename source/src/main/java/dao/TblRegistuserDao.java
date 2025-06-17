@@ -146,7 +146,7 @@ public class TblRegistuserDao extends CustomTemplateDao<TblRegistuserDto> {
 				conn = conn();
 
 				// SQL文を準備する
-				String sql = "DELETE FROM Bc WHERE userNumber=?";
+				String sql = "DELETE FROM tbl_registuser WHERE userNumber=?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる

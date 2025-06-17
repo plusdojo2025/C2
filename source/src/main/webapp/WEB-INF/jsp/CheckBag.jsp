@@ -8,17 +8,19 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bagfood.css">
 </head>
 <body>
-	<div class=header>
+
+<header>
+	<div class= "logo-header">
+		<a href="${pageContext.request.contextPath}/home">
+		<img src="${pageContext.request.contextPath}/img/logo.png">
+		</a>
 	</div>
-	<h2>防災バック</h2>
+</header>
+
+<footer>
+	<h3>&copy; 2025 WAKUSEI OMOIDE</h3>
+</footer>
 	
-<%--
-<div class=bag-list><c:forEach var="e" items="${cardList}" >
-	<form method="POST" action="">
-	<input type="hidden" name="number" value="${e.number}">
-	</form>
-</c:forEach>
-	</div> --%>
 	
 <a href="${pageContext.request.contextPath}/home">ホームへ戻る</a>
 <a href="${pageContext.request.contextPath}/CheckBagServlet">登録</a>

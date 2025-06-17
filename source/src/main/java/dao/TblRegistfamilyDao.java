@@ -59,7 +59,7 @@ public class TblRegistfamilyDao extends CustomTemplateDao<TblRegistfamilyDto> {
 
 			// SQL文を準備する
 			String sql = """
-					INSERT tbl_registuser (familyId)
+					INSERT tbl_registfamily (familyId)
 										VALUES(?)
 					""";
 			PreparedStatement pStmt = conn.prepareStatement(sql);

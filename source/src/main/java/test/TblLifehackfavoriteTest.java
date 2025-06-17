@@ -14,11 +14,31 @@ public class TblLifehackfavoriteTest {
 		//テストしたいDAOでインスタンスを生成
 		TblLifehackfavoriteDao dao = new TblLifehackfavoriteDao();
 		
-		// select()のテスト1
-		System.out.println("---------- select()のテスト1 ----------");
-		List<TblLifehackfavoriteDto> user = dao.select(new TblLifehackfavoriteDto(1, "", 1));
-		TblRegistuserDAOTest.showAllData(user);
+//		// select()のテスト1
+//		System.out.println("---------- select()のテスト1 ----------");
+//		List<TblLifehackfavoriteDto> user = dao.select(new TblLifehackfavoriteDto(1, "", 1));
+//		TblRegistuserDAOTest.showAllData(user);
 
+//		// insert()のテスト
+//		System.out.println("---------- insert()のテスト ----------");
+//		TblLifehackfavoriteDto favorite = new TblLifehackfavoriteDto(0, "Tomihara08", 1);
+//		if (dao.insert(favorite)) {
+//			List<TblLifehackfavoriteDto> userListIns = dao.select(new TblLifehackfavoriteDto(0, "", 0));
+//			TblRegistuserDAOTest.showAllData(userListIns);
+//			System.out.println("登録成功！");
+//		} else {
+//			System.out.println("登録失敗！");
+//		}
+		
+		// delete()のテスト
+		System.out.println("---------- delete()のテスト ----------");
+		List<TblLifehackfavoriteDto> cardListDel = dao.select(new TblLifehackfavoriteDto(8,"",0));
+		TblLifehackfavoriteDto delRec = cardListDel.get(0);
+		if (dao.delete(delRec)) {
+			System.out.println("削除成功！");
+		} else {
+			System.out.println("削除失敗！");
+		}
 
 	}
 	

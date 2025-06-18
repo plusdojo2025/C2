@@ -59,7 +59,7 @@ public class TblRegistfamilyDao extends CustomTemplateDao<TblRegistfamilyDto> {
 
 			// SQL文を準備する
 			String sql = """
-					INSERT tbl_registfamily (familyId)
+					INSERT INTO tbl_registfamily (familyId)
 										VALUES(?)
 					""";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -69,9 +69,6 @@ public class TblRegistfamilyDao extends CustomTemplateDao<TblRegistfamilyDto> {
 			
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
-				ResultSet res = pStmt.getGeneratedKeys();
-				res.next();
-				dto.setFamilyId(res.getString(1));
 				result = true;
 				}
 			} catch (SQLException e) {

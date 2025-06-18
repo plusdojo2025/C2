@@ -123,7 +123,8 @@ public class TblCheckbagDao extends CustomTemplateDao<TblCheckbagDto> {
 			pStmt.setInt(3, dto.getBagStock());
 			pStmt.setString(4, dto.getBagLink());
 			pStmt.setInt(5, dto.getUserNumber());
-			pStmt.setInt(6, dto.getUserNumber());
+			pStmt.setInt(6, dto.getBagNumber());
+			
 			
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
@@ -137,6 +138,7 @@ public class TblCheckbagDao extends CustomTemplateDao<TblCheckbagDto> {
 			}
 			// 結果を返す
 			return result;
+			
 	}
 
 	@Override

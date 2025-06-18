@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ログイン</title>
+<title>ライフハック申請</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/loginlifehack.css">
 </head>

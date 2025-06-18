@@ -65,7 +65,7 @@ h2{
 	color: #f58077;
 }
 
-/* ライフハック */
+/* ライフハック一覧 */
 
 body.lifehacklist {
 	background-color: #f7efe3;
@@ -203,4 +203,77 @@ footer {
 }
 footer h3 {
 	margin: 0;
+}
+
+/* ライフハック申請 */
+body.lifehack-request {
+  background-color: #f7efe3;
+}
+
+/* フォーム全体を中央配置＆装飾 */
+form.lifehack-form {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+/* 見出し */
+h2.lifehack-caption {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+/* 各入力ブロック */
+.lifehack-title,
+.lifehack-explanation {
+  margin-bottom: 20px;
+}
+
+label.label-lifehack{
+  
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+/* テキスト入力＆説明文 */
+input[type="text"],
+textarea{
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #333;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: #fffaf0;
+  box-sizing: border-box;
+}
+
+/* テキストエリア特別設定 */
+textarea {
+  height: 150px;
+  resize: vertical;
+}
+
+/* ファイル選択 */
+input[type="file"] {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  
+}
+
+/* ボタン */
+.lifehckrequest-button{
+  background-color:#0070c0;
+	color: white;
+	border-radius: 5px;
+	text-decoration: none;
+	padding: 0px 10px;
+	margin: 20px auto; 
+	border: none; 
+	width: 70px;
+	text-align: center; /* 子要素（ボタン）を中央揃えにする */
+   
 }

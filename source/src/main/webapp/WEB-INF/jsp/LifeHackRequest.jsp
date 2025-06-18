@@ -8,21 +8,22 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/loginlifehack.css">
 </head>
-<body>
-	<form>
+<body class=lifehack-request>
+	<form class=lifehack-form>
+	<h2 class=lifehack-caption>【申請】ライフハック</h2>
 		<div class="lifehack-title">
-			<label for="lifehacktitle">ライフハックタイトル</label><br> 
+			<label for="lifehacktitle" class="label-lifehack">ライフハックタイトル</label><br> 
 			<input type="text" id="title" name="title" class="" value=""><br>
 		</div>
 		<div class="lifehack-explanation">
 			<label for="lifehackexplanation">ライフハック説明文</label><br> 
-			<input type="text" id="explanation" name="explanation" class="" value=""><br>
+			<textarea id="explanation" name="explanation" class="" rows="10" placeholder="説明を入力してください"></textarea><br>
 		</div>
 		<div>
       		<input type="file" name="lifehackimg">
     	</div>
-		<div class="request-button">
-			<input type="submit" id="submit" name="submit" value="申請" class="login-button">
+		<div class="lifehckrequest-button">
+			<input type="submit" id="submit" name="submit" value="申請" class="lifehckrequest-button">
 		</div>
 	</form>
 </body>

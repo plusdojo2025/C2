@@ -20,11 +20,11 @@ public class TblLifehacklistDao extends CustomTemplateDao<TblLifehacklistDto> {
 		conn = conn();
 
 			// SQL文を準備する
-			String sql = "SELECT * FROM tbl_lifehack WHERE lifehackNumber = ?";
+			String sql = "SELECT * FROM tbl_lifehacklist WHERE title LIKE ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setInt(1, dto.getLifehackNumber());
+			pStmt.setString(1, "%" + dto.getTitle() + "%");
 			
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();

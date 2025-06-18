@@ -18,6 +18,10 @@
 	</div>
 </header>
 
+<div class="stripe-container">
+<p>
+</div>
+
 <section>
 	<div class="grid-container">
 		<div class="grid-item">

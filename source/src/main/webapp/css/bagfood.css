@@ -29,7 +29,7 @@ header {
 
 .grid-item {
 	width:300px;
-	height:180px;
+	height:200px;
 	background-color: #ffffff;
 	border: 2px solid #fdc435;
 	border-radius: 10px;
@@ -53,6 +53,17 @@ input[name="bagname"]{
 	border-bottom: 2px solid black;
 }
 
+
+
+.third-item input{
+	width: 120px;
+	height:30px;
+	margin-top: 12px;
+	font-size:15px;
+	border:none;
+}
+
+
 textarea[name="link"]{
 	width: 190px;
 	height:30px;
@@ -60,6 +71,7 @@ textarea[name="link"]{
 	font-size:10px;
 	border:none;
 }
+
 select {
 	margin-top: 5px;
 	width: 80px;

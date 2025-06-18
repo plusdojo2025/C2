@@ -14,6 +14,10 @@ body {
 	align-items: center;
 	min-height: 100vh;
 }
+
+.wrapper {
+  flex: 1;  
+}
 h2{
 	margin-top: 50px;
 	
@@ -75,14 +79,13 @@ body.lifehacklist {
 }
 
 header {
-	height: 140px;
+	height: 130px;
 	background-color: #fdc435;
 }
 
-#logo-img {
-	position: relative;
-	top: 10px;
-	left:600px;
+.logo-header {
+	display:flex;
+	justify-content:center;
 }
 	
 
@@ -192,18 +195,6 @@ h2{
 	font-size: 16px;
 	margin-bottom: 10px;
 }
-*/
-
-footer {
-	display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 140px;
-  background-color: #fdc435;
-}
-footer h3 {
-	margin: 0;
-}
 
 /* ライフハック申請 */
 body.lifehack-request {
@@ -274,6 +265,88 @@ input[type="file"] {
 	margin: 20px auto; 
 	border: none; 
 	width: 70px;
-	text-align: center; /* 子要素（ボタン）を中央揃えにする */
-   
+	text-align: center; 
+}
+
+/* お気に入りライフハック */
+body.lifehackfavorite{
+	background-color: #f7efe3;
+	 display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+.lifehack-request-button{
+	background-color:#f58077;
+	color: white;
+	border-radius: 5px;
+	text-decoration: none;
+	padding: 10px 10px;
+	margin-left: 30px;
+	width: 300px;
+	padding-left: 24px;
+  padding-right: 16px;
+}
+body.favorite-page {
+  background-color: #FFF9E5;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.card-list {
+    display: flex;
+	gap: 20px;
+	justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+  background-color:white;
+	border-radius: 10px;
+	padding: 20px;
+	width: 600px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.card img {
+  width: 220px;
+  border-radius: 8px;
+}
+
+.title {
+  font-weight: bold;
+	font-size: 20px;
+	margin: 8px 0;
+}
+
+.card .desc {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #444;
+}
+
+.detail {
+  font-size: 16px;
+	margin-bottom: 10px;
+}
+
+footer {
+	height: 140px;
+	background-color: #fdc435;
+	margin-top:100px;
+}
+footer h3{
+	text-align: center; 
+	
 }

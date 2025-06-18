@@ -53,10 +53,14 @@
 </section>
 
 <h2>ライフハック</h2>
+
 <div class="button">
 <a href="${pageContext.request.contextPath}/LifeHackRequestServlet" class="request-button">ライフハックを申請</a>
 <a href="${pageContext.request.contextPath}/LifeHackFavoriteServlet" class="favorite-button">お気に入りライフハック</a>
 </div>
+
+
+
 <div class="search-box">
  <form action="${pageContext.request.contextPath}/LifeHackListServlet" method="get" class="search-form">
  <input type="text" name="keyword" class="search-input" placeholder="キーワードを入力" >
@@ -65,7 +69,7 @@
  </button>
  </form>
 </div>
-<div class="search-result">
+<%-- <div class="search-result">
  <c:choose>
   <c:when test="${not empty articleList}">
    <c:forEach var="article" items="${articleList}">
@@ -86,8 +90,22 @@
   	<p>該当なし</p>
   </c:otherwise>
  </c:choose>
+ </div> --%>
+ 
+ <!-- lifeListに入っているデータベースを表示
+ 　　　　　初期表示では、Tbl_lifehacklistに入っている全てのデータがlifeListに入っている
+ 　　　　　検索結果に応じてlifeListが変化
+  -->
+ <div class="lifehack-article">
+ 
+ <c:forEach var="e" items="${lifeList}" > 
+	 
+ 
+ </c:forEach>
+ 
  </div>
-<!--  デザイン確認用
+  
+ <!-- デザイン確認用
 <div class="lifehack-article">
 	<div class="article-1">
 		<div class="title-1"></div><br>
@@ -110,8 +128,8 @@
 		<p class="text-3">
 		</p><br>
 	</div>	
-</div>
- --> 
+</div> -->
+ 
 <footer>
 	<h3>&copy; 2025 WAKUSEI OMOIDE</h3>
 </footer>

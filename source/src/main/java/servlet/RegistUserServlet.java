@@ -57,7 +57,7 @@ public class RegistUserServlet extends HttpServlet {
 		TblRegistuserDao registDao = new TblRegistuserDao();
 		if (registDao.insert(new TblRegistuserDto(0, mail, password, name, familyId))) { // 登録成功
 			// ログインページにリダイレクトする
-			response.sendRedirect(request.getContextPath() + "/LoginServlet");
+			response.sendRedirect(request.getContextPath() + "/login");
 		} else { // 登録失敗
 			request.setAttribute("result", new Result("登録失敗！", "レコードを登録できませんでした。", "/webapp/RegistUserServlet"));
 			// ユーザー登録ページにフォワードする

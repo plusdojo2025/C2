@@ -14,6 +14,10 @@ header {
 	justify-content:center;
 }
 
+.stripe-container {
+	height: 100px;
+}
+
 .grid-container{
 	 width:800px;
 	 margin: auto;
@@ -68,3 +72,6 @@ footer {
 	margin-top:100px;
 }
 
+h1 {
+	text-align:center;
+}

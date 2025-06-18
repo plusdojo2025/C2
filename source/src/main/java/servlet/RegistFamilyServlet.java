@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.TblRegistfamilyDao;
+import dto.Result;
+import dto.TblRegistfamilyDto;
+
 @WebServlet("/RegistFamilyServlet")
 public class RegistFamilyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,6 +29,35 @@ public class RegistFamilyServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		//リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
+		String familyId = request.getParameter("familyId");
+		
+		//エラーチェック
+		if(familyId==null) {
+			request.setAttribute("登録失敗！","全ての項目を入力してください。");
+			
+			request.setAttribute("familyId", familyId);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RegistFamily.jsp");
+			dispatcher.forward(request, response);
+			return;
+		}
+		
+		// 登録処理を行う
+			TblRegistfamilyDao registDao = new TblRegistfamilyDao();
+			if (registDao.insert(new TblRegistfamilyDto(familyId))) { // 登録成功
+				// セッションに登録済みの familyId を保存
+			    request.getSession().setAttribute("familyId", familyId);
+			    // ユーザー登録ページにリダイレクトする
+				response.sendRedirect(request.getContextPath() + "/RegistUserServlet");
+			} else { // 登録失敗
+				request.setAttribute("result", new Result("登録失敗！", "レコードを登録できませんでした。", "/webapp/RegistFamilyServlet"));
+				// 家族ID登録ページにフォワードする
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RegistFamily.jsp");
+				dispatcher.forward(request, response);
+			}
 	}
 	
 }

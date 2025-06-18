@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+/* bodyタグ */
+body {
+   margin: 0 0 0 0;
+   padding: 0 0 0 0;
+   background-color: #fdc435;
+   font-size: 20px;
+}
+
+h1{
+	text-align:center;
+}
+
+h2{
+	text-align:center;
+}
+
+.form{
+	text-align:center;
+}
+
+.submit{
+	text-align:center;
+}
+
+.idform{
+	width: 350px;
+ 	height: 40px;
+ 	font-size: 16px;
+ 	padding: 5px;
+ 	margin-bottom: 10px;
+ 	border: 1px solid;
+ 	border-radius: 10px;
+ 	box-sizing: border-box;
+}
+
+.nameform{
+	width: 350px;
+ 	height: 40px;
+ 	font-size: 16px;
+ 	padding: 5px;
+ 	margin-bottom: 10px;
+ 	border: 1px solid;
+ 	border-radius: 10px;
+ 	box-sizing: border-box;
+}
+
+.passwordform{
+	width: 350px;
+ 	height: 40px;
+ 	font-size: 16px;
+ 	padding: 5px;
+ 	margin-bottom: 10px;
+ 	border: 1px solid;
+ 	border-radius: 10px;
+ 	box-sizing: border-box;
+}
+
+.mailform{
+	width: 350px;
+ 	height: 40px;
+ 	font-size: 16px;
+ 	padding: 5px;
+ 	margin-bottom: 10px;
+ 	border: 1px solid;
+ 	border-radius: 10px;
+ 	box-sizing: border-box;
+}
+
+input[type="submit"] {
+  width: 180px;             
+  height: 45px;             
+  font-size: 18px;          
+  background-color: #007BFF;  
+  color: white;             
+  border: none;
+  border-radius: 10px;     
+  cursor: pointer;
+}
+
+.buttonimage{
+	justify-content:center;
+	gap:300px;
+	align-items:center;
+	display:flex;
+}
+
+.MamoSona1{
+	height:auto;
+	width:170px;
+	transform: rotate(10deg);
+}
+.MamoSona2{
+	height:auto;
+	width:170px;
+	transform: rotate(-10deg);
+}

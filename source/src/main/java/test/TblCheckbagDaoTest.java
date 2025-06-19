@@ -28,33 +28,33 @@ public class TblCheckbagDaoTest {
 			
 		// select()のテスト1
 		System.out.println("---------- select()のテスト1 ----------");
-		List<TblCheckbagDto> user = dao.select(new TblCheckbagDto(2, false, "", 0,"" , 0));
+		List<TblCheckbagDto> user = dao.select(new TblCheckbagDto(0, false, "", 0,"" , 1));
 		TblCheckbagDaoTest.showAllData(user);
 		
 	
-		//insert()のテスト1
-		System.out.println("---------- insert()のテスト ----------");
-			TblCheckbagDto insUser = new TblCheckbagDto(0, false, "のど飴", 2, "購入リンク", 1);
-			if (dao.insert(insUser)) {
-				System.out.println("登録成功！");
-				List<TblCheckbagDto> userListIns = dao.select(new TblCheckbagDto(0, false, "", 0, "", 0));
-				TblCheckbagDaoTest.showAllData(userListIns);
-			} else {
-				System.out.println("登録失敗！");
-			}
-			
-		// update()のテスト
-		System.out.println("---------- update()のテスト ----------");
-			List<TblCheckbagDto> userListUp = dao.select(new TblCheckbagDto(2, false, "",0,"",0));
-			TblCheckbagDto upUser = userListUp.get(0);
-			upUser.setBagName("ウェットティッシュ");
-			if (dao.update(upUser)) {
-				System.out.println("更新成功！");
-				userListUp = dao.select(new TblCheckbagDto(0, false, "", 0, "",0));
-				TblCheckbagDaoTest.showAllData(userListUp);
-			} else {
-				System.out.println("更新失敗！");
-			}
+//		//insert()のテスト1
+//		System.out.println("---------- insert()のテスト ----------");
+//			TblCheckbagDto insUser = new TblCheckbagDto(0, false, "のど飴", 2, "購入リンク", 1);
+//			if (dao.insert(insUser)) {
+//				System.out.println("登録成功！");
+//				List<TblCheckbagDto> userListIns = dao.select(new TblCheckbagDto(0, false, "", 0, "", 0));
+//				TblCheckbagDaoTest.showAllData(userListIns);
+//			} else {
+//				System.out.println("登録失敗！");
+//			}
+//			
+//		// update()のテスト
+//		System.out.println("---------- update()のテスト ----------");
+//			List<TblCheckbagDto> userListUp = dao.select(new TblCheckbagDto(2, false, "",0,"",0));
+//			TblCheckbagDto upUser = userListUp.get(0);
+//			upUser.setBagName("ウェットティッシュ");
+//			if (dao.update(upUser)) {
+//				System.out.println("更新成功！");
+//				userListUp = dao.select(new TblCheckbagDto(0, false, "", 0, "",0));
+//				TblCheckbagDaoTest.showAllData(userListUp);
+//			} else {
+//				System.out.println("更新失敗！");
+//			}
 	}
 }
 	

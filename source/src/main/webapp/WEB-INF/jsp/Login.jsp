@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <title>ログイン</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/loginlifehack.css">
+	href="${pageContext.request.contextPath}/css/login.css">
 </head>
 <body>
 	<a href="${pageContext.request.contextPath}/home">ログイン後ホームへ飛ぶ</a>

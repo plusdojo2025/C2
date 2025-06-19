@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,22 +24,12 @@
 
 <section>
 	<div class="grid-container">
+	<c:forEach var="s" items="${safestampList}"> 
 		<div class="grid-item">
-			<input type=text name="name" value="${e.name}">
-			<input type=text name="name" value="${e.name}">
+			<input type=text name="name" value="${s.name}">
+			<input type=text name="name" value="${s.status}">
 		</div>
-		<div class="grid-item">
-			<input type=text name="name" value="${e.name}">
-			<input type=text name="name" value="${e.name}">
-		</div>
-		<div class="grid-item">
-			<input type=text name="name" value="${e.name}">
-			<input type=text name="name" value="${e.name}">
-		</div>
-		<div class="grid-item">
-			<input type=text name="name" value="${e.name}">
-			<input type=text name="name" value="${e.name}">
-		</div>
+	</c:forEach>
 	</div>
 </section>
 

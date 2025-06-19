@@ -35,13 +35,14 @@ public class LoginServlet extends CustomTemplateServlet {
 
 		request.setCharacterEncoding("UTF-8");
 		// mailとpwを入力しリクエストパラメーターを取得する
-		//String mail = request.getParameter("mailaddress");
-		//String pw = request.getParameter("pw");
 		
-		String mail ="Jin0909@gmail.com";
-		String pw ="Satake09";
+		  String mail = request.getParameter("mailaddress"); 
+		  String pw = request.getParameter("pw");
+		 
+//		String mail ="Jin0909@gmail.com";
+//		String pw ="Satake09";Wakusei03
 
-		// データの処理を行うためのDAOのインスタンスを生成
+		 //データの処理を行うためのDAOのインスタンスを生成
 		TblRegistuserDao dao = new TblRegistuserDao();
 		// メールアドレスとパスワードをDTOにまとめる
 		IdPw idpw = new IdPw(mail, pw);
@@ -49,26 +50,9 @@ public class LoginServlet extends CustomTemplateServlet {
 		boolean result = dao.insert(idpw);
 		
 		
-		if (dao.insert(new IdPw(mail, pw))) {
-			// セッションオブジェクトを取得
-						HttpSession session = request.getSession();
-
-						// ユーザーの情報をセッションに保存
-						session.setAttribute("mail", idpw);
-						// ホームサーブレットにリダイレクト
-						response.sendRedirect("home");
-						// ログインに失敗した場合
-		}else {
-			request.setAttribute("error", "メールアドレスまたはパスワードが違います。");
-			// ログインページにフォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login.jsp");
-			dispatcher.forward(request, response);
-		}
-
-		
 		// Login.jspにログインする
 		// ログインに成功した場合
-		/*
+		
 		if (result) {
 			// セッションオブジェクトを取得
 			HttpSession session = request.getSession();
@@ -84,7 +68,7 @@ public class LoginServlet extends CustomTemplateServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login.jsp");
 			dispatcher.forward(request, response);
 		}
-	*/
+	
 	}
 
 }

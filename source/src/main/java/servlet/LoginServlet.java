@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.TblRegistuserDao;
 import dto.IdPw;
+import dto.TblRegistuserDto;
 
 // ログインサーブレットがURLであるloginと対応している
 @WebServlet("/login")
@@ -58,7 +59,22 @@ public class LoginServlet extends CustomTemplateServlet {
 			HttpSession session = request.getSession();
 
 			// ユーザーの情報をセッションに保存
+			//mailの値はメールアドレスではなく、DTO全体（IdPw）
 			session.setAttribute("mail", idpw);
+			
+			
+			//セッション関係追記ここから
+		    TblRegistuserDto userDto = dao.selectByMail(mail); // これは新規追加メソッド
+
+		    if(userDto != null) {
+		        session.setAttribute("userNumber", userDto.getUserNumber());
+		        session.setAttribute("userName", userDto.getName());
+		        session.setAttribute("familyId", userDto.getFamilyId());
+		        // 必要に応じて他の属性もセット		    
+		    }
+			//セッション関係追記ここまで
+			
+			
 			// ホームサーブレットにリダイレクト
 			response.sendRedirect("home");
 			// ログインに失敗した場合

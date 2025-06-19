@@ -203,4 +203,35 @@ public class TblRegistuserDao extends CustomTemplateDao<TblRegistuserDto> {
 		// 結果を返す
 		return loginResult;
 	}
+	
+	//セッション関係追記ここから
+	public TblRegistuserDto selectByMail(String mail) {
+		Connection conn = null;
+		TblRegistuserDto user = null;
+
+		try {
+			conn = conn();
+			String sql = "SELECT * FROM tbl_registuser WHERE mail = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, mail);
+
+			ResultSet rs = pStmt.executeQuery();
+			if (rs.next()) {
+				user = new TblRegistuserDto(
+					rs.getInt("userNumber"),
+					rs.getString("mail"),
+					rs.getString("password"),
+					rs.getString("name"),
+					rs.getString("familyId")
+				);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+		}
+		return user;
+	}
+
+	//セッション関係追記ここまで
 }

@@ -37,10 +37,18 @@
     }
     
     #example-text img {
-    width:200px;
-    height:200px;
-    z-index: 1000;
+    max-width:500px;
+    max-height:500px;
     }
+    
+    #example-text p {
+    text-align:center;
+    }
+    
+    #boxes {
+    display:flex;
+    }
+    
   </style>
 </head>
 
@@ -54,13 +62,18 @@
 	</div>
 </header>
 
-<h1>ハザードマップ</h1>
-<div id="example-text">
-<p id="description" >ここに説明文が表示されます</p>
-</div>
-  <div id="map"></div>
+<div class="stripe-container"></div>
 
-  <div class="layer-control" style="margin-left: 1250px;margin-top:150px;">
+<h1>ハザードマップ</h1>
+
+<div id="boxes">
+  <div id="example-text">
+    <p id="description"></p>
+  </div>
+  <div id="map"></div>
+</div>
+
+  <div class="layer-control" style="margin-left: 1400px;margin-top:230px;">
     <strong>災害レイヤー選択</strong>
     <label><input type="radio" name="hazard" value="shinsui" checked> 洪水</label>
     <label><input type="radio" name="hazard" value="takashio"> 高潮</label>
@@ -127,13 +140,25 @@
                 const description = document.getElementById('description');
                 switch (this.value) {
                     case 'shinsui':
-                        description.innerHTML='<p>これはテストです。</p><img src="${pageContext.request.contextPath}/img/example.png" >';
+                        description.innerHTML='<p>凡例</p><img src="${pageContext.request.contextPath}/img/example.png" >';
                         break;
                     case 'takashio':
-                        description.textContent = '選択肢2の説明です。';
+                        description.innerHTML = '<p>凡例</p><img src="${pageContext.request.contextPath}/img/example.png" >';
                         break;
-                    case 'tunami':
-                        description.textContent = '選択肢3の説明です。';
+                    case 'tsunami':
+                        description.innerHTML = '<p>凡例</p><img src="${pageContext.request.contextPath}/img/example.png" >';
+                        break;
+                    case 'doseki':
+                        description.innerHTML = '<p>凡例</p><img src="${pageContext.request.contextPath}/img/dosya.png" >';
+                        break;
+                    case 'nadare':
+                        description.innerHTML = '<p>凡例</p><img src="${pageContext.request.contextPath}/img/nadare.png" >';
+                        break;
+                    case 'jshis_I45':
+                        description.innerHTML = '<p>凡例</p><img src="${pageContext.request.contextPath}/img/earthquake.png" >';
+                        break;
+                    case 'jshis_I55':
+                        description.innerHTML = '<p>凡例</p><img src="${pageContext.request.contextPath}/img/earthquake.png" >';
                         break;
                     default:
                         description.textContent = '選択肢が選ばれていません。';

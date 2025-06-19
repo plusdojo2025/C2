@@ -18,9 +18,7 @@
 	</div>
 </header>
 
-<div class="stripe-container">
-<p>
-</div>
+<div class="stripe-container"></div>
 
 <section>
 	<div class="grid-container">
@@ -59,7 +57,7 @@
 </section>
 
 <section class="function-container">
-	<h1>機能一覧</h1>
+	<h4>機能一覧</h4>
 	<div class="function-menu">		
 		<a href="${pageContext.request.contextPath}/CheckBagServlet"><img src="${pageContext.request.contextPath}/img/stockbag.png"></a>	
 		<a href="${pageContext.request.contextPath}/StockPreFoodRegistServlet"><img src="${pageContext.request.contextPath}/img/prefood.png"></a>

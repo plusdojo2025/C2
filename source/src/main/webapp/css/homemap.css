@@ -15,7 +15,8 @@ header {
 }
 
 .stripe-container {
-	height: 100px;
+	height: 20px;
+	background-image:url('../img/stripe.png');
 }
 
 .grid-container{

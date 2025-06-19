@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 <title>ライフハック申請</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/loginlifehack.css">
+	href="${pageContext.request.contextPath}/css/lifehackrequest.css">
 </head>
-<body class=lifehack-request>
-	<form class=lifehack-form action="LifeHackRequest" method="post">
-	<h2 class=lifehack-caption>【申請】ライフハック</h2>
+<body>
+	<form action="LifeHackRequest" method="post">
+	<h2>【申請】ライフハック</h2>
 		<div class="lifehack-title">
 			<label for="lifehacktitle" class="label-lifehack">ライフハックタイトル</label><br> 
 			<input type="text" id="title" name="title" class="" value=""><br>
@@ -22,7 +22,7 @@
 		<div>
       		<input type="file" name="lifehackimg">
     	</div>
-		<div class="lifehckrequest-button">
+		<div class="lifehackrequest-button">
 			<input type="submit" id="submit" name="submit" value="申請" class="lifehckrequest-button">
 		</div>
 	</form>

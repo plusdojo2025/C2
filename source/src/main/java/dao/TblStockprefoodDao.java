@@ -165,5 +165,41 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 			return result;
 }
 
+	//登録保存食データを全件表示させるためのselectAll()文を追加
+	public List<TblStockprefoodDto> selectAll() {
+		Connection conn = null;
+		List<TblStockprefoodDto> prefood = new ArrayList<>();
+
+		try {
+		conn = conn();
+
+			// SQL文を準備する
+			String sql = "SELECT * FROM tbl_stockprefood ORDER BY prefoodDate ASC";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {
+				TblStockprefoodDto b = new TblStockprefoodDto(rs.getInt("prefoodNumber"),
+								rs.getString("prefoodName"),
+								rs.getDate("prefoodDate"),
+								rs.getInt("userNumber")
+				);				
+				prefood.add(b);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			prefood = null;
+		} finally {
+			// データベースを切断
+			close(conn);
+		}
+
+		// 結果を返す
+		return prefood;
+	}
+
 }
 

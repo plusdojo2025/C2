@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.TblLifehackrequestDao;
+import dto.TblLifehackrequestDto;
+
 //ライフハック申請サーブレットがURLであるLifeHackRequestと対応している
 @WebServlet("/LifeHackRequest")
 public class LifeHackRequestServlet extends HttpServlet {
@@ -25,32 +28,33 @@ public class LifeHackRequestServlet extends HttpServlet {
 	}
 
 	// post
-	/*@Override
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		// リクエストパラメータを取得する
-		int registnumber = Integer.parseInt(request.getParameter("registnumber"));
 		String title = request.getParameter("title");
-		String photo = request.getParameter("photo");
-		String textline = request.getParameter("textline");
+		String photo = request.getParameter("lifehackimg");
+		String textline = request.getParameter("explanation");
 		
 		// データの処理を行うためのDTOのインスタンスを生成
 		TblLifehackrequestDto dto = new TblLifehackrequestDto(0, title, photo,textline);
-		dto.setRegistNumber(registnumber);
 		dto.setTitle(title);
 		dto.setPhoto(photo);	
 		dto.setTextline(textline);
 		
 		// データの処理を行うためのDAOのインスタンスを生成
 		TblLifehackrequestDao dao = new TblLifehackrequestDao();
-		boolean result = dao.insert(dto);
 		
 		// 申請処理を行う
 			if (dao.insert(dto)) { // 申請成功
-			request.setAttribute("result", new Result("complete", "申請完了しました。", "LifeHackRequest"));
+				// ユーザー登録ページにフォワードする
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/LifeHackRequest.jsp");
+				dispatcher.forward(request, response);
 			} else { // 申請失敗
-				request.setAttribute("result", new Result("error", "未入力の項目があります。", "/WEB-INF/jsp/LifeHackRequest.jsp"));
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/LifeHackRequest.jsp");
+				dispatcher.forward(request, response);
 			
-			}*/
+			}
 		}
+}

@@ -21,11 +21,11 @@ public class TblCheckbagDao extends CustomTemplateDao<TblCheckbagDto> {
 		conn = conn();
 
 			// SQL文を準備する
-			String sql = "SELECT * FROM tbl_checkbag WHERE bagNumber = ?";
+			String sql = "SELECT * FROM tbl_checkbag WHERE userNumber = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setInt(1, dto.getBagNumber());
+			pStmt.setInt(1, dto.getUserNumber());
 			
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();

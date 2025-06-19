@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,293 +17,85 @@
 		</a>
 	</div>
 </header>
+<!-- 変更内容をポストする -->
+<form action="CheckBag" method="post">
 
 <div class="bag-title">
 	<h1>防災バッグリスト</h1>
-	<button>登録</button>
+	<button type = "submit">登録</button>
 </div>
 
 <h2>必須の備え</h2>
 
 <section>
 	<div class="grid-container">
+	
+	<!-- 必須項目の入力 -->
+	 <c:forEach var = "bag" begin="0" end="3" items="${checkBag}" >
 		<div class="grid-item">
 			<div class="first-item">
-				<input type="checkbox">
-				<input type=text name="bagname" value="${e.name}">
+			<!-- データベースに入っている値がtrueだったらチェックを入れる -->
+				<input type="checkbox" name = "cheakBag" value = "true" ${bag.bagCheck ? "checked": "" }>
+			<!-- データベースに入っている名前を取り出す -->
+				<input type=text name="bagname" value="${bag.bagName}">
 			</div>
+			
+			<!-- データベースに入ってる個数と一致してる値を初期設定にする -->
 			<div class="second-item">
-				<img src="${pageContext.request.contextPath}/img/number.png">
-				<select >
-				<option>1 個</option>
-				<option>2 個</option>
-				<option>3 個</option>
-				<option>4 個</option>
-				<option>6 個</option>
-				<option>7 個</option>
-				<option>8 個</option>
-				<option>9 個</option>
-				<option>10 個</option>
-				<option>11 個</option>
-				<option>12 個</option>
-				<option>13 個</option>
-				<option>14 個</option>
-				<option>15 個</option>
-				<option>16 個</option>
-				<option>17 個</option>
-				<option>18 個</option>
-				<option>19 個</option>
-				<option>20 個</option>
-				</select>
+			<img src="${pageContext.request.contextPath}/img/number.png">
+			<select >
+				<c:forEach var = "e" begin="1" end="20">
+					<option ${e == bag.bagStock ? "selected" : "" }> ${e} 個</option>>
+				</c:forEach>
+			</select>
 			</div>
+			
+			<!-- データベースに入ってるリンクの情報を取得 -->
 			<div class="third-item">
 				<img src="${pageContext.request.contextPath}/img/Link.png">
-				<textarea  name="link"></textarea>
+				<textarea  name="link">${bag.bagLink}</textarea>
 			</div>
-	</div>
-	<div class="grid-item">
-			<div class="first-item">
-				<input type="checkbox">
-				<input type=text name="bagname" value="${e.name}">
-			</div>
-			<div class="second-item">
-				<img src="${pageContext.request.contextPath}/img/number.png">
-				<select >
-				<option>1 個</option>
-				<option>2 個</option>
-				<option>3 個</option>
-				<option>4 個</option>
-				<option>6 個</option>
-				<option>7 個</option>
-				<option>8 個</option>
-				<option>9 個</option>
-				<option>10 個</option>
-				<option>11 個</option>
-				<option>12 個</option>
-				<option>13 個</option>
-				<option>14 個</option>
-				<option>15 個</option>
-				<option>16 個</option>
-				<option>17 個</option>
-				<option>18 個</option>
-				<option>19 個</option>
-				<option>20 個</option>
-				</select>
-			</div>
-			<div class="third-item">
-				<img src="${pageContext.request.contextPath}/img/Link.png">
-				<textarea  name="link"></textarea>
-			</div>
-	</div>
-	<div class="grid-item">
-			<div class="first-item">
-				<input type="checkbox">
-				<input type=text name="bagname" value="${e.name}">
-			</div>
-			<div class="second-item">
-				<img src="${pageContext.request.contextPath}/img/number.png">
-				<select >
-				<option>1 個</option>
-				<option>2 個</option>
-				<option>3 個</option>
-				<option>4 個</option>
-				<option>6 個</option>
-				<option>7 個</option>
-				<option>8 個</option>
-				<option>9 個</option>
-				<option>10 個</option>
-				<option>11 個</option>
-				<option>12 個</option>
-				<option>13 個</option>
-				<option>14 個</option>
-				<option>15 個</option>
-				<option>16 個</option>
-				<option>17 個</option>
-				<option>18 個</option>
-				<option>19 個</option>
-				<option>20 個</option>
-				</select>
-			</div>
-			<div class="third-item">
-				<img src="${pageContext.request.contextPath}/img/Link.png">
-				<textarea  name="link"></textarea>
-			</div>
-	</div>
-	<div class="grid-item">
-			<div class="first-item">
-				<input type="checkbox">
-				<input type=text name="bagname" value="${e.name}">
-			</div>
-			<div class="second-item">
-				<img src="${pageContext.request.contextPath}/img/number.png">
-				<select >
-				<option>1 個</option>
-				<option>2 個</option>
-				<option>3 個</option>
-				<option>4 個</option>
-				<option>6 個</option>
-				<option>7 個</option>
-				<option>8 個</option>
-				<option>9 個</option>
-				<option>10 個</option>
-				<option>11 個</option>
-				<option>12 個</option>
-				<option>13 個</option>
-				<option>14 個</option>
-				<option>15 個</option>
-				<option>16 個</option>
-				<option>17 個</option>
-				<option>18 個</option>
-				<option>19 個</option>
-				<option>20 個</option>
-				</select>
-			</div>
-			<div class="third-item">
-				<img src="${pageContext.request.contextPath}/img/Link.png">
-				<textarea  name="link"></textarea>
-			</div>
-	</div>
-	<div class="grid-item">
-			<div class="first-item">
-				<input type="checkbox">
-				<input type=text name="bagname" value="${e.name}">
-			</div>
-			<div class="second-item">
-				<img src="${pageContext.request.contextPath}/img/number.png">
-				<select >
-				<option>1 個</option>
-				<option>2 個</option>
-				<option>3 個</option>
-				<option>4 個</option>
-				<option>6 個</option>
-				<option>7 個</option>
-				<option>8 個</option>
-				<option>9 個</option>
-				<option>10 個</option>
-				<option>11 個</option>
-				<option>12 個</option>
-				<option>13 個</option>
-				<option>14 個</option>
-				<option>15 個</option>
-				<option>16 個</option>
-				<option>17 個</option>
-				<option>18 個</option>
-				<option>19 個</option>
-				<option>20 個</option>
-				</select>
-			</div>
-			<div class="third-item">
-				<img src="${pageContext.request.contextPath}/img/Link.png">
-				<textarea  name="link"></textarea>
-			</div>
-	</div>
-	<div class="grid-item">
-			<div class="first-item">
-				<input type="checkbox">
-				<input type=text name="bagname" value="${e.name}">
-			</div>
-			<div class="second-item">
-				<img src="${pageContext.request.contextPath}/img/number.png">
-				<select >
-				<option>1 個</option>
-				<option>2 個</option>
-				<option>3 個</option>
-				<option>4 個</option>
-				<option>6 個</option>
-				<option>7 個</option>
-				<option>8 個</option>
-				<option>9 個</option>
-				<option>10 個</option>
-				<option>11 個</option>
-				<option>12 個</option>
-				<option>13 個</option>
-				<option>14 個</option>
-				<option>15 個</option>
-				<option>16 個</option>
-				<option>17 個</option>
-				<option>18 個</option>
-				<option>19 個</option>
-				<option>20 個</option>
-				</select>
-			</div>
-			<div class="third-item">
-				<img src="${pageContext.request.contextPath}/img/Link.png">
-				<textarea  name="link"></textarea>
-			</div>
-	</div>
-	<div class="grid-item">
-			<div class="first-item">
-				<input type="checkbox">
-				<input type=text name="bagname" value="${e.name}">
-			</div>
-			<div class="second-item">
-				<img src="${pageContext.request.contextPath}/img/number.png">
-				<select >
-				<option>1 個</option>
-				<option>2 個</option>
-				<option>3 個</option>
-				<option>4 個</option>
-				<option>6 個</option>
-				<option>7 個</option>
-				<option>8 個</option>
-				<option>9 個</option>
-				<option>10 個</option>
-				<option>11 個</option>
-				<option>12 個</option>
-				<option>13 個</option>
-				<option>14 個</option>
-				<option>15 個</option>
-				<option>16 個</option>
-				<option>17 個</option>
-				<option>18 個</option>
-				<option>19 個</option>
-				<option>20 個</option>
-				</select>
-			</div>
-			<div class="third-item">
-				<img src="${pageContext.request.contextPath}/img/Link.png">
-				<textarea  name="link"></textarea>
-			</div>
-	</div>
-	<div class="grid-item">
-			<div class="first-item">
-				<input type="checkbox">
-				<input type=text name="bagname" value="${e.name}">
-			</div>
-			<div class="second-item">
-				<img src="${pageContext.request.contextPath}/img/number.png">
-				<select >
-				<option>1 個</option>
-				<option>2 個</option>
-				<option>3 個</option>
-				<option>4 個</option>
-				<option>6 個</option>
-				<option>7 個</option>
-				<option>8 個</option>
-				<option>9 個</option>
-				<option>10 個</option>
-				<option>11 個</option>
-				<option>12 個</option>
-				<option>13 個</option>
-				<option>14 個</option>
-				<option>15 個</option>
-				<option>16 個</option>
-				<option>17 個</option>
-				<option>18 個</option>
-				<option>19 個</option>
-				<option>20 個</option>
-				</select>
-			</div>
-			<div class="third-item">
-				<img src="${pageContext.request.contextPath}/img/Link.png">
-				<textarea  name="link"></textarea>
-			</div>
-	</div>
-	
-		
+		</div>
+	</c:forEach>
 	</div>
 </section>
 
+
+
+<h2>自由項目</h2>	
+
+<section>
+	<div class="grid-container">
+	<!-- 必須項目の入力 　begin-->
+	 <c:forEach var = "bag" begin="4" end="8" items="${checkBag}" >
+		<div class="grid-item">
+			<div class="first-item">
+			<!-- データベースに入っている値がtrueだったらチェックを入れる -->
+				<input type="checkbox" name = "cheakBag" value = "true" ${bag.bagCheck ? "checked": "" }>
+			<!-- データベースに入っている名前を取り出す -->
+				<input type=text name="bagname" value="${bag.bagName}">
+			</div>
+			
+			<!-- データベースに入ってる個数と一致してる値を初期設定にする -->
+			<div class="second-item">
+			<img src="${pageContext.request.contextPath}/img/number.png">
+			<select >
+				<c:forEach var = "e" begin="1" end="20">
+					<option ${e == bag.bagStock ? "selected" : "" }> ${e} 個</option>>
+				</c:forEach>
+			</select>
+			</div>
+			
+			<!-- データベースに入ってるリンクの情報を取得 -->
+			<div class="third-item">
+				<img src="${pageContext.request.contextPath}/img/Link.png">
+				<textarea  name="link">${bag.bagLink}</textarea>
+			</div>
+		</div>
+	</c:forEach>	
+	</div>
+</section>
+</form>>
 
 
 <footer>

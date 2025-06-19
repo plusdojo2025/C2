@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,10 +63,10 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 
 			// SQL文を準備する
 			String sql = """
-					INSERT tbl_stockprefood (prefoodName,prefoodDate,userNumber)
+					INSERT INTO tbl_stockprefood (prefoodName,prefoodDate,userNumber)
 										VALUES(?,?,?)
 					""";
-			PreparedStatement pStmt = conn.prepareStatement(sql);
+			PreparedStatement pStmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 			// SQL文を完成させる
 			pStmt.setString(1, dto.getPrefoodName());
@@ -75,10 +76,13 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 				ResultSet res = pStmt.getGeneratedKeys();
-				res.next();
+				if(res.next()) {
 				dto.setPrefoodNumber(res.getInt(1));
 				result = true;
-				}
+				}else {
+					System.err.println("主キー生成不可。");		
+				} 
+			}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {

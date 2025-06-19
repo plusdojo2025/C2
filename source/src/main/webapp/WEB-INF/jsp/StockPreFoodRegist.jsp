@@ -22,11 +22,16 @@
 	<button  id="add-prefood">追加</button>
 </div>
 
+<!-- エラーメッセージの表示 -->
+<c:if test="${not empty error}">
+  <p style="color: red;">${error}</p>
+</c:if>
+
 <div id="space-prefood" class="grid-container">
  <c:forEach var="item" items="${prefoodList}">
   <form action="${pageContext.request.contextPath}/StockPreFoodRegistServlet" method="post">
    <input type="hidden" name="prefoodNumber" value="${item.prefoodNumber}" />
-   <input type="hidden" name="userNumber" value="${sessionScope.loginUser.userNumber}">
+   <input type="hidden" name="userNumber" value="${sessionScope.userNumber}">
     <div class="grid-item">
       <div class="first-item">
         <input type="checkbox">
@@ -35,11 +40,10 @@
       </div>
       <div class="second-item">
         <img src="${pageContext.request.contextPath}/img/number.png">
-        <select>
-          <option>1 個</option>
-          <option>2 個</option>
-          <!-- 省略して表示-->
-          <option>20 個</option>
+        <select name="prefoodQuantity">
+        	<c:forEach var="i" begin="1" end="20">
+    		<option value="${i}" <c:if test="${i == item.prefoodQuantity}">selected</c:if>>${i} 個</option>
+  			</c:forEach>
         </select>
       </div>
       <div class="third-item">
@@ -47,7 +51,7 @@
         <input type="date" name="prefoodDate" value="${item.prefoodDate}">
       </div>
       <div class="fourth-item">
-        <button type="submit" name="action" value="insert" style="width:50px; height:30px; font-size:15px; color:#f58077; background-color:#ffffff;margin-top:10px;">更新</button>
+        <button type="submit" name="action" value="update" style="width:50px; height:30px; font-size:15px; color:#f58077; background-color:#ffffff;margin-top:10px;">更新</button>
       </div>
     </div>
    </form>
@@ -56,43 +60,27 @@
     
 <template id="template-prefood">
 	 <form action="${pageContext.request.contextPath}/StockPreFoodRegistServlet" method="post">
-	 	<input type="hidden" name="userNumber" value="${sessionScope.loginUser.userNumber}">
+	 	<input type="hidden" name="userNumber" value="${sessionScope.userNumber}">
 			<div class="grid-item">
 				<div class="first-item">
 					<input type="checkbox">
-					<input type=text name="prefoodName" value="${e.name}">
-					<button type="submit" class="delete-row" style="width:50px; height:30px; font-size:15px; color:#026bb8; background-color:#ffffff;">削除</button>
+					<input type=text name="prefoodName" value="" required>
+					<button type="submit" class="delete-row" name="action" value="delete" style="width:50px; height:30px; font-size:15px; color:#026bb8; background-color:#ffffff;">削除</button>
 				</div>
 				<div class="second-item">
 					<img src="${pageContext.request.contextPath}/img/number.png">
-					<select >
-					<option>1 個</option>
-					<option>2 個</option>
-					<option>3 個</option>
-					<option>4 個</option>
-					<option>6 個</option>
-					<option>7 個</option>
-					<option>8 個</option>
-					<option>9 個</option>
-					<option>10 個</option>
-					<option>11 個</option>
-					<option>12 個</option>
-					<option>13 個</option>
-					<option>14 個</option>
-					<option>15 個</option>
-					<option>16 個</option>
-					<option>17 個</option>
-					<option>18 個</option>
-					<option>19 個</option>
-					<option>20 個</option>
+					<select name="prefoodQuantity" required>
+  						<c:forEach var="i" begin="1" end="20">
+    					<option value="${i}">${i} 個</option>
+  						</c:forEach>
 					</select>
 				</div>
 				<div class="third-item">
 					<img src="${pageContext.request.contextPath}/img/calender.png">
-					<input type="date" name="prefoodDate"></input>
+					<input type="date" name="prefoodDate" required></input>
 				</div>
 				<div class="fourth-item">
-					<button type="submit" name="action" value="insert" style="width:50px; height:30px; font-size:15px; color:#f58077; background-color:#ffffff;margin-top:10px;">更新</button>
+					<button type="submit" name="action" value="insert" style="width:50px; height:30px; font-size:15px; color:#f58077; background-color:#ffffff;margin-top:10px;">登録</button>
 				</div>
 		</div>
 	</form>

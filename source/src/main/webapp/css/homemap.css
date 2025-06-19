@@ -46,14 +46,14 @@ input {
 
 .alert-container {
 	display: flex;
-	margin-left: 200px;
+	margin-left: 300px;
 	margin-top: 50px;
 	gap:60px;
 }
 
 .function-container {
 	width:1200px;
-	margin-left: 200px;
+	margin-left: 300px;
 }
 
 .function-menu {

@@ -164,4 +164,44 @@ public class TblSafestampDao extends CustomTemplateDao<TblSafestampDto> {
 			// 結果を返す
 			return result;
 }
+	
+	public List<TblSafestampDto> findWithNameByFamilyId(String familyId) {
+	    Connection conn = null;
+	    List<TblSafestampDto> list = new ArrayList<>();
+
+	    try {
+	        conn = conn(); // ← DBに接続
+
+	        String sql = """
+	            SELECT ss.safeNumber, ss.status, ss.familyId, ss.userNumber, ru.name
+	            FROM tbl_safestamp ss
+	            JOIN tbl_registuser ru ON ss.userNumber = ru.userNumber
+	            WHERE ss.familyId = ?
+	        """;
+
+	        PreparedStatement pStmt = conn.prepareStatement(sql);
+	        pStmt.setString(1, familyId); // ← プレースホルダに値をセット
+
+	        ResultSet rs = pStmt.executeQuery();
+
+	        while (rs.next()) {
+	            TblSafestampDto dto = new TblSafestampDto();
+	            dto.setSafeNumber(rs.getInt("safeNumber"));
+	            dto.setStatus(rs.getString("status"));
+	            dto.setFamilyId(rs.getString("familyId"));
+	            dto.setUserNumber(rs.getInt("userNumber"));
+	            dto.setName(rs.getString("name")); // ← これがJOINで得たユーザー名！
+
+	            list.add(dto);
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        close(conn); // ← コネクションを閉じる
+	    }
+
+	    return list;
+	}
+
 }

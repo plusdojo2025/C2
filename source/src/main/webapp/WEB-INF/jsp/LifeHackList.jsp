@@ -96,14 +96,20 @@
  　　　　　初期表示では、Tbl_lifehacklistに入っている全てのデータがlifeListに入っている
  　　　　　検索結果に応じてlifeListが変化
   -->
- <div class="lifehack-article">
+ <%-- <div class="lifehack-article">
  
  <c:forEach var="e" items="${lifeList}" > 
+	
+	<div class="article-1">
 	 
+	<div class="title-1">${e.title}</div><br>
+	<img src="${e.photo}" alt="水ろ過" class="picture-1">
+	<p class="text-1"> ${e.textline}</p><br>
+	</div>
  
  </c:forEach>
- 
  </div>
+ </ --%>
   
  <!-- デザイン確認用
 <div class="lifehack-article">

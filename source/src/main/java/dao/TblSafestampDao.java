@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,10 +63,10 @@ public class TblSafestampDao extends CustomTemplateDao<TblSafestampDto> {
 
 			// SQL文を準備する
 			String sql = """
-					INSERT tbl_safestamp (status,familyId,userNumber)
+					INSERT INTO tbl_safestamp (status,familyId,userNumber)
 										VALUES(?,?,?)
 					""";
-			PreparedStatement pStmt = conn.prepareStatement(sql);
+			PreparedStatement pStmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 			// SQL文を完成させる
 			pStmt.setString(1, dto.getStatus());
@@ -75,10 +76,13 @@ public class TblSafestampDao extends CustomTemplateDao<TblSafestampDto> {
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 				ResultSet res = pStmt.getGeneratedKeys();
-				res.next();
-				dto.setUserNumber(res.getInt(1));
+				if(res.next()) {
+				dto.setSafeNumber(res.getInt(1));
 				result = true;
-				}
+				}else {
+					System.err.println("主キー生成不可。");		
+				} 
+			}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {

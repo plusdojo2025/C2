@@ -65,7 +65,7 @@ public class TblRegistuserDao extends CustomTemplateDao<TblRegistuserDto> {
 
 			// SQL文を準備する
 			String sql = """
-					INSERT tbl_registuser (mail,password,name,familyId)
+					INSERT INTO tbl_registuser (mail,password,name,familyId)
 										VALUES(?,?,?,?)
 					""";
 			PreparedStatement pStmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -79,11 +79,16 @@ public class TblRegistuserDao extends CustomTemplateDao<TblRegistuserDto> {
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 				ResultSet res = pStmt.getGeneratedKeys();
-				res.next();
+				if(res.next()) {
 				dto.setUserNumber(res.getInt(1));
 				result = true;
-				}
-			} catch (SQLException e) {
+				}else {
+					System.err.println("主キー生成不可。");		
+				} 
+			}
+			
+		}
+			catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
 			// データベースを切断
@@ -91,7 +96,7 @@ public class TblRegistuserDao extends CustomTemplateDao<TblRegistuserDto> {
 			}
 			// 結果を返す
 			return result;
-}
+	}
 	
 	@Override
 	public boolean update(TblRegistuserDto dto) {

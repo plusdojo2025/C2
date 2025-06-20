@@ -18,11 +18,11 @@
 			<span id="familyIderror" style="color: red;"></span>
 		</div>
 		<div class="submit">
-			<input type="submit" id="register" name="register" value="登録する" style="margin-top: 50px;">
+			<input type="submit" id="register" name="register" value="登録する" style = "margin-top: 35px" >
 		</div>
 		<div class="buttonimage">
-			<img src="img/MamoSona.png" alt="MamoSona" class="MamoSona1"> <img
-				src="img/MamoSona.png" alt="MamoSona" class="MamoSona2">
+			<img src="img/MamoSona.png" alt="MamoSona" class="MamoSona1"> 
+			<img src="img/MamoSona.png" alt="MamoSona" class="MamoSona2">
 		</div>
 	</form>
 	<!--  <script>

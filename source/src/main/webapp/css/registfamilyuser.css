@@ -22,7 +22,7 @@ h2{
 
 .submit{
 	text-align:center;
-	margin-top: 30px;
+	margin-top: 50px;
 }
 
 .idform{
@@ -78,6 +78,7 @@ input[type="submit"] {
   border: none;
   border-radius: 10px;     
   cursor: pointer;
+  margin-bottom: 150px;
 }
 
 .buttonimage{
@@ -89,11 +90,17 @@ input[type="submit"] {
 
 .MamoSona1{
 	height:auto;
-	width:170px;
+	width:220px;
 	transform: rotate(10deg);
+	position: relative;
+	bottom: 130px;     /* 上に10px動かす */
+	left: 100px;     /* 右に10px動かす */
 }
 .MamoSona2{
 	height:auto;
-	width:170px;
+	width:220px;
 	transform: rotate(-10deg);
+	position: relative;
+	bottom: 130px; /* 上に10px動かす */
+	right: 100px; /* 左に10px動かす */
 }

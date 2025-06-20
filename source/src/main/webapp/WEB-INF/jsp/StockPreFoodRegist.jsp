@@ -87,6 +87,9 @@
 		</div>
 	</form>
 </template>
+<footer>
+	<h3>&copy; 2025 WAKUSEI OMOIDE</h3>
+</footer>
 
 <script>
 document.getElementById("add-prefood").addEventListener("click", function() {

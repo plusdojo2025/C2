@@ -27,11 +27,12 @@
   <p style="color: red;">${error}</p>
 </c:if>
 
+
 <div id="space-prefood" class="grid-container">
  <c:forEach var="item" items="${prefoodList}">
   <form action="${pageContext.request.contextPath}/StockPreFoodRegistServlet" method="post">
    <input type="hidden" name="prefoodNumber" value="${item.prefoodNumber}" />
-   <input type="hidden" name="userNumber" value="${sessionScope.userNumber}">
+   <input type="hidden" name="userNumber" value="1">
     <div class="grid-item">
       <div class="first-item">
         <input type="checkbox">
@@ -60,7 +61,8 @@
     
 <template id="template-prefood">
 	 <form action="${pageContext.request.contextPath}/StockPreFoodRegistServlet" method="post">
-	 	<input type="hidden" name="userNumber" value="${sessionScope.userNumber}">
+	 	<input type="hidden" name="userNumber" value="1">
+	 	<input type="hidden" name="prefoodNumber" value="0"/>
 			<div class="grid-item">
 				<div class="first-item">
 					<input type="checkbox">
@@ -92,12 +94,14 @@ document.getElementById("add-prefood").addEventListener("click", function() {
   let clone = template.content.cloneNode(true);
   document.getElementById("space-prefood").appendChild(clone);
 });
+
 //動的に追加された削除ボタンにも対応
 document.getElementById("space-prefood").addEventListener("click", function(e) {
   if (e.target.classList.contains("delete-row")) {
-    // 削除ボタンの親フォームを削除
-    const form = e.target.closest("form");
-    if (form) form.remove();
+    const confirmed = confirm("この保存食を本当に削除しますか？");
+    if (!confirmed) {
+      e.preventDefault(); // キャンセル時、submitを止める
+    }
   }
 });
 </script>

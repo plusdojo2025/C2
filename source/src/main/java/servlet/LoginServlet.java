@@ -30,6 +30,7 @@ public class LoginServlet extends CustomTemplateServlet {
 		// jsp/Login.jspにアクセスされてログインの画面が表示される
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login.jsp");
 		dispatcher.forward(request, response);
+		
 	}
 
 	@Override

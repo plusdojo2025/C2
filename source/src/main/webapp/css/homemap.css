@@ -80,19 +80,8 @@ input {
 }
 
 
-footer {
-	height: 140px;
-	background-color: #fdc435;
-	margin-top:100px;
-}
-
 h1 {
 	text-align:center;
-}
-h3 {
-	text-align:center;
-	font-size:25px;
-	margin-right: 80px;
 }
 
 .status-select:disabled {
@@ -101,4 +90,25 @@ h3 {
 
 }
 
+footer {
+  height: 140px;
+  background-color: #fdc435;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;  /* h3 を中央に */
+  align-items: center;
+  position: relative;
+}
 
+.footertitle {
+  font-size: 25px;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.logoutform {
+  position: absolute;
+  right: 20px;
+}

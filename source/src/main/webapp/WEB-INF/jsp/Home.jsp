@@ -87,10 +87,13 @@
 
 
 <footer>
-	<h3>&copy; 2025 WAKUSEI OMOIDE</h3>
+  <h3 class="footertitle">&copy; 2025 WAKUSEI OMOIDE</h3>
+  <form action="/C2/LogoutServlet" method="get" class="logoutform">
+    <button type="submit">ログアウト</button>
+  </form>
 </footer>
 
-	<script>
+<script>
   document.addEventListener("DOMContentLoaded", () => {
     const selects = document.querySelectorAll(".status-select");
 

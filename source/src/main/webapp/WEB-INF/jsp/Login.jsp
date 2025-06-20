@@ -9,7 +9,6 @@
 	href="${pageContext.request.contextPath}/css/login.css">
 </head>
 <body>
-	<a href="${pageContext.request.contextPath}/home">ログイン後ホームへ飛ぶ</a>
 	<div class="login-frame">
 		<div class="login-box">
 			<div class="left">

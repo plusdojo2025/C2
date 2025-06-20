@@ -87,7 +87,19 @@ public class HomeServlet extends CustomTemplateServlet {
 	    //TblSafestampDAO の insert メソッドが boolean を返すように設計されていれば、result は「成功かどうか」を表す
 	    //これは DAO 側で例外処理などが正しくされていることが前提
 	    TblSafestampDao dao = new TblSafestampDao();
-	    boolean result = dao.insert(dto);
+	    boolean result;
+	    TblSafestampDto existing = dao.selectByUserNumber(userNumber); // ← ①すでにあるかチェック
+
+	    if (existing != null) {
+	        // ②既存あり → 更新処理へ
+	        dto.setSafeNumber(existing.getSafeNumber()); // ←更新対象の主キーをセット
+	        result = dao.update(dto);
+	    } else {
+	        // ③なければ新規登録
+	        result = dao.insert(dto);
+	    }
+
+	    
 
 	    // 成功したら /home にリダイレクト、失敗したらサーバーのコンソールにエラー表示（仮）
 	    //DAOの insert() メソッドが boolean を返す設計の時のみ有効

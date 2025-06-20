@@ -20,7 +20,7 @@ header {
 }
 
 .grid-container{
-	 width:800px;
+	 width:900px;
 	 margin: auto;
 	 margin-top: 30px;
 	 margin-bottom: 20px;
@@ -30,7 +30,7 @@ header {
 }
 
 .grid-item {
-	width:150px;
+	width:200px;
 	height:100px;
 	background-color: #fdc435;
 	border-radius: 10px;
@@ -38,10 +38,23 @@ header {
 }
 
 input {
-	width:80px;
+	width:150px;
 	margin-top:20px;
+	text-align:center;
 	border:none; 
-	background-color:#fdc435;
+	background-color:transparent;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.status-select {
+	width:150px;
+	margin-top:20px;
+	text-align:center;
+	border:none; 
+	background-color:transparent;
+	font-size: 18px;
+	font-weight: bold;
 }
 
 .alert-container {
@@ -76,3 +89,16 @@ footer {
 h1 {
 	text-align:center;
 }
+h3 {
+	text-align:center;
+	font-size:25px;
+	margin-right: 80px;
+}
+
+.status-select:disabled {
+  color: #000; 
+  opacity: 1; 
+
+}
+
+

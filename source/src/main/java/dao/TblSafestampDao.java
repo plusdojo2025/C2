@@ -203,5 +203,34 @@ public class TblSafestampDao extends CustomTemplateDao<TblSafestampDto> {
 
 	    return list;
 	}
+	// DAO追加
+	public TblSafestampDto selectByUserNumber(int userNumber) {
+	    Connection conn = null;
+	    TblSafestampDto dto = null;
+
+	    try {
+	        conn = conn();
+	        String sql = "SELECT * FROM tbl_safestamp WHERE userNumber = ?";
+	        PreparedStatement pStmt = conn.prepareStatement(sql);
+	        pStmt.setInt(1, userNumber);
+	        ResultSet rs = pStmt.executeQuery();
+
+	        if (rs.next()) {
+	            dto = new TblSafestampDto(
+	                rs.getInt("safeNumber"),
+	                rs.getString("status"),
+	                rs.getString("familyId"),
+	                rs.getInt("userNumber")
+	            );
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        close(conn);
+	    }
+
+	    return dto;
+	}
+
 
 }

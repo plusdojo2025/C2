@@ -8,7 +8,8 @@
 <meta charset="UTF-8">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/homemap.css">
-<title>Insert title here</title>
+<link rel="icon" href="${pageContext.request.contextPath}/img/MamoSona.png">
+<title>MamoとSona | ホーム画面</title>
 </head>
 <body>
 
@@ -23,15 +24,41 @@
 <div class="stripe-container"></div>
 
 <section>
-	<div class="grid-container">
-	<c:forEach var="s" items="${safestampList}"> 
-		<div class="grid-item">
-			<input type=text name="name" value="${s.name}">
-			<input type=text name="name" value="${s.status}">
-		</div>
-	</c:forEach>
-	</div>
+  <h3>安否確認</h3>
+  <div class="grid-container">
+    <c:forEach var="s" items="${safestampList}">
+      <div class="grid-item" id="check-box">
+
+        <input type="text" name="name" value="${s.name}" readonly>
+
+        <c:choose>
+          <c:when test="${s.userNumber eq userNumber}">
+            <form action="home" method="post">
+              <select class="status-select" name="status">
+                <option value="OK" ${s.status == 'OK' ? 'selected' : ''}>😊無事</option>
+                <option value="SOS" ${s.status == 'SOS' ? 'selected' : ''}>🚨SOS</option>
+                <option value="WAIT" ${s.status == 'WAIT' ? 'selected' : ''}>🪫電池切れ</option>
+              </select>
+              <div style="text-align: center; margin-top: 30px;">
+                <button type="submit">✅ 更新する</button>
+              </div>
+            </form>
+          </c:when>
+
+          <c:otherwise>
+            <select class="status-select" disabled>
+              <option value="OK" ${s.status == 'OK' ? 'selected' : ''}>😊無事</option>
+              <option value="SOS" ${s.status == 'SOS' ? 'selected' : ''}>🚨SOS</option>
+              <option value="WAIT" ${s.status == '' ? 'selected' : ''}>🪫電池切れ</option>
+            </select>
+          </c:otherwise>
+        </c:choose>
+
+      </div>
+    </c:forEach>
+  </div>
 </section>
+
 
 <section>
 	<div class="alert-container">
@@ -62,6 +89,35 @@
 <footer>
 	<h3>&copy; 2025 WAKUSEI OMOIDE</h3>
 </footer>
+
+	<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const selects = document.querySelectorAll(".status-select");
+
+    selects.forEach((select) => {
+      const wrapper = select.closest(".grid-item");
+
+      // ✅ 初期状態の背景色を設定
+      if (select.value === "SOS") {
+        wrapper.style.backgroundColor = "#e37168";
+      } else {
+        wrapper.style.backgroundColor = "#fdc435";
+      }
+
+      // ✅ 変更時にも対応
+      select.addEventListener("change", function () {
+        if (select.value === "SOS") {
+          wrapper.style.backgroundColor = "#e37168";
+        } else {
+          wrapper.style.backgroundColor = "#fdc435";
+        }
+      });
+    });
+  });
+</script>
+
+
+
 
 </body>
 </html>

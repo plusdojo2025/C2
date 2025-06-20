@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import dao.TblRegistuserDao;
 import dto.IdPw;
 import dto.TblRegistuserDto;
+import utility.MailUtil;
 
 // ログインサーブレットがURLであるloginと対応している
 @WebServlet("/login")
@@ -22,6 +23,8 @@ public class LoginServlet extends CustomTemplateServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		
+		MailUtil.sendMail("horii-kosei-plusdojo2025@seplus2016.onmicrosoft.com", "テス", "本文");
 
 		// ログインページにフォワードする
 		// jsp/Login.jspにアクセスされてログインの画面が表示される

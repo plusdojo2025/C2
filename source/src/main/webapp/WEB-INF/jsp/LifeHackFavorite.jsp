@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>お気に入りライフハック</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/loginlifehack.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/lifehackfavorite.css">
 </head>
 <body class="lifehackfavorite">
 <div class="wrapper">

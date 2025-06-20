@@ -88,7 +88,7 @@
 
 <footer>
   <h3 class="footertitle">&copy; 2025 WAKUSEI OMOIDE</h3>
-  <form action="/C2/LogoutServlet" method="get" class="logoutform">
+  <form action="/C2/LogoutServlet" method="get" class="logoutform" id="logout">
     <button type="submit">ログアウト</button>
   </form>
 </footer>
@@ -117,6 +117,10 @@
       });
     });
   });
+  
+  document.getElementById('logout').onsubmit=function(){
+	  return window.confirm('ログアウトしてもよろしいですか？');
+	};
 </script>
 
 

@@ -31,7 +31,7 @@
 			<img src="${pageContext.request.contextPath}${hack.lifehack.photo}" alt="画像">
 			<div class="title">${hack.lifehack.title}</div>
 			<div class="desc">${hack.lifehack.textline}</div>
-			<a href="${pageContext.request.contextPath}/detail?id=${hack.lifehack.lifehackNumber}" class="detail">詳細</a>
+			<a href="${pageContext.request.contextPath}/detail?id=${hack.lifehack.lifehackNumber}" class="detail"></a>
 		</div>
 	</c:forEach>
 

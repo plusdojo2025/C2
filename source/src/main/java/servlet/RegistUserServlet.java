@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.TblRegistuserDao;
 import dto.Result;
 import dto.TblRegistuserDto;
+import utility.MailUtil;
 
 @WebServlet("/RegistUserServlet")
 public class RegistUserServlet extends HttpServlet {
@@ -64,6 +65,35 @@ public class RegistUserServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RegistUser.jsp");
 			dispatcher.forward(request, response);
 		}
+		
+		MailUtil.sendMail("horii-kosei-plusdojo2025@seplus2016.onmicrosoft.com", "【登録完了】防災管理アプリへようこそ", """
+
+
+このたびは、防災管理アプリにご登録いただき、誠にありがとうございます。
+ご登録が正常に完了いたしましたので、ご案内申し上げます。
+
+本アプリでは、以下のような機能を通じて、日々の防災対策をサポートいたします。
+
+・備蓄品の在庫管理
+・保存食の賞味期限チェック
+・緊急時にも役立つライフハックの紹介
+・ハザードマップの確認
+・現在の防災・気象情報の表示
+
+アプリのご利用を開始するには、以下のリンクよりログインしてください：
+👉 http://localhost:8080/C2/login
+ご不明な点やご質問がございましたら、以下のサポート窓口までお気軽にご連絡ください。
+──────────────────
+防災管理アプリ サポートセンター
+メール：support@example.jp
+電話：03-XXXX-XXXX（平日9:00～18:00）
+──────────────────
+今後とも、防災管理アプリをどうぞよろしくお願いいたします。
+皆さまの安全・安心な暮らしを、心より願っております。
+防災管理アプリ運営チーム
+
+
+				""");
 		
 	}
 }

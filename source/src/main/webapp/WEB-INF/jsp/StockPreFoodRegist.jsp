@@ -32,7 +32,7 @@
  <c:forEach var="item" items="${prefoodList}">
   <form action="${pageContext.request.contextPath}/StockPreFoodRegistServlet" method="post">
    <input type="hidden" name="prefoodNumber" value="${item.prefoodNumber}" />
-   <input type="hidden" name="userNumber" value="1">
+   <input type="hidden" name="userNumber" value="${sessionScope.userNumber}">
     <div class="grid-item">
       <div class="first-item">
         <input type="checkbox">
@@ -61,7 +61,7 @@
     
 <template id="template-prefood">
 	 <form action="${pageContext.request.contextPath}/StockPreFoodRegistServlet" method="post">
-	 	<input type="hidden" name="userNumber" value="1">
+	 	<input type="hidden" name="userNumber" value="${sessionScope.userNumber}">
 	 	<input type="hidden" name="prefoodNumber" value="0"/>
 			<div class="grid-item">
 				<div class="first-item">

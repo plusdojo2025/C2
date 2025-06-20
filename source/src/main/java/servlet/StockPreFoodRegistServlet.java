@@ -37,8 +37,7 @@ public class StockPreFoodRegistServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		
+	    
 		//リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
@@ -49,6 +48,9 @@ public class StockPreFoodRegistServlet extends HttpServlet {
 	        prefoodNumber = Integer.parseInt(prefoodNumberStr);
 	    }
 	    
+	    System.out.println("action: " + action);
+	    System.out.println("prefoodNumber: " + prefoodNumber);
+	    
 		String prefoodName = request.getParameter("prefoodName");
 		
 		String prefoodDateStr = request.getParameter("prefoodDate");
@@ -57,6 +59,12 @@ public class StockPreFoodRegistServlet extends HttpServlet {
 	        prefoodDate = Date.valueOf(prefoodDateStr);
 	    }
 	    
+	    int prefoodQuantity = 0;
+		String prefoodQuantityStr = request.getParameter("prefoodQuantity");
+		if (prefoodQuantityStr != null && !prefoodQuantityStr.isEmpty()) {
+			prefoodQuantity = Integer.parseInt(prefoodQuantityStr);
+		}
+	    
 	    String userNumberStr = request.getParameter("userNumber");
 	    int userNumber = 0;
 	    if(userNumberStr != null && !userNumberStr.isEmpty()) {
@@ -64,11 +72,16 @@ public class StockPreFoodRegistServlet extends HttpServlet {
 	    }
 		
 		//エラーチェック
-		if(prefoodName==null || prefoodDate==null || userNumber==0) {
-			request.setAttribute("登録失敗！","全ての項目を入力してください。");
+		if(("insert".equals(action) || "update".equals(action)) &&
+			(prefoodName == null || prefoodName.isEmpty() ||  
+			prefoodDateStr == null || prefoodDateStr.isEmpty() || 
+			prefoodQuantityStr == null || prefoodQuantityStr.isEmpty() || 
+			userNumberStr == null || userNumberStr.isEmpty())) {
+			request.setAttribute("error","全ての項目を入力してください。");
 			
 			request.setAttribute("prefoodName", prefoodName);
 			request.setAttribute("prefoodDate", prefoodDate);
+			request.setAttribute("prefoodQuantity", prefoodQuantity);
 			request.setAttribute("userNumber", userNumber);
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/StockPreFoodRegist.jsp");
@@ -77,26 +90,29 @@ public class StockPreFoodRegistServlet extends HttpServlet {
 		}
 		
 		
+		
 		TblStockprefoodDao prefoodDao = new TblStockprefoodDao();
-		TblStockprefoodDto prefoodDto = new TblStockprefoodDto(prefoodNumber, prefoodName, prefoodDate, userNumber);
+		TblStockprefoodDto prefoodDto = new TblStockprefoodDto(prefoodNumber, prefoodName, prefoodDate, prefoodQuantity, userNumber);
 		
 		if ("insert".equals(action)) { // 登録成功
-			//登録処理
-			prefoodDao.insert(prefoodDto);
-			request.setAttribute("result", new Result("登録成功！", "保存食が登録されました。","/webapp/StockPreFoodRegistServlet"));
+				prefoodDao.insert(prefoodDto);
+				prefoodDao.update(prefoodDto);
+				response.sendRedirect(request.getContextPath() + "/StockPreFoodRegistServlet");
+			    return;
 		} else if ("update".equals(action)) {
-			//更新処理
-			prefoodDao.update(prefoodDto);
-			request.setAttribute("result", new Result("更新成功！", "保存食が更新されました。", "/StockPreFoodRegistServlet"));
+				prefoodDao.update(prefoodDto);
+				response.sendRedirect(request.getContextPath() + "/StockPreFoodRegistServlet");
+			    return;
 		} else if ("delete".equals(action)){
-			//削除処理
-			prefoodDao.delete(prefoodDto);
-			request.setAttribute("result", new Result("削除成功！", "保存食が更新されました。", "/StockPreFoodRegistServlet"));
-		} else {//失敗
+				// 削除処理を呼び出す
+			boolean success = prefoodDao.delete(prefoodDto);
+		    	if(success) {
+		    		response.sendRedirect(request.getContextPath() + "/StockPreFoodRegistServlet");
+		    		return;
+		    	} else {//失敗
+			System.err.println("削除失敗 prefoodNumber=" + prefoodNumber);
 			request.setAttribute("result", new Result("操作失敗！", "操作に失敗しました。", "/StockPreFoodRegistServlet"));
+		    }
 		}
-		doGet(request,response);
-		
 	}
-		
 }

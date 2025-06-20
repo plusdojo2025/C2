@@ -171,4 +171,106 @@ public class TblLifehackfavoriteDao extends CustomTemplateDao<TblLifehackfavorit
 			// 結果を返す
 			return result;
 }
+	
+	//一覧表示取得機能追記ここから
+	public List<TblLifehackfavoriteDto> selectByFamilyId(TblLifehackfavoriteDto dto) {
+	    Connection conn = null;
+	    List<TblLifehackfavoriteDto> favorite = new ArrayList<>();
+
+	    try {
+	        conn = conn();
+
+	        String sql = """
+	            SELECT tbl_lifehacklist.lifehackNumber, title, photo, textline, 
+	                   lifehackfavoriteNumber, familyId
+	            FROM tbl_lifehacklist
+	            JOIN tbl_lifehackfavorite 
+	            ON tbl_lifehacklist.lifehackNumber = tbl_lifehackfavorite.lifehackNumber
+	            WHERE familyId = ?
+	        """;
+
+	        PreparedStatement pStmt = conn.prepareStatement(sql);
+	        pStmt.setString(1, dto.getFamilyId());
+
+	        ResultSet rs = pStmt.executeQuery();
+
+	        while (rs.next()) {
+	        	System.out.println("---- 取得結果 ----");
+	        	System.out.println("title: " + rs.getString("title"));
+	        	System.out.println("photo: " + rs.getString("photo"));
+	        	System.out.println("textline: " + rs.getString("textline"));
+	        	System.out.println("lifehackNumber: " + rs.getInt("lifehackNumber"));
+	        	System.out.println("familyId: " + rs.getString("familyId"));
+	        	System.out.println("-----------------");
+
+	            TblLifehacklistDto list = new TblLifehacklistDto();
+	            list.setLifehackNumber(rs.getInt("lifehackNumber")); // ★追加
+	            list.setTitle(rs.getString("title"));
+	            list.setPhoto(rs.getString("photo"));
+	            list.setTextline(rs.getString("textline"));
+
+	            TblLifehackfavoriteDto f = new TblLifehackfavoriteDto();
+	            f.setLifehackfavoriteNumber(rs.getInt("lifehackfavoriteNumber"));
+	            f.setFamilyId(rs.getString("familyId"));
+	            f.setLifehackNumber(rs.getInt("lifehackNumber")); // ★追加
+	            f.setLifehack(list);
+
+	            favorite.add(f);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        favorite = null;
+	    } finally {
+	        close(conn);
+	    }
+
+	    return favorite;
+	}
+
+	
+	/*
+	public List<TblLifehackfavoriteDto> selectByFamilyId(TblLifehackfavoriteDto dto) {
+	    Connection conn = null;
+	    List<TblLifehackfavoriteDto> favorite = new ArrayList<>();
+
+	    try {
+	        conn = conn();
+
+	        String sql = """
+	            SELECT title, photo, textline, lifehackfavoriteNumber, familyId
+	            FROM tbl_lifehacklist
+	            JOIN tbl_lifehackfavorite 
+	            ON tbl_lifehacklist.lifehackNumber = tbl_lifehackfavorite.lifehackNumber
+	            WHERE familyId = ?
+	        """;
+
+	        PreparedStatement pStmt = conn.prepareStatement(sql);
+	        pStmt.setString(1, dto.getFamilyId());
+
+	        ResultSet rs = pStmt.executeQuery();
+
+	        while (rs.next()) {
+	            TblLifehacklistDto list = new TblLifehacklistDto();
+	            list.setTitle(rs.getString("title"));
+	            list.setPhoto(rs.getString("photo"));
+	            list.setTextline(rs.getString("textline"));
+
+	            TblLifehackfavoriteDto f = new TblLifehackfavoriteDto();
+	            f.setLifehackfavoriteNumber(rs.getInt("lifehackfavoriteNumber"));
+	            f.setFamilyId(rs.getString("familyId"));
+	            f.setLifehack(list);
+
+	            favorite.add(f);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        favorite = null;
+	    } finally {
+	        close(conn);
+	    }
+
+	    return favorite;
+	}
+	*/
+	//一覧表示取得機能追記ここまで
 }

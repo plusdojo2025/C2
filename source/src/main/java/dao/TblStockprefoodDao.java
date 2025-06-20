@@ -32,11 +32,13 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
-				TblStockprefoodDto b = new TblStockprefoodDto(rs.getInt("prefoodNumber"),
-								rs.getString("prefoodName"),
-								rs.getDate("prefoodDate"),
-								rs.getInt("userNumber")
-				);				
+				TblStockprefoodDto b = new TblStockprefoodDto(
+						rs.getInt("prefoodNumber"),
+	                    rs.getString("prefoodName"),
+	                    rs.getDate("prefoodDate"),
+	                    rs.getInt("prefoodQuantity"),
+	                    rs.getInt("userNumber")
+	); 				
 				prefood.add(b);
 			}
 		} catch (SQLException e) {
@@ -63,15 +65,16 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 
 			// SQL文を準備する
 			String sql = """
-					INSERT INTO tbl_stockprefood (prefoodName,prefoodDate,userNumber)
-										VALUES(?,?,?)
+					INSERT INTO tbl_stockprefood (prefoodName,prefoodDate,prefoodQuantity,userNumber)
+										VALUES(?,?,?,?)
 					""";
 			PreparedStatement pStmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 			// SQL文を完成させる
 			pStmt.setString(1, dto.getPrefoodName());
 			pStmt.setDate(2, dto.getPrefoodDate());
-			pStmt.setInt(3, dto.getUserNumber());
+			pStmt.setInt(3, dto.getPrefoodQuantity());
+			pStmt.setInt(4, dto.getUserNumber());
 			
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
@@ -109,6 +112,7 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 					SET 
 						prefoodName = ?,
 						prefoodDate = ?,
+						prefoodQuantity = ?,
 						userNumber = ?
 					WHERE prefoodNumber = ?
 					""";
@@ -117,8 +121,9 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 			// SQL文を完成させる
 			pStmt.setString(1, dto.getPrefoodName());
 			pStmt.setDate(2, dto.getPrefoodDate());
-			pStmt.setInt(3, dto.getUserNumber());
-			pStmt.setInt(4, dto.getPrefoodNumber());
+			pStmt.setInt(3, dto.getPrefoodQuantity());
+			pStmt.setInt(4, dto.getUserNumber());
+			pStmt.setInt(5, dto.getPrefoodNumber());
 			
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
@@ -185,6 +190,7 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 				TblStockprefoodDto b = new TblStockprefoodDto(rs.getInt("prefoodNumber"),
 								rs.getString("prefoodName"),
 								rs.getDate("prefoodDate"),
+								rs.getInt("prefoodQuantity"),
 								rs.getInt("userNumber")
 				);				
 				prefood.add(b);

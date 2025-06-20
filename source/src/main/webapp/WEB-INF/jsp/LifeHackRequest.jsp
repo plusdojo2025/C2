@@ -9,7 +9,7 @@
 	href="${pageContext.request.contextPath}/css/lifehackrequest.css">
 </head>
 <body>
-	<form action="LifeHackRequest" method="post">
+	<form action="LifeHackRequest" method="post" enctype="multipart/form-data">
 	<h2>【申請】ライフハック</h2>
 		<div class="lifehack-title">
 			<label for="lifehacktitle" class="label-lifehack">ライフハックタイトル</label><br> 

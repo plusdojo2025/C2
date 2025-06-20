@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,27 +23,28 @@ public class HomeServlet extends CustomTemplateServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		/*←全ファイルキー名統一後外せばエラーなくなる
+		
 		//★★★★★★ステータス取得処理開始ここから★★★★★★
 		// セッションから family_id,user_numberを取得、LoginServletと統一の名前
 		HttpSession session = request.getSession();
-		String familyId = (String) session.getAttribute("family_id");
+		String familyId = (String) session.getAttribute("familyId");
 
 		// 取得できなければログインページにリダイレクト
-		if (familyId == null) {
+		/*if (familyId == null) {
 			response.sendRedirect("Login.jsp");
 			return;
 		}
-
+*/
 		// DAOを使って該当データを取得 findByFamilyId(familyId)この部分はDAO完成後修正
 		TblSafestampDao dao = new TblSafestampDao();
-		List<TblSafestampDto> safestampList = dao.findByFamilyId(familyId);
+		List<TblSafestampDto> safestampList = dao.findWithNameByFamilyId(familyId);
+
 
 		// JSPにデータを渡す
 		////JSP内でこの変数名（EL式）を使っているか確認（<c:forEach var="s" items="${safestampList}">みたいな形）
 		request.setAttribute("safestampList", safestampList);
 		//ステータス取得処理ここまで
-		全ファイルキー名統一後外せばエラーなくなる→*/
+		
 		
 		// ホームページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Home.jsp");
@@ -65,8 +67,8 @@ public class HomeServlet extends CustomTemplateServlet {
 	    //キー名は、LoginServlet 側の setAttribute() のキーと必ず一致している必要がある
 	    // セッションから user_number を取得、LoginServletと統一の名前
 	    HttpSession session = request.getSession();
-	    String familyId = (String) session.getAttribute("family_id");
-	    Integer userNumber = (Integer) session.getAttribute("user_number");
+	    String familyId = (String) session.getAttribute("familyId");
+	    Integer userNumber = (Integer) session.getAttribute("userNumber");
 
 	    // 安全チェック（セッション切れなど）
 	    if (familyId == null || userNumber == null) {

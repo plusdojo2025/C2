@@ -32,11 +32,13 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
-				TblStockprefoodDto b = new TblStockprefoodDto(rs.getInt("prefoodNumber"),
-								rs.getString("prefoodName"),
-								rs.getDate("prefoodDate"),
-								rs.getInt("userNumber")
-				);				
+				TblStockprefoodDto b = new TblStockprefoodDto(
+						rs.getInt("prefoodNumber"),
+	                    rs.getString("prefoodName"),
+	                    rs.getDate("prefoodDate"),
+	                    rs.getInt("prefoodQuantity"),
+	                    rs.getInt("userNumber")
+	); 				
 				prefood.add(b);
 			}
 		} catch (SQLException e) {
@@ -63,15 +65,16 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 
 			// SQL文を準備する
 			String sql = """
-					INSERT INTO tbl_stockprefood (prefoodName,prefoodDate,userNumber)
-										VALUES(?,?,?)
+					INSERT INTO tbl_stockprefood (prefoodName,prefoodDate,prefoodQuantity,userNumber)
+										VALUES(?,?,?,?)
 					""";
 			PreparedStatement pStmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 			// SQL文を完成させる
 			pStmt.setString(1, dto.getPrefoodName());
 			pStmt.setDate(2, dto.getPrefoodDate());
-			pStmt.setInt(3, dto.getUserNumber());
+			pStmt.setInt(3, dto.getPrefoodQuantity());
+			pStmt.setInt(4, dto.getUserNumber());
 			
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
@@ -109,6 +112,7 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 					SET 
 						prefoodName = ?,
 						prefoodDate = ?,
+						prefoodQuantity = ?,
 						userNumber = ?
 					WHERE prefoodNumber = ?
 					""";
@@ -117,8 +121,9 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 			// SQL文を完成させる
 			pStmt.setString(1, dto.getPrefoodName());
 			pStmt.setDate(2, dto.getPrefoodDate());
-			pStmt.setInt(3, dto.getUserNumber());
-			pStmt.setInt(4, dto.getPrefoodNumber());
+			pStmt.setInt(3, dto.getPrefoodQuantity());
+			pStmt.setInt(4, dto.getUserNumber());
+			pStmt.setInt(5, dto.getPrefoodNumber());
 			
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
@@ -164,6 +169,43 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 			// 結果を返す
 			return result;
 }
+
+	//登録保存食データを全件表示させるためのselectAll()文を追加
+	public List<TblStockprefoodDto> selectAll() {
+		Connection conn = null;
+		List<TblStockprefoodDto> prefood = new ArrayList<>();
+
+		try {
+		conn = conn();
+
+			// SQL文を準備する
+			String sql = "SELECT * FROM tbl_stockprefood ORDER BY prefoodDate ASC";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {
+				TblStockprefoodDto b = new TblStockprefoodDto(rs.getInt("prefoodNumber"),
+								rs.getString("prefoodName"),
+								rs.getDate("prefoodDate"),
+								rs.getInt("prefoodQuantity"),
+								rs.getInt("userNumber")
+				);				
+				prefood.add(b);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			prefood = null;
+		} finally {
+			// データベースを切断
+			close(conn);
+		}
+
+		// 結果を返す
+		return prefood;
+	}
 
 }
 

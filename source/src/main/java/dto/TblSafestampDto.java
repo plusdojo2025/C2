@@ -9,6 +9,10 @@ public class TblSafestampDto extends CustomTemplateDto implements Serializable {
 	private String familyId;
 	private int userNumber;
 	
+	//JOINでユーザー名生成（テスト中）
+	private String name;
+
+	
 	//フィールドを使用したコンストラクタ
 	public TblSafestampDto(int safeNumber, String status, String familyId, int userNumber) {
 		super();
@@ -55,5 +59,15 @@ public class TblSafestampDto extends CustomTemplateDto implements Serializable {
 	public void setUserNumber(int userNumber) {
 		this.userNumber = userNumber;
 	}
+	
+	//JOINでユーザー名ゲッタとセッタ（テスト中）
+	public String getName() {
+	    return name;
+	} 
+	public void setName(String name) {
+	    this.name = name;
+	}
+
+
 	
 }

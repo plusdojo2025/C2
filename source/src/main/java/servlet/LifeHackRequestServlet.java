@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,11 @@ import dto.TblLifehackrequestDto;
 
 //ライフハック申請サーブレットがURLであるLifeHackRequestと対応している
 @WebServlet("/LifeHackRequest")
+@MultipartConfig(
+	    fileSizeThreshold = 1024 * 1024,    // 1MB
+	    maxFileSize = 1024 * 1024 * 10,      // 10MB
+	    maxRequestSize = 1024 * 1024 * 20    // 20MB
+	)
 public class LifeHackRequestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

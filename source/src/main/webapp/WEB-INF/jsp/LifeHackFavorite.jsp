@@ -25,25 +25,19 @@
 
 <main>
     <div class="card-list">
-      <c:forEach var="hack" items="${favoriteList}">
-        <div class="card">
-          <img src="${pageContext.request.contextPath}/img/${hack.image}" alt="画像">
-          <div class="title">${hack.title}</div>
-          <div class="desc">${hack.explanation}</div>
-          <a href="${pageContext.request.contextPath}/detail?id=${hack.id}" class="detail"></a>
-        </div>
-      </c:forEach>
+    	
+    	<c:forEach var="hack" items="${favoriteList}">
+		<div class="card">
+			<img src="${pageContext.request.contextPath}${hack.lifehack.photo}" alt="画像">
+			<div class="title">${hack.lifehack.title}</div>
+			<div class="desc">${hack.lifehack.textline}</div>
+			<a href="${pageContext.request.contextPath}/detail?id=${hack.lifehack.lifehackNumber}" class="detail">詳細</a>
+		</div>
+	</c:forEach>
+
     </div>
 
-<!-- デザイン確認用    
-    <div class="card-list">
-	<div class="card">
-		<div class="title"></div><br>
-		<img src="img/lifehack_1.jpg" alt="水ろ過" class="picture-1">
-		<p class="detail"></p><br>		
-	</div>	
-</div>
---> 
+
   </main>
   </div>
 <footer>

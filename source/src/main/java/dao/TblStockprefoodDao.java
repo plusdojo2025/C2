@@ -206,6 +206,65 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 		// 結果を返す
 		return prefood;
 	}
+	
+	public List<TblStockprefoodDto> selectExpiringInDays(int daysAhead, int userNumber) {
+	    Connection conn = null;
+	    List<TblStockprefoodDto> result = new ArrayList<>();
+
+	    try {
+	        conn = conn(); 
+	        String sql = """
+	            SELECT * FROM tbl_stockprefood
+	            WHERE prefoodDate = CURDATE() + INTERVAL ? DAY
+	              AND userNumber = ?
+	            ORDER BY prefoodDate ASC
+	        """;
+
+	        PreparedStatement stmt = conn.prepareStatement(sql);
+	        stmt.setInt(1, daysAhead);
+	        stmt.setInt(2, userNumber);
+
+	        ResultSet rs = stmt.executeQuery();
+	        while (rs.next()) {
+	            TblStockprefoodDto dto = new TblStockprefoodDto(
+	                rs.getInt("prefoodNumber"),
+	                rs.getString("prefoodName"),
+	                rs.getDate("prefoodDate"),
+	                rs.getInt("prefoodQuantity"),
+	                rs.getInt("userNumber")
+	            );
+	            result.add(dto);
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        close(conn);
+	    }
+
+	    return result;
+	}
+	
+	public List<Integer> getAllUserNumbers() {
+	    Connection conn = null;
+	    List<Integer> userNumbers = new ArrayList<>();
+	    try {
+	        conn = conn();
+	        String sql = "SELECT DISTINCT userNumber FROM tbl_stockprefood";
+	        PreparedStatement stmt = conn.prepareStatement(sql);
+	        ResultSet rs = stmt.executeQuery();
+	        while (rs.next()) {
+	            userNumbers.add(rs.getInt("userNumber"));
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        close(conn);
+	    }
+	    return userNumbers;
+	}
+
+
 
 }
 

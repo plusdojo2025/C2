@@ -11,6 +11,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import dto.TblStockprefoodDto;
+
 public class MailUtil {
 
 	/**
@@ -54,4 +56,21 @@ public class MailUtil {
 		}
 	
 }
+	public static void sendMail(TblStockprefoodDto dto) {
+	    // ユーザーのメールアドレス（仮に固定）
+	    String recipient = "horii-kosei-plusdojo2025@seplus2016.onmicrosoft.com";
+
+	    String subject = "【保存食リマインダー】" + dto.getPrefoodName() + " の賞味期限が近づいています";
+
+	    String mailBody = "こんにちは！\n\n" +
+	                      "ご登録の保存食「" + dto.getPrefoodName() + "」が、\n" +
+	                      "賞味期限 " + dto.getPrefoodDate() + " に迫っています。\n\n" +
+	                      "使い切るか、備蓄の入れ替えをご検討ください。\n" +
+	                      "それでは、今日も安心な1日を🍀\n\n" +
+	                      "―― 保存食管理アプリより";
+
+	    // 既存のメール送信メソッドを呼び出す
+	    sendMail(recipient, subject, mailBody);
+	}
+
 }

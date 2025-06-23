@@ -177,7 +177,6 @@ footer h3{
   border-radius: 15px;
   width: 650px;                /* 横長の枠にする */
   margin: 20px auto;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 .title-2 {
@@ -211,7 +210,6 @@ footer h3{
   border-radius: 15px;
   width: 650px;                /* 横長の枠にする */
   margin: 20px auto;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 .title-3 {

@@ -29,53 +29,31 @@
  <input type="text" name="keyword" class="search-input" placeholder="キーワードを入力" >
  <button type="submit" class="search-button">
  <img src="img/search.png" alt="検索" class="search-icon">
- </button>
+ </button> 
  </form>
 </div>
-<%-- <div class="search-result">
- <c:choose>
-  <c:when test="${not empty articleList}">
-   <c:forEach var="article" items="${articleList}">
-   	<div class="article-card">
-       <h4>${article.title}</h4>
-    	<img src="${article.imagePath}" alt="画像" width="220">
-    	<p>${article.description}</p>  	
- 
-    	<form action="LifeHackFavoriteServlet" method="post">
-    		<input type="hidden" name="articleId" value="${article.id}"/>
-    		<c:set var="activeClass" value="${article.favorite ? 'active' : ''}" />
-    		<button type="submit" class="favorite-mark ${activeClass}">♡</button>
-    	</form>
-    </div>
-    </c:forEach>
-  </c:when>
-  <c:otherwise>
-  	<p>該当なし</p>
-  </c:otherwise>
- </c:choose>
- </div> --%>
- 
- <!-- lifeListに入っているデータベースを表示
- 　　　　　初期表示では、Tbl_lifehacklistに入っている全てのデータがlifeListに入っている
- 　　　　　検索結果に応じてlifeListが変化
-  -->
- <%-- <div class="lifehack-article">
+
+<div class="lifehack-article">
  
  <c:forEach var="e" items="${lifeList}" > 
 	
 	<div class="article-1">
 	 
-	<div class="title-1">${e.title}</div><br>
+	<div class="title-1">${e.title}</div>
+	<form action="${pageContext.request.contextPath}/LifeHackListServlet" method="post">
+    		<input type="hidden" name="lifehackNumber" value="${e.lifehackNumber}"/>
+    		<c:set var="activeClass" value="${article.favorite ? 'active' : ''}" />
+    		<button type="submit" class="favorite-mark ${activeClass}">♡</button>
+    </form>
 	<img src="${e.photo}" alt="水ろ過" class="picture-1">
 	<p class="text-1"> ${e.textline}</p><br>
 	</div>
  
  </c:forEach>
- </div>
- </ --%>
-  
+ </div>    	
 
-<div class="lifehack-article">
+
+<%-- <div class="lifehack-article">
 	<div class="article-1">
 		<div class="title-1">「午後の窓辺、雨音とコーヒーと」</div><br>
 		<img src="img/lifehack_1.jpg" alt="水ろ過" class="picture-1">
@@ -108,7 +86,8 @@
 		やらなきゃいけないことは山ほどあるけれど、今だけは、時間の流れからそっと抜け出したかった。
 		</p><br>
 	</div>
-</div> 
+</div> --%>
+
 </div>
 <footer>
 	<h3>&copy; 2025 WAKUSEI OMOIDE</h3>

@@ -30,5 +30,19 @@
 			<img src="img/MamoSona.png" alt="MamoSona" class="MamoSona2">
 		</div>
 	</form>
+	
+<script>
+document.getElementById("register").addEventListener("click", function(event) {
+    var familyId = document.getElementById("familyId").value.trim();
+    var name = document.getElementById("name").value.trim();
+    var mail = document.getElementById("mail").value.trim();
+    var password = document.getElementById("password").value.trim();
+
+    if (familyId === "" || name === "" || mail === "" || password === "") {
+        window.alert("全ての項目を入力してください。");
+        event.preventDefault();  // フォームの送信を止める
+    }
+});
+</script>
 </body>
 </html>

@@ -67,7 +67,7 @@
 				<div class="first-item">
 					<input type="checkbox">
 					<input type=text name="prefoodName" value="" required>
-					<button type="submit" class="delete-row" name="action" value="delete" style="width:50px; height:30px; font-size:15px; color:#026bb8; background-color:#ffffff;">削除</button>
+					<button type="submit" class="delete-row" name="action" value="delete" style="display:none; width:50px; height:30px; font-size:15px; color:#026bb8; background-color:#ffffff;">削除</button>
 				</div>
 				<div class="second-item">
 					<img src="${pageContext.request.contextPath}/img/number.png">

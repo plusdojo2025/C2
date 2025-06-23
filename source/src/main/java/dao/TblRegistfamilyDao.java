@@ -92,4 +92,28 @@ public class TblRegistfamilyDao extends CustomTemplateDao<TblRegistfamilyDto> {
 		// TODO 自動生成されたメソッド・スタブ
 		return false;
 	}
+
+	
+	public boolean exists(String familyId) { String sql = "SELECT 1 FROM tbl_registfamily WHERE familyId = ? LIMIT 1";
+
+    try (Connection conn = conn();
+         PreparedStatement pStmt = conn.prepareStatement(sql)) {
+
+        pStmt.setString(1, familyId);
+
+        try (ResultSet rs = pStmt.executeQuery()) {
+            if (rs.next()) {
+                // 1行でもあれば存在する
+                return true;
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    // 見つからなかった or エラー時はfalseを返す
+    return false;
+		
+	}
+	
+	
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,10 +12,15 @@
 <body>
 	<h1>【新規登録】</h1>
 	<h2>家族IDを新しく作成</h2>
-	<form action="RegistFamilyServlet" id="formid" method="post">
+	<form action="RegistFamilyServlet" id="formid" method="post" autocomplete="off">
+	
 		<div class="form" style="margin-top: 40px;">
 			<label for="familyId" >家族ID</label><br>
-			 <input type="text" id="familyId" name="familyId" value="${familyId}" class="idform" required><br>
+			 <input type="text" id="familyId" name="familyId" value="${requestScope.familyId}" class="idform" required><br>
+			 <!-- エラーメッセージ -->
+				<c:if test="${not empty error}">
+    			<p style="color:red;">${error}</p>
+				</c:if>
 			<span id="familyIderror" style="color: red;"></span>
 		</div>
 		<div class="submit">
@@ -25,6 +31,7 @@
 			<img src="img/MamoSona.png" alt="MamoSona" class="MamoSona2">
 		</div>
 	</form>
+	
 	<!--  <script>
 	// id=registerがsubmitされたとき
 		document.getElementById("formid").addEventListener("submit",

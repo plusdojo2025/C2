@@ -34,5 +34,16 @@
 			</div>
 		</div>
 	</div>
+<script>
+document.getElementById("submit").addEventListener("click", function(event) {
+    var mailaddress = document.getElementById("mailaddress").value.trim();
+    var password = document.getElementById("pw").value.trim();
+
+    if (mailaddress === "" || password === "") {
+        window.alert("全ての項目を入力してください。");
+        event.preventDefault();  // フォームの送信を止める
+    }
+});
+</script>
 </body>
 </html>

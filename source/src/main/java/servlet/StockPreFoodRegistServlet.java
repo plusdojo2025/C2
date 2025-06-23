@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.TblStockprefoodDao;
 import dto.Result;
@@ -22,13 +23,23 @@ public class StockPreFoodRegistServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// 保存食管理ページにフォワードする
+		//データベースからユーザーIDが一致しているデータを取得する
+		
+		//ログインのセッションが完成したら動作する
+		//セッションスコープからuserNumberを取り出す
+		HttpSession session = request.getSession();
+		Integer userNumber = (Integer)session.getAttribute("userNumber");
 		
 		//tbl_stockprefoodに登録されているデータを取得
+		//userNumberが一緒のデータを検索して全てリストに表示する
 		TblStockprefoodDao dao = new TblStockprefoodDao();
-	    List<TblStockprefoodDto> list = dao.selectAll();
+	    List<TblStockprefoodDto> list = dao.select(new TblStockprefoodDto(0, "", null, 0 ,userNumber));
+
+	    //検索結果をリクエストスコープに格納する
 	    request.setAttribute("prefoodList", list);
 	    
-	    // 保存食管理ページにフォワードする
+	    
 	    // jsp/StockPreFoodRegist.jspにアクセスされて保存食管理ページの画面が表示される
 	 	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/StockPreFoodRegist.jsp");
 	 	dispatcher.forward(request, response);
@@ -42,6 +53,11 @@ public class StockPreFoodRegistServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
 		
+		//セッションからユーザー番号を取得
+		HttpSession session = request.getSession();
+	    Integer userNumber = (Integer) session.getAttribute("userNumber");
+		
+		//パラメータ取得
 		String prefoodNumberStr = request.getParameter("prefoodNumber");
 	    int prefoodNumber = 0;
 	    if(prefoodNumberStr != null && !prefoodNumberStr.isEmpty()) {
@@ -64,21 +80,14 @@ public class StockPreFoodRegistServlet extends HttpServlet {
 		if (prefoodQuantityStr != null && !prefoodQuantityStr.isEmpty()) {
 			prefoodQuantity = Integer.parseInt(prefoodQuantityStr);
 		}
-	    
-	    String userNumberStr = request.getParameter("userNumber");
-	    int userNumber = 0;
-	    if(userNumberStr != null && !userNumberStr.isEmpty()) {
-	        userNumber = Integer.parseInt(userNumberStr);
-	    }
 		
 		//エラーチェック
 		if(("insert".equals(action) || "update".equals(action)) &&
 			(prefoodName == null || prefoodName.isEmpty() ||  
 			prefoodDateStr == null || prefoodDateStr.isEmpty() || 
-			prefoodQuantityStr == null || prefoodQuantityStr.isEmpty() || 
-			userNumberStr == null || userNumberStr.isEmpty())) {
-			request.setAttribute("error","全ての項目を入力してください。");
+			prefoodQuantityStr == null || prefoodQuantityStr.isEmpty())) {
 			
+			request.setAttribute("error","全ての項目を入力してください。");
 			request.setAttribute("prefoodName", prefoodName);
 			request.setAttribute("prefoodDate", prefoodDate);
 			request.setAttribute("prefoodQuantity", prefoodQuantity);
@@ -91,12 +100,13 @@ public class StockPreFoodRegistServlet extends HttpServlet {
 		
 		
 		
+		
+		
 		TblStockprefoodDao prefoodDao = new TblStockprefoodDao();
 		TblStockprefoodDto prefoodDto = new TblStockprefoodDto(prefoodNumber, prefoodName, prefoodDate, prefoodQuantity, userNumber);
 		
 		if ("insert".equals(action)) { // 登録成功
 				prefoodDao.insert(prefoodDto);
-				prefoodDao.update(prefoodDto);
 				response.sendRedirect(request.getContextPath() + "/StockPreFoodRegistServlet");
 			    return;
 		} else if ("update".equals(action)) {

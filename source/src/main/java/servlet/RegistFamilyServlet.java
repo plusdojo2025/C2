@@ -22,6 +22,8 @@ public class RegistFamilyServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// 家族ID登録ページにフォワードする
 		// jsp/RegistFamily.jspにアクセスされて家族ID登録の画面が表示される
+		
+		request.removeAttribute("familyId");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RegistFamily.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -35,8 +37,9 @@ public class RegistFamilyServlet extends HttpServlet {
 		String familyId = request.getParameter("familyId");
 		
 		//エラーチェック
-		if(familyId==null) {
-			request.setAttribute("登録失敗！","全ての項目を入力してください。");
+		//空文字ornullチェック
+		if(familyId==null || familyId.trim().isEmpty()) {
+			request.setAttribute("error","家族IDを入力してください。");
 			
 			request.setAttribute("familyId", familyId);
 			
@@ -44,9 +47,17 @@ public class RegistFamilyServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			return;
 		}
+		//重複チェック
+		TblRegistfamilyDao registDao = new TblRegistfamilyDao();
+		if (registDao.exists(familyId)) {
+			request.setAttribute("error", "この家族IDは既に登録されています。");
+			request.setAttribute("familyId", familyId); // 入力保持
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RegistFamily.jsp");
+			dispatcher.forward(request, response);
+			return;
+		}
 		
 		// 登録処理を行う
-			TblRegistfamilyDao registDao = new TblRegistfamilyDao();
 			if (registDao.insert(new TblRegistfamilyDto(familyId))) { // 登録成功
 				// セッションに登録済みの familyId を保存
 			    request.getSession().setAttribute("familyId", familyId);

@@ -16,12 +16,12 @@
 	
 		<div class="form" style="margin-top: 40px;">
 			<label for="familyId" >家族ID</label><br>
-			 <input type="text" id="familyId" name="familyId" value="${requestScope.familyId}" class="idform" required><br>
+			 <input type="text" id="familyId" name="familyId" value="${requestScope.familyId}" class="idform"><br>
+			 <span id="familyIderror" style="color:red;"></span>
 			 <!-- エラーメッセージ -->
 				<c:if test="${not empty error}">
-    			<p style="color:red;">${error}</p>
+    			<span style="color:red; display: inline-block; margin-top: 5px;">${error}</span>
 				</c:if>
-			<span id="familyIderror" style="color: red;"></span>
 		</div>
 		<div class="submit">
 			<input type="submit" id="register" name="register" value="登録する" style = "margin-top: 35px" >
@@ -32,21 +32,20 @@
 		</div>
 	</form>
 	
-	<!--  <script>
+	<script>
 	// id=registerがsubmitされたとき
 		document.getElementById("formid").addEventListener("submit",
 				function(e) {
-					const username = document.getElementById("familyId");
+					const familyIdInput = document.getElementById("familyId");
 					const errorspan = document.getElementById("familyIderror");
 
-					if (familyId === "") {
+					if (familyIdInput.value.trim()==="") {
 						errorspan.textContent = "家族IDを入力してください。";
 						e.preventDefault(); // 送信をキャンセル
 					} else {
 						errorspan.textContent = ""; // 正常時はエラーを消す
 					}
 				});
-		</script>
-		--> 
+	</script> 
 </body>
 </html>

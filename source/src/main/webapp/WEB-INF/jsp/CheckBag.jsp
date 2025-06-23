@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<header>
+<header >
 	<div class= "logo-header">
 		<a href="${pageContext.request.contextPath}/home">
 		<img src="${pageContext.request.contextPath}/img/logo.png">
@@ -18,11 +18,11 @@
 	</div>
 </header>
 <!-- 変更内容をポストする -->
-<form action="CheckBagServlet" method="post">
+<form action="${pageContext.request.contextPath}/CheckBagServlet" method="post">
 
 <div class="bag-title">
 	<h1>防災バッグリスト</h1>
-	<button type = "submit">登録</button>
+	<button type = "submit" id = "regist">登録</button>
 </div>
 
 <h2>必須の備え</h2>
@@ -31,7 +31,7 @@
 	<div class="grid-container">
 	
 	<!-- 必須項目の入力 -->
-	 <c:forEach var = "bag" begin="0" end="3" items="${checkBag}" >
+	 <c:forEach var = "bag" begin="0" end="13" items="${checkBag}" >
 		<div class="grid-item">
 			<div class="first-item">
 			<!-- bagNimberをリクエストスコープで渡す -->
@@ -69,7 +69,7 @@
 <section>
 	<div class="grid-container">
 	<!-- 必須項目の入力 　begin-->
-	 <c:forEach var = "bag" begin="4" end="8" items="${checkBag}" >
+	 <c:forEach var = "bag" begin="14" end="21" items="${checkBag}" >
 		<div class="grid-item">
 			<div class="first-item">
 			<!-- bagNimberをリクエストスコープで渡す -->
@@ -101,9 +101,20 @@
 </section>
 </form>
 
-
 <footer>
-	<h3>&copy; 2025 WAKUSEI OMOIDE</h3>
+  <h3 class="footertitle">&copy; 2025 WAKUSEI OMOIDE</h3>
 </footer>
+
+
+<script>
+'use strict';
+document.getElementById("regist").addEventListener("click", function(e) {
+	const confirmed = confirm("この内容で登録しますか？");
+	if (!confirmed) {
+		alert("キャンセルされました");
+		e.preventDefault(); // キャンセル時、submitを止める
+	}
+});
+</script>
 </body>
 </html>

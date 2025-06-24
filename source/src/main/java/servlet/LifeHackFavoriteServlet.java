@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import dao.TblLifehackfavoriteDao;
 import dto.TblLifehackfavoriteDto;
 
+
 @WebServlet("/LifeHackFavoriteServlet")
 public class LifeHackFavoriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -80,5 +81,63 @@ public class LifeHackFavoriteServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		// セッションから familyId を取得
+	    HttpSession session = request.getSession(false);
+	    String familyId = (String) session.getAttribute("familyId");
+		
+		//リクエストパラメータの取得
+		request.setCharacterEncoding("UTF-8");
+		
+		String num2 = request.getParameter("lifehackfavoriteNumber"); 
+		int lifehackfavoriteNumber = Integer.parseInt(num2);
+		
+		TblLifehackfavoriteDto dto = new TblLifehackfavoriteDto(lifehackfavoriteNumber, familyId, 0);
+		
+		// データの処理を行うためのDAOのインスタンスを生成
+		TblLifehackfavoriteDao dao = new TblLifehackfavoriteDao();
+		
+
+		
+		//成功時、jsp/LifeHackFavorite.jspにアクセスされる。
+		
+		if (dao.delete(dto)) {
+			List<TblLifehackfavoriteDto> favoriteList = dao.selectByFamilyId(dto); // 仮想のメソッド名
+
+		    
+		    
+		    System.out.println("★ familyId: " + familyId);
+
+		    if (favoriteList == null) {
+		        System.out.println("★ favoriteList is null");
+		    } else if (favoriteList.isEmpty()) {
+		        System.out.println("★ favoriteList is empty");
+		    } else {
+		        System.out.println("★ favoriteList size: " + favoriteList.size());
+
+		        TblLifehackfavoriteDto first = favoriteList.get(0);
+		        if (first.getLifehack() != null) {
+		            System.out.println("★ title: " + first.getLifehack().getTitle());
+		            System.out.println("★ photo: " + first.getLifehack().getPhoto());
+		            System.out.println("★ textline: " + first.getLifehack().getTextline());
+		        } else {
+		            System.out.println("★ first.getLifehack() is null");
+		        }
+		    }
+ 
+		    
+		    // リクエストスコープにセット
+		    request.setAttribute("favoriteList", favoriteList);
+			//一覧取得処理ここまで
+			
+			// ライフハックお気に入り登録ページにフォワードする
+			// jsp/LifeHackFavorite.jspにアクセスされて防災バッグリストの画面が表示される
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/LifeHackFavorite.jsp");
+			dispatcher.forward(request, response);
+			
+		}else {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/LifeHackFavorite.jsp");
+		    dispatcher.forward(request, response);
+		}
 	}
 }

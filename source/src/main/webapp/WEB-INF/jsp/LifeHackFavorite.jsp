@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,10 +27,25 @@
 <main>
     <div class="card-list">
     	
-    	<c:forEach var="hack" items="${favoriteList}">
+    <c:forEach var="hack" items="${favoriteList}">
+    
+   		 <%-- activeClassを初期化 --%>
+		<c:set var="activeClass" value="" />
+		<!-- 全ての記事でアクティブ状態にする -->
+		<c:set var="activeClass" value="active" />
+		
+    
 		<div class="card">
-			<img src="${pageContext.request.contextPath}${hack.lifehack.photo}" alt="画像">
 			<div class="title">${hack.lifehack.title}</div>
+			
+			<!-- お気に入りのハート表示 -->
+			<form action="${pageContext.request.contextPath}/LifeHackFavoriteServlet" method="post">
+    		<input type="hidden" name="lifehackfavoriteNumber" value="${hack.lifehackfavoriteNumber}"/>
+    		
+    		<button type="submit" class="favorite-mark ${activeClass}">♥</button>
+  		   </form>
+  		   
+			<img src="${hack.lifehack.photo}" alt="画像">	
 			<div class="desc">${hack.lifehack.textline}</div>
 			<a href="${pageContext.request.contextPath}/detail?id=${hack.lifehack.lifehackNumber}" class="detail"></a>
 		</div>

@@ -91,6 +91,18 @@ header {
 	margin-bottom: 10px;
 }
 
+.favorite-mark{
+	all: unset;
+	border: none;
+	cursor: pointer;
+	font-size: 40px;
+}	
+
+.favorite-mark.active{
+	color: #ff0080;
+}
+
+
 footer {
 	height: 140px;
 	background-color: #fdc435;

@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ライフハックリスト</title>
+<link rel="icon" href="${pageContext.request.contextPath}/img/MamoSona.png">
+<title>MamoとSona | ライフハックリスト</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/lifehacklist.css">
 </head>
 <body>

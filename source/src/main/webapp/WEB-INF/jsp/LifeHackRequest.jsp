@@ -5,7 +5,8 @@
 <head>
 
 <meta charset="UTF-8">
-<title>ライフハック申請</title>
+<link rel="icon" href="${pageContext.request.contextPath}/img/MamoSona.png">
+<title>MamoとSona | ライフハック申請</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/lifehackrequest.css">
 </head>

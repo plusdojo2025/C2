@@ -35,7 +35,7 @@
    <input type="hidden" name="userNumber" value="${sessionScope.userNumber}">
     <div class="grid-item">
       <div class="first-item">
-        <input type="checkbox">
+        <input type="checkbox" name="checked" value="true" <c:if test="${item.checked}">checked</c:if>>
         <input type="text" name="prefoodName" value="${item.prefoodName}">
         <button type="submit" class="delete-row" name="action" value="delete" style="width:50px; height:30px; font-size:15px; color:#026bb8; background-color:#ffffff;">削除</button>
       </div>
@@ -65,7 +65,7 @@
 	 	<input type="hidden" name="prefoodNumber" value="0"/>
 			<div class="grid-item">
 				<div class="first-item">
-					<input type="checkbox">
+					<input type="checkbox" name="checked" value="true">
 					<input type=text name="prefoodName" value="" required>
 					<button type="submit" class="delete-row" name="action" value="delete" style="display:none; width:50px; height:30px; font-size:15px; color:#026bb8; background-color:#ffffff;">削除</button>
 				</div>

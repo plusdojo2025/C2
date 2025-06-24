@@ -37,7 +37,9 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 	                    rs.getString("prefoodName"),
 	                    rs.getDate("prefoodDate"),
 	                    rs.getInt("prefoodQuantity"),
-	                    rs.getInt("userNumber")
+	                    rs.getInt("userNumber"),
+	                    rs.getBoolean("checked")
+	                    
 	); 				
 				prefood.add(b);
 			}
@@ -65,8 +67,8 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 
 			// SQL文を準備する
 			String sql = """
-					INSERT INTO tbl_stockprefood (prefoodName,prefoodDate,prefoodQuantity,userNumber)
-										VALUES(?,?,?,?)
+					INSERT INTO tbl_stockprefood (prefoodName,prefoodDate,prefoodQuantity,userNumber,checked)
+										VALUES(?,?,?,?,?)
 					""";
 			PreparedStatement pStmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
@@ -75,6 +77,7 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 			pStmt.setDate(2, dto.getPrefoodDate());
 			pStmt.setInt(3, dto.getPrefoodQuantity());
 			pStmt.setInt(4, dto.getUserNumber());
+			pStmt.setBoolean(5, dto.isChecked());
 			
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
@@ -112,7 +115,8 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 					SET 
 						prefoodName = ?,
 						prefoodDate = ?,
-						prefoodQuantity = ?
+						prefoodQuantity = ?,
+						checked = ?
 					WHERE prefoodNumber = ? AND userNumber = ?
 					""";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -121,8 +125,9 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 			pStmt.setString(1, dto.getPrefoodName());
 			pStmt.setDate(2, dto.getPrefoodDate());
 			pStmt.setInt(3, dto.getPrefoodQuantity());
-			pStmt.setInt(4, dto.getPrefoodNumber());
-			pStmt.setInt(5, dto.getUserNumber());
+			pStmt.setBoolean(4, dto.isChecked());
+			pStmt.setInt(5, dto.getPrefoodNumber());
+			pStmt.setInt(6, dto.getUserNumber());
 			
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
@@ -191,7 +196,8 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 								rs.getString("prefoodName"),
 								rs.getDate("prefoodDate"),
 								rs.getInt("prefoodQuantity"),
-								rs.getInt("userNumber")
+								rs.getInt("userNumber"),
+								rs.getBoolean("checked")
 				);				
 				prefood.add(b);
 			}
@@ -231,7 +237,8 @@ public class TblStockprefoodDao extends CustomTemplateDao<TblStockprefoodDto> {
 	                rs.getString("prefoodName"),
 	                rs.getDate("prefoodDate"),
 	                rs.getInt("prefoodQuantity"),
-	                rs.getInt("userNumber")
+	                rs.getInt("userNumber"),
+	                rs.getBoolean("checked")
 	            );
 	            result.add(dto);
 	        }

@@ -29,6 +29,7 @@ public class LifeHackListServlet extends CustomTemplateServlet {
 		String keyword = request.getParameter("keyword");
         if (keyword == null) keyword = "";
         
+        
 		//ライフハック一覧を表示する
 		// 検索処理を行う
 		TblLifehacklistDao lifeDao = new TblLifehacklistDao();
@@ -36,7 +37,16 @@ public class LifeHackListServlet extends CustomTemplateServlet {
 
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("lifeList", lifeList);
-
+		
+		//お気に入りIDリスト玉川追加
+		HttpSession session = request.getSession();
+	    String familyId = (String) session.getAttribute("familyId");
+	    TblLifehackfavoriteDao favDao = new TblLifehackfavoriteDao();
+	    List<Integer> favoriteNumbers = favDao.selectLifehackNumbersByFamilyId(familyId);
+	    //JSPに渡す玉川追加
+	    request.setAttribute("lifeList", lifeList);
+	    request.setAttribute("favoriteNumbers", favoriteNumbers);
+	   
 		
 		// jsp/LifeHackList.jspにアクセスされて防災ライフハックの画面が表示される
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/LifeHackList.jsp");
@@ -75,8 +85,11 @@ public class LifeHackListServlet extends CustomTemplateServlet {
 
 				// 検索結果をリクエストスコープに格納する
 				request.setAttribute("lifeList", lifeList);
-
-				
+//玉川追加
+				TblLifehackfavoriteDao favDao = new TblLifehackfavoriteDao();
+				List<Integer> favoriteNumbers = favDao.selectLifehackNumbersByFamilyId(FamilyId);
+				request.setAttribute("favoriteNumbers", favoriteNumbers);
+//玉川追加				
 				// jsp/LifeHackList.jspにアクセスされて防災ライフハックの画面が表示される
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/LifeHackList.jsp");
 				dispatcher.forward(request, response);

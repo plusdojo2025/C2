@@ -219,7 +219,7 @@ footer {
 
 .styled-logout-btn:hover {
   background-color: #016BB8;
-  color: #000;
+  color: white;
 }
 
 .styled-logout-btn:hover::after {

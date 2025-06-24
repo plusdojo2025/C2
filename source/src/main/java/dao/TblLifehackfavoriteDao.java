@@ -72,27 +72,40 @@ public class TblLifehackfavoriteDao extends CustomTemplateDao<TblLifehackfavorit
 			// JDBCドライバを読み込む
 			// データベースに接続する
 			conn = conn();
+			
+			// 1. 重複チェック
+			String checkSql = "SELECT 1 FROM tbl_lifehackfavorite WHERE familyId = ? AND lifehackNumber = ?";
+			PreparedStatement checkStmt = conn.prepareStatement(checkSql);
+			checkStmt.setString(1, dto.getFamilyId());
+			checkStmt.setInt(2, dto.getLifehackNumber());
+			ResultSet rs = checkStmt.executeQuery();
+			
+			//重複している場合、追加しない
+			if (!rs.next()) {
 
-			// SQL文を準備する
-			String sql = """
-					INSERT INTO tbl_lifehackfavorite (familyId,lifehackNumber)
-										VALUES(?,?)
-					""";
-			PreparedStatement pStmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
-			// SQL文を完成させる
-			pStmt.setString(1, dto.getFamilyId());
-			pStmt.setInt(2, dto.getLifehackNumber());
-			// SQL文を実行する
-			if (pStmt.executeUpdate() == 1) {
-				ResultSet res = pStmt.getGeneratedKeys();
-				if(res.next()) {
-				dto.setLifehackfavoriteNumber(res.getInt(1));
-				result = true;
-				}else {
-					System.err.println("主キー生成不可。");		
-				} 
-			}
+				// SQL文を準備する
+				String sql = """
+						INSERT INTO tbl_lifehackfavorite (familyId,lifehackNumber)
+											VALUES(?,?)
+						""";
+				PreparedStatement pStmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+	
+				// SQL文を完成させる
+				pStmt.setString(1, dto.getFamilyId());
+				pStmt.setInt(2, dto.getLifehackNumber());
+				// SQL文を実行する
+				if (pStmt.executeUpdate() == 1) {
+					ResultSet res = pStmt.getGeneratedKeys();
+					if(res.next()) {
+						dto.setLifehackfavoriteNumber(res.getInt(1));
+						result = true;
+					}else {
+						System.err.println("主キー生成不可。");		
+					} 
+				}
+			    }else {
+			        result = true;
+			    }
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
@@ -227,7 +240,26 @@ public class TblLifehackfavoriteDao extends CustomTemplateDao<TblLifehackfavorit
 	    return favorite;
 	}
 
-	
+//玉川追加↓
+	public List<Integer> selectLifehackNumbersByFamilyId(String familyId){
+        List<Integer> ids = new ArrayList<>();
+        Connection conn = null;
+        try {
+            conn = conn();
+            String sql = "SELECT lifehackNumber FROM tbl_lifehackfavorite WHERE familyId=?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, familyId);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                ids.add(rs.getInt("lifehackNumber"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close(conn);
+        }
+        return ids;
+}
 	/*
 	public List<TblLifehackfavoriteDto> selectByFamilyId(TblLifehackfavoriteDto dto) {
 	    Connection conn = null;

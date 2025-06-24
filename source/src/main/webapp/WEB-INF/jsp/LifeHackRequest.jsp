@@ -3,12 +3,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>ライフハック申請</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/lifehackrequest.css">
 </head>
 <body>
+
+<header>
+	<div class= "logo-header">
+		<a href="${pageContext.request.contextPath}/home">
+		<img src="${pageContext.request.contextPath}/img/logo.png">
+		</a>
+	</div>
+</header>
+
+<div class="stripe-container"></div>
+
 	<form action="LifeHackRequest" method="post" enctype="multipart/form-data">
 	<h2>【申請】ライフハック</h2>
 		<div class="lifehack-title">
@@ -26,5 +38,9 @@
 			<input type="submit" id="submit" name="submit" value="申請" class="lifehckrequest-button">
 		</div>
 	</form>
+
+<footer>
+	<h3>&copy; 2025 WAKUSEI OMOIDE</h3>
+</footer>
 </body>
 </html>

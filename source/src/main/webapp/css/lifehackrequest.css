@@ -4,6 +4,21 @@ body {
   background-color: #f7efe3;
 }
 
+header {
+	height: 130px;
+	background-color: #fdc435;
+}
+
+.logo-header {
+	display:flex;
+	justify-content:center;
+}
+
+.stripe-container {
+	height: 20px;
+	background-image:url('../img/stripe.png');
+}
+
 form {
   max-width: 600px;
   margin: 40px auto;
@@ -64,4 +79,22 @@ input[type="submit"] {
   font-weight: bold;
   cursor: pointer;
   margin: 20px auto;
+}
+
+footer {
+  height: 140px;
+  background-color: #fdc435;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;  /* h3 を中央に */
+  align-items: center;
+  position: relative;
+}
+
+.footertitle {
+  font-size: 25px;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }

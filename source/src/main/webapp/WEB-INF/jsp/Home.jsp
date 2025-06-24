@@ -119,7 +119,8 @@
 <footer>
   <h3 class="footertitle">&copy; 2025 WAKUSEI OMOIDE</h3>
   <form action="/C2/LogoutServlet" method="get" class="logoutform" id="logout">
-    <button type="submit">ログアウト</button>
+  <!-- ★class追加 前田★ -->
+    <button type="submit" class="styled-logout-btn">ログアウト</button>
   </form>
 </footer>
 
@@ -150,9 +151,5 @@
 	  return window.confirm('ログアウトしてもよろしいですか？');
 	};
 </script>
-
-
-
-
 </body>
 </html>

@@ -168,3 +168,60 @@ footer {
   position: absolute;
   right: 20px;
 }
+
+/* ★以下～前田作成箇所★ */
+/* ログアウトボタン */
+.styled-logout-btn {
+  background: #eee;
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 30px;
+  color: #313131;
+  transition: 0.3s ease-in-out;
+  font-weight: 500;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 0;
+}
+
+.styled-logout-btn::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  border: 2px solid #6bb6ff;
+  transition: 0.2s ease-in-out;
+  border-radius: 5px;
+  z-index: -1;
+}
+
+.styled-logout-btn::after {
+  content: '';
+  margin-left: 10px;
+  width: 5px;
+  height: 5px;
+  border-top: 3px solid #333333;
+  border-right: 3px solid #333333;
+  transform: rotate(45deg);
+  transition: transform 0.3s;
+}
+
+.styled-logout-btn:hover::before {
+  top: 0;
+  left: 0;
+}
+
+.styled-logout-btn:hover {
+  background-color: #016BB8;
+  color: #000;
+}
+
+.styled-logout-btn:hover::after {
+  transform: rotate(45deg) translate(2px, -2px);
+}

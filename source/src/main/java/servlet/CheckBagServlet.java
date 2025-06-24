@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.TblCheckbagDao;
+import dto.IdPw;
 import dto.TblCheckbagDto;
 
 
@@ -24,12 +25,27 @@ public class CheckBagServlet extends CustomTemplateServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// セッションから family_id,user_numberを取得、LoginServletと統一の名前
+
+		// 必ずセッションを取得（なければ作成）
+			HttpSession session = request.getSession(true);
+			IdPw idpw = (IdPw) session.getAttribute("mail"); 
+			// idpw があればメールを取り出し、なければ null にする
+			String mail = (idpw != null) ? idpw.getMail() : null;
+			// セッション用のメールアドレスにメールアドレスが入っているか確認する
+			System.out.println("mail:" + mail);
+			if (mail == null) {
+		        // 未ログイン時の処理（ログイン画面へリダイレクト）
+				// ログインしていないと判断した時の処理
+		        response.sendRedirect(request.getContextPath() + "/login");
+		        return;
+		    }
+		
 		// 防災バッグリストページにフォワードする
 		//データベースからユーザーIDが一致しているデータを取得する
 	
 
 //		セッションスコープからuserNumberを取り出す
-		HttpSession session = request.getSession();
 		Integer userNumber = (Integer)session.getAttribute("userNumber");
 		
 
@@ -86,7 +102,7 @@ public class CheckBagServlet extends CustomTemplateServlet {
 		  checkedSet.addAll(Arrays.asList(checkedBagNumbers)); }
 		 
 		//データベースを更新
-		for(int i= 0; i<8; i++) {
+		for(int i= 0; i<argbagName.length; i++) {
 			int Number = argbagNumber[i];
 		    Boolean check = checkedSet.contains(String.valueOf(Number));
 			int bagStock = argbagStock[i];
@@ -94,7 +110,7 @@ public class CheckBagServlet extends CustomTemplateServlet {
 			String bagName = argbagName[i];
 			String bagLink = argbagLink[i];
 			TblCheckbagDao dao = new TblCheckbagDao();
-			TblCheckbagDto TblCheckbagDto = new TblCheckbagDto(bagNumber, check, bagName, bagStock, bagLink, 1);
+			TblCheckbagDto TblCheckbagDto = new TblCheckbagDto(bagNumber, check, bagName, bagStock, bagLink, userNumber);
 			boolean result = dao.update(TblCheckbagDto);
 			
 		}

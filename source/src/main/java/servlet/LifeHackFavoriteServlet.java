@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.TblLifehackfavoriteDao;
+import dto.IdPw;
 import dto.TblLifehackfavoriteDto;
 
 
@@ -23,18 +24,26 @@ public class LifeHackFavoriteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		//一覧取得処理ここから
+		
 	    // セッションから familyId を取得
-	    HttpSession session = request.getSession(false);
-	    String familyId = (String) session.getAttribute("familyId");
-
-	    if (familyId == null) {
+	    HttpSession session = request.getSession(true);
+	 
+	    IdPw idpw = (IdPw) session.getAttribute("mail"); 
+		// idpw があればメールを取り出し、なければ null にする
+		String mail = (idpw != null) ? idpw.getMail() : null;
+		// セッション用のメールアドレスにメールアドレスが入っているか確認する
+		System.out.println("mail:" + mail);
+		
+		if (mail == null) {
 	        // 未ログイン時の処理（ログイン画面へリダイレクト）
-	        response.sendRedirect("login");
+			// ログインしていないと判断した時の処理
+	        response.sendRedirect(request.getContextPath() + "/login");
 	        return;
 	    }
 
+		//一覧取得処理ここから
 	    // DAOとDTOの用意
+		String familyId = (String) session.getAttribute("familyId");
 	    TblLifehackfavoriteDao dao = new TblLifehackfavoriteDao();
 	    TblLifehackfavoriteDto dto = new TblLifehackfavoriteDto();
 	    dto.setFamilyId(familyId);
@@ -103,27 +112,6 @@ public class LifeHackFavoriteServlet extends HttpServlet {
 		
 		if (dao.delete(dto)) {
 			List<TblLifehackfavoriteDto> favoriteList = dao.selectByFamilyId(dto); // 仮想のメソッド名
-
-		    
-		    
-		    System.out.println("★ familyId: " + familyId);
-
-		    if (favoriteList == null) {
-		        System.out.println("★ favoriteList is null");
-		    } else if (favoriteList.isEmpty()) {
-		        System.out.println("★ favoriteList is empty");
-		    } else {
-		        System.out.println("★ favoriteList size: " + favoriteList.size());
-
-		        TblLifehackfavoriteDto first = favoriteList.get(0);
-		        if (first.getLifehack() != null) {
-		            System.out.println("★ title: " + first.getLifehack().getTitle());
-		            System.out.println("★ photo: " + first.getLifehack().getPhoto());
-		            System.out.println("★ textline: " + first.getLifehack().getTextline());
-		        } else {
-		            System.out.println("★ first.getLifehack() is null");
-		        }
-		    }
  
 		    
 		    // リクエストスコープにセット

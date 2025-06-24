@@ -1,8 +1,14 @@
 @charset "UTF-8";
 
+
 header {
 	height: 130px;
 	background-color: #fdc435;
+}
+
+.logo-header {
+	display:flex;
+	justify-content:center;
 }
 
 .wrapper {
@@ -14,10 +20,7 @@ h2{
 	font-size: 40px;
 }
 
-.logo-header {
-	display:flex;
-	justify-content:center;
-}
+
 
 body.lifehackfavorite{
 	background-color: #f7efe3;
@@ -26,18 +29,34 @@ body.lifehackfavorite{
   min-height: 100vh;
 }
 
+.button{
+	display: flex;
+	padding: 10px 20px;
+	gap: 10px;
+	border-radius: 10px;
+	border: none;
+	font-weight: bold;
+	cursor: pointer;
+}
 
 .lifehack-request-button{
 	background-color:#f58077;
 	color: white;
 	border-radius: 5px;
 	text-decoration: none;
-	padding: 10px 10px;
-	margin-left: 30px;
-	width: 300px;
-	padding-left: 24px;
-  padding-right: 16px;
+	padding: 10px 20px;
+	margin-left: 20px;
 }
+
+.favorite-button{
+	background-color:#0070c0;
+	color: white;
+	border-radius: 5px;
+	text-decoration: none;
+	padding: 10px 20px;
+	margin-left: 20px;
+}
+
 body.favorite-page {
   background-color: #FFF9E5;
   font-family: sans-serif;
@@ -45,12 +64,6 @@ body.favorite-page {
   padding: 0;
 }
 
-header {
-  text-align: center;
-  padding: 20px;
-  font-size: 24px;
-  font-weight: bold;
-}
 
 .card-list {
     display: flex;

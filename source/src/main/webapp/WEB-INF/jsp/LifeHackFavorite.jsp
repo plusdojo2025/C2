@@ -20,8 +20,9 @@
 </header>
 
 <h2>お気に入りライフハック</h2>
-<div class="lifehack-request-button">
+<div class="button">
 <a href="${pageContext.request.contextPath}/LifeHackRequest" class="lifehack-request-button">ライフハックを申請</a>
+<a href="${pageContext.request.contextPath}/LifeHackListServlet" class="favorite-button">ライフハックリスト</a>
 </div>
 
 <main>

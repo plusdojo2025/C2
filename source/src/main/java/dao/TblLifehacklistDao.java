@@ -61,11 +61,12 @@ public class TblLifehacklistDao extends CustomTemplateDao<TblLifehacklistDto> {
 		// TODO 自動生成されたメソッド・スタブ
 		return false;
 	}
-
+//List<Integer>をbooleanに変更した　間違ってたら直して！（玉川）
 	@Override
 	public boolean delete(TblLifehacklistDto dto) {
 		// TODO 自動生成されたメソッド・スタブ
 		return false;
-	}
 
+	}		
 }
+

@@ -227,7 +227,26 @@ public class TblLifehackfavoriteDao extends CustomTemplateDao<TblLifehackfavorit
 	    return favorite;
 	}
 
-	
+//玉川追加↓
+	public List<Integer> selectLifehackNumbersByFamilyId(String familyId){
+        List<Integer> ids = new ArrayList<>();
+        Connection conn = null;
+        try {
+            conn = conn();
+            String sql = "SELECT lifehackNumber FROM tbl_lifehackfavorite WHERE familyId=?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, familyId);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                ids.add(rs.getInt("lifehackNumber"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close(conn);
+        }
+        return ids;
+}
 	/*
 	public List<TblLifehackfavoriteDto> selectByFamilyId(TblLifehackfavoriteDto dto) {
 	    Connection conn = null;

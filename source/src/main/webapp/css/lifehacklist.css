@@ -91,12 +91,12 @@ h2{
 }
 
 .favorite-mark{
-	background-color: none;
+	all: unset;
 	border: none;
-	font-size: 20px;
 	cursor: pointer;
-	color: #ccc;
+	font-size: 40px;
 }	
+
 .favorite-mark.active{
 	color: #ff0080;
 }

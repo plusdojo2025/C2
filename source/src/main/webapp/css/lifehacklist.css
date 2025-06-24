@@ -98,7 +98,7 @@ h2{
 }	
 
 .favorite-mark.active{
-	color: #ff0080;
+	color: #ff0080 !important ;
 }
 
 .search-result{
@@ -233,5 +233,8 @@ footer h3{
   text-align: left;
   padding: 10px;
 }
+
+
+
 /*デザイン確認用ここまで*/
 

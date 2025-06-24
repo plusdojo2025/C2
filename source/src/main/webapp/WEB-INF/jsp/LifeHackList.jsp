@@ -47,16 +47,17 @@
   <c:set var="activeClass" value="active" />
 </c:if>
  <!--玉川追加-->
- 	<div class="article-1">
-	<div class="title-1">${e.title}</div>
-	<form action="${pageContext.request.contextPath}/LifeHackListServlet" method="post">
-    		<input type="hidden" name="lifehackNumber" value="${e.lifehackNumber}"/>
-    		
-    		<button type="submit" class="favorite-mark ${activeClass}">♥</button>
-    </form>
-	<img src="${e.photo}" alt="水ろ過" class="picture-1">
-	<p class="text-1"> ${e.textline}</p><br>
-	</div>
+<div class="article-1">
+  <div class="title-1">${e.title}</div>
+  <img src="${e.photo}" alt="水ろ過" class="picture-1">
+  <p class="text-1">${e.textline}</p><br>
+  
+  <form action="${pageContext.request.contextPath}/LifeHackListServlet" method="post">
+    <input type="hidden" name="lifehackNumber" value="${e.lifehackNumber}"/>
+    <button type="submit" class="favorite-mark ${activeClass} " >♥</button>
+  </form> 
+</div>
+
  </c:forEach>
  </div>    	
 </div>

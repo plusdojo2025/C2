@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.TblCheckbagDao;
 import dao.TblRegistuserDao;
 import dto.Result;
 import dto.TblRegistuserDto;
@@ -57,6 +58,28 @@ public class RegistUserServlet extends HttpServlet {
 		// 登録処理を行う
 		TblRegistuserDao registDao = new TblRegistuserDao();
 		if (registDao.insert(new TblRegistuserDto(0, mail, password, name, familyId))) { // 登録成功
+			
+			//ここからテンプレートコピー操作追加
+			// userNumberを取得するため、登録したユーザーを再取得
+		    TblRegistuserDto insertedUser = registDao.selectByMail(mail);
+		    if (insertedUser != null) {
+		        int userNumber = insertedUser.getUserNumber();
+
+		        // TblCheckbagDaoのインスタンス作成
+		        TblCheckbagDao checkbagDao = new TblCheckbagDao();
+
+		        // テンプレートコピー実行
+		        boolean copied = checkbagDao.copyTemplateForUser(userNumber);
+		        if (!copied) {
+		            System.err.println("テンプレートコピーに失敗しました。");
+		            // 必要に応じてエラー処理を追加
+		        }
+		    } else {
+		        System.err.println("登録したユーザー情報の取得に失敗しました。");
+		        // 必要に応じてエラー処理を追加
+		    }
+			//ここまで
+			
 			// ログインページにリダイレクトする
 			response.sendRedirect(request.getContextPath() + "/login");
 		} else { // 登録失敗

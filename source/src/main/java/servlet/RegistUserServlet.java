@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.TblCheckbagDao;
 import dao.TblRegistuserDao;
+import dao.TblSafestampDao;
 import dto.Result;
 import dto.TblRegistuserDto;
+import dto.TblSafestampDto;
 import utility.MailUtil;
 
 @WebServlet("/RegistUserServlet")
@@ -59,7 +61,7 @@ public class RegistUserServlet extends HttpServlet {
 		TblRegistuserDao registDao = new TblRegistuserDao();
 		if (registDao.insert(new TblRegistuserDto(0, mail, password, name, familyId))) { // 登録成功
 			
-			//ここからテンプレートコピー操作追加
+			//ここからテンプレートコピー操作・安否確認初期値追加
 			// userNumberを取得するため、登録したユーザーを再取得
 		    TblRegistuserDto insertedUser = registDao.selectByMail(mail);
 		    if (insertedUser != null) {
@@ -74,6 +76,21 @@ public class RegistUserServlet extends HttpServlet {
 		            System.err.println("テンプレートコピーに失敗しました。");
 		            // 必要に応じてエラー処理を追加
 		        }
+		        
+		        // safetamp への初期値登録を追加
+		        TblSafestampDao safestampDao = new TblSafestampDao();
+		        TblSafestampDto safestampDto = new TblSafestampDto();
+		        safestampDto.setStatus("安全です");
+		        safestampDto.setFamilyId(familyId);
+		        safestampDto.setUserNumber(userNumber);
+
+		        boolean safeInserted = safestampDao.insert(safestampDto);
+		        if (!safeInserted) {
+		            System.err.println("safestamp 登録に失敗しました。");
+		        }
+		        
+		        
+		        
 		    } else {
 		        System.err.println("登録したユーザー情報の取得に失敗しました。");
 		        // 必要に応じてエラー処理を追加

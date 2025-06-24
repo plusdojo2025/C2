@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ユーザー登録</title>
+<link rel="icon" href="${pageContext.request.contextPath}/img/MamoSona.png">
+<title>MamoとSona | ユーザー登録</title>
 <link rel="stylesheet"
 		href="${pageContext.request.contextPath}/css/registfamilyuser.css">
 </head>

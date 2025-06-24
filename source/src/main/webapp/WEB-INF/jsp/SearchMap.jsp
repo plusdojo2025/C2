@@ -4,7 +4,8 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>J-SHIS地震ハザードマップ重ね表示（ラジオボタン切り替え）</title>
+  <link rel="icon" href="${pageContext.request.contextPath}/img/MamoSona.png">
+  <title>MamoとSona | J-SHIS地震ハザードマップ重ね表示（ラジオボタン切り替え）</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />

@@ -11,6 +11,11 @@ header {
 	justify-content:center;
 }
 
+.stripe-container {
+	height: 20px;
+	background-image:url('../img/stripe.png');
+}
+
 .wrapper {
   flex: 1;  
 }
@@ -117,9 +122,13 @@ body.favorite-page {
 
 
 footer {
-	height: 140px;
-	background-color: #fdc435;
-	margin-top:100px;
+  height: 140px;
+  background-color: #fdc435;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;  /* h3 を中央に */
+  align-items: center;
+  position: relative;
 }
 footer h3{
 	text-align: center; 

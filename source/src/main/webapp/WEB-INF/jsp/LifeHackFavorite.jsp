@@ -19,6 +19,8 @@
 	</div>
 </header>
 
+<div class="stripe-container"></div>
+
 <h2>お気に入りライフハック</h2>
 <div class="button">
 <a href="${pageContext.request.contextPath}/LifeHackRequest" class="lifehack-request-button">ライフハックを申請</a>
@@ -58,7 +60,7 @@
   </main>
   </div>
 <footer>
-	<h3>&copy; 2025 WAKUSEI OMOIDE</h3>
+  <h3 class="footertitle">&copy; 2025 WAKUSEI OMOIDE</h3>
 </footer>
 </body>
 </html>

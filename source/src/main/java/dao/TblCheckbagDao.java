@@ -151,4 +151,33 @@ public class TblCheckbagDao extends CustomTemplateDao<TblCheckbagDto> {
 		// TODO 自動生成されたメソッド・スタブ
 		return false;
 	}
+	
+	public boolean copyTemplateForUser(int userNumber) {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    boolean result = false;
+
+	    try {
+	        conn = conn();  // DB接続
+
+	        String sql = """
+	            INSERT INTO tbl_checkbag (bagCheck, bagName, bagStock, bagLink, userNumber)
+	            SELECT bagCheck, bagName, bagStock, bagLink, ?
+	            FROM tbl_checkbagtemp
+	        """;
+
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, userNumber); // 全レコードにこのuserNumberを付加
+
+	        int rows = pstmt.executeUpdate();
+	        result = rows > 0; // コピーした行数が1行以上なら成功とみなす
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        close(conn);
+	    }
+
+	    return result;
+	}
 }

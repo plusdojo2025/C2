@@ -34,7 +34,7 @@ public class StockPreFoodRegistServlet extends HttpServlet {
 		//tbl_stockprefoodに登録されているデータを取得
 		//userNumberが一緒のデータを検索して全てリストに表示する
 		TblStockprefoodDao dao = new TblStockprefoodDao();
-	    List<TblStockprefoodDto> list = dao.select(new TblStockprefoodDto(0, "", null, 0 ,userNumber));
+	    List<TblStockprefoodDto> list = dao.select(new TblStockprefoodDto(0, "", null, 0 ,userNumber,false));
 
 	    //検索結果をリクエストスコープに格納する
 	    request.setAttribute("prefoodList", list);
@@ -98,12 +98,12 @@ public class StockPreFoodRegistServlet extends HttpServlet {
 			return;
 		}
 		
-		
-		
+		//チェックボックスの値取得とboolean変換
+		boolean checked = request.getParameter("checked") != null;
 		
 		
 		TblStockprefoodDao prefoodDao = new TblStockprefoodDao();
-		TblStockprefoodDto prefoodDto = new TblStockprefoodDto(prefoodNumber, prefoodName, prefoodDate, prefoodQuantity, userNumber);
+		TblStockprefoodDto prefoodDto = new TblStockprefoodDto(prefoodNumber, prefoodName, prefoodDate, prefoodQuantity, userNumber,checked);
 		
 		if ("insert".equals(action)) { // 登録成功
 				prefoodDao.insert(prefoodDto);

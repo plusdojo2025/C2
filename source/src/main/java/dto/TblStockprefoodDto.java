@@ -9,19 +9,22 @@ public class TblStockprefoodDto extends CustomTemplateDto implements Serializabl
 	private java.sql.Date prefoodDate;
 	private int prefoodQuantity;
 	private int userNumber;
+	private boolean checked;
 	
 	//フィールドを使用したコンストラクタ
-	public TblStockprefoodDto(int prefoodNumber, String prefoodName, java.sql.Date prefoodDate, int prefoodQuantity, int userNumber) {
+	public TblStockprefoodDto(int prefoodNumber, String prefoodName, java.sql.Date prefoodDate, int prefoodQuantity, int userNumber, boolean checked) {
 		super();
 		this.prefoodNumber = prefoodNumber;
 		this.prefoodName = prefoodName;
 		this.prefoodDate = prefoodDate;
 		this.prefoodQuantity = prefoodQuantity;
 		this.userNumber = userNumber;
+		this.checked = checked;
 	}
+	
 	//スーパークラスから生成したコンストラクタ
 	public TblStockprefoodDto() {
-		this(0,"",null,0,0);
+		this(0,"",null,0,0,false);
 	}
 	public int getPrefoodNumber() {
 		return prefoodNumber;
@@ -52,6 +55,12 @@ public class TblStockprefoodDto extends CustomTemplateDto implements Serializabl
 	}
 	public void setUserNumber(int userNumber) {
 		this.userNumber = userNumber;
+	}
+	public boolean isChecked() {
+		return checked;
+	}
+	public void setChecked(boolean checked) {
+		this.checked = checked;
 	}
 }
 

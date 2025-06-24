@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,6 +36,17 @@
 			</div>
 		</div>
 	</div>
+	
+<!-- 入力データと登録データが異なる場合、alert を出す（Servlet側のエラーを引用）-->
+<c:if test="${pageContext.request.method == 'POST' and not empty error}">
+  <script>
+    window.onload = function() {
+      alert("${fn:escapeXml(error)}");
+    };
+  </script>
+</c:if>
+
+<!-- 未入力でログインボタンを押した場合の処理 -->
 <script>
 document.getElementById("submit").addEventListener("click", function(event) {
     var mailaddress = document.getElementById("mailaddress").value.trim();

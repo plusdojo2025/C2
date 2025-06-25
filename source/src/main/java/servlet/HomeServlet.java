@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.TblSafestampDao;
+import dto.IdPw;
 import dto.TblSafestampDto;
 
 //Home.jspのフォームにaction="home"あれば問題なし
@@ -23,18 +24,29 @@ public class HomeServlet extends CustomTemplateServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 		//★★★★★★ステータス取得処理開始ここから★★★★★★
 		// セッションから family_id,user_numberを取得、LoginServletと統一の名前
 		HttpSession session = request.getSession();
 		String familyId = (String) session.getAttribute("familyId");
 
-		// 取得できなければログインページにリダイレクト
-		/*if (familyId == null) {
-			response.sendRedirect("Login.jsp");
-			return;
-		}
-*/
+		IdPw idpw = (IdPw) session.getAttribute("mail"); 
+		// idpw があればメールを取り出し、なければ null にする
+		String mail = (idpw != null) ? idpw.getMail() : null;
+		// セッション用のメールアドレスにメールアドレスが入っているか確認する
+		System.out.println("mail:" + mail);
+
+		if (mail == null) {
+	        // 未ログイン時の処理（ログイン画面へリダイレクト）
+			// ログインしていないと判断した時の処理
+	        response.sendRedirect(request.getContextPath() + "/login");
+	        return;
+	    } else {
+		// ハザードマップ検索ページにフォワードする
+		// jsp/SearchMap.jspにアクセスされてハザードマップ検索ページの画面が表示される
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Home.jsp");
+		dispatcher.forward(request, response);
+	  }
+	
 		// DAOを使って該当データを取得 findByFamilyId(familyId)この部分はDAO完成後修正
 		TblSafestampDao dao = new TblSafestampDao();
 		List<TblSafestampDto> safestampList = dao.findWithNameByFamilyId(familyId);

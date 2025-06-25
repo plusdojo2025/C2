@@ -29,7 +29,12 @@
 
 <!-- エラーメッセージの表示 -->
 <c:if test="${not empty error}">
-  <p style="color: red;">${error}</p>
+  <p style="color: red; 
+            font-weight: bold; 
+            text-align: center; 
+            margin: 20px 0;">
+    ${error}
+  </p>
 </c:if>
 
 
@@ -41,7 +46,7 @@
     <div class="grid-item">
       <div class="first-item">
         <input type="checkbox" name="checked" value="true" <c:if test="${item.checked}">checked</c:if>>
-        <input type="text" name="prefoodName" value="${item.prefoodName}">
+        <input type="text" name="prefoodName" value="${item.prefoodName}" required>
         <button type="submit" class="delete-row" name="action" value="delete" style="width:50px; height:30px; font-size:15px; color:#026bb8; background-color:#ffffff;">削除</button>
       </div>
       <div class="second-item">

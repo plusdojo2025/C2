@@ -22,14 +22,23 @@
 
 <div class="stripe-container"></div>
 
+
+<h2>【申請】ライフハック</h2>
+	
+	<div class="button">
+	<a href="${pageContext.request.contextPath}/LifeHackListServlet" class="favorite-button">ライフハックリスト</a>
+	</div>
+	
+
 	<form action="LifeHackRequest" method="post" enctype="multipart/form-data">
-	<h2>【申請】ライフハック</h2>
+	
+	
 		<div class="lifehack-title">
-			<label for="lifehacktitle" class="label-lifehack">ライフハックタイトル</label><br> 
+			<label for="lifehacktitle" class="label-lifehack">ライフハックタイトル 【必須】</label><br> 
 			<input type="text" id="title" name="title" class="" value=""><br>
 		</div>
 		<div class="lifehack-explanation">
-			<label for="lifehackexplanation">ライフハック説明文</label><br> 
+			<label for="lifehackexplanation">ライフハック説明文 【必須】</label><br> 
 			<textarea id="explanation" name="explanation" class="" rows="10" placeholder="説明を入力してください"></textarea><br>
 		</div>
 		<div>
@@ -43,5 +52,22 @@
 <footer>
 	<h3>&copy; 2025 WAKUSEI OMOIDE</h3>
 </footer>
+
+<script>
+
+document.getElementById("submit").addEventListener("click", function(event) {
+    var title = document.getElementById("title").value.trim();
+    var explanation = document.getElementById("explanation").value.trim();
+    
+
+    if (title === "") {
+        window.alert("タイトルが未入力です");
+        event.preventDefault();  // フォームの送信を止める
+    }else if(explanation == ""){
+    	 window.alert("ライフハック説明文が未入力です");
+         event.preventDefault();  // フォームの送信を止める
+    }
+});
+</script>
 </body>
 </html>

@@ -49,7 +49,7 @@
 			<form action="${pageContext.request.contextPath}/LifeHackFavoriteServlet" method="post">
     		<input type="hidden" name="lifehackfavoriteNumber" value="${hack.lifehackfavoriteNumber}"/>
     		
-    		<button type="submit" class="favorite-mark ${activeClass}">♥</button>
+    		<button type="submit" class="favorite-mark ${activeClass}" id = "favorite">♥</button>
   		   </form>
 		</div>
 		
@@ -63,5 +63,16 @@
 <footer>
   <h3 class="footertitle">&copy; 2025 WAKUSEI OMOIDE</h3>
 </footer>
+
+<script>
+
+document.getElementById("favorite").addEventListener("click", function(e) {
+	const confirmed = confirm("お気に入りを解除しますか？");
+	if (!confirmed) {
+		alert("キャンセルされました");
+		e.preventDefault(); // キャンセル時、submitを止める
+	}
+});
+</script>
 </body>
 </html>

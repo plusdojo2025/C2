@@ -41,18 +41,18 @@
     
 		<div class="card">
 			<div class="title">${hack.lifehack.title}</div>
-			
-			<!-- お気に入りのハート表示 -->
+			<img src="${hack.lifehack.photo}" alt="画像">	
+			<div class="desc">${hack.lifehack.textline}</div>
+			<a href="${pageContext.request.contextPath}/detail?id=${hack.lifehack.lifehackNumber}" class="detail"></a>
+		
+					<!-- お気に入りのハート表示 -->
 			<form action="${pageContext.request.contextPath}/LifeHackFavoriteServlet" method="post">
     		<input type="hidden" name="lifehackfavoriteNumber" value="${hack.lifehackfavoriteNumber}"/>
     		
     		<button type="submit" class="favorite-mark ${activeClass}">♥</button>
   		   </form>
-  		   
-			<img src="${hack.lifehack.photo}" alt="画像">	
-			<div class="desc">${hack.lifehack.textline}</div>
-			<a href="${pageContext.request.contextPath}/detail?id=${hack.lifehack.lifehackNumber}" class="detail"></a>
 		</div>
+		
 	</c:forEach>
 
     </div>

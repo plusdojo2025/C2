@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.TblLifehackfavoriteDao;
 import dao.TblLifehacklistDao;
+import dto.IdPw;
 import dto.TblLifehackfavoriteDto;
 import dto.TblLifehacklistDto;
 
@@ -23,6 +24,21 @@ public class LifeHackListServlet extends CustomTemplateServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	        throws ServletException, IOException {
+
+		
+		// 必ずセッションを取得（なければ作成）
+		HttpSession ses = request.getSession(true);
+		IdPw idpw = (IdPw) ses.getAttribute("mail"); 
+		// idpw があればメールを取り出し、なければ null にする
+		String mail = (idpw != null) ? idpw.getMail() : null;
+		// セッション用のメールアドレスにメールアドレスが入っているか確認する
+		System.out.println("mail:" + mail);
+		if (mail == null) {
+	        // 未ログイン時の処理（ログイン画面へリダイレクト）
+			// ログインしていないと判断した時の処理
+	        response.sendRedirect(request.getContextPath() + "/login");
+	        return;
+	    }
 
 		String keyword = request.getParameter("keyword");
 

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,22 +22,60 @@
     #map {
       width: 100%;
       height: 100vh;
+      
+      border: 3px solid #fdc435;      /* 枠線 */
+  	  background-color: #e6f0ff;
+  	  border-radius: 20px;
     }
     .layer-control {
       position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 1000;
-      background: white;
-      padding: 10px;
-      border-radius: 5px;
-      box-shadow: 0 0 6px rgba(0,0,0,0.3);
-      font-size: 14px;
+	  top: 230px;
+	  right: 30px; /* ← ここで右から30pxの位置に固定 */
+	  z-index: 1000;
+	  background: white;
+	  padding: 6px 8px;
+	  border-radius: 5px;
+	  box-shadow: 0 0 6px rgba(0,0,0,0.3);
+	  font-size: 14px;
+	  
+	  
+
+	  
     }
+    
+    .layer-control strong {
+	  display: block;
+	  margin-bottom: 8px;
+	  font-size: 16px;
+	  font-weight: bold;
+	}
+    
     .layer-control label {
-      display: block;
-      margin-bottom: 5px;
+      display: flex;
+	  align-items: center;
+	  margin-bottom: 4px;
+	  gap: 1px; /* ← ラジオボタンと文字の間の隙間を明示的に制御 */
+	  font-size: 14px;
+	  cursor: pointer;
     }
+    
+    .layer-control input[type="radio"] {
+	    width: 36px; /*ラジオボタンと文字列の間の幅*/
+		  height: 18px;
+		  flex-shrink: 0;  /* 横幅が縮まらないように */
+		  margin: 0;
+	}
+    
+    
+    
+    #example-text{
+          border: 3px solid #fdc435;      /* 枠線 */
+		  background-color: #f9f9f9;   /* 背景色 */
+		  padding: 10px;
+		  border-radius: 20px;
+    }
+    
+    
     
     #example-text img {
     max-width:500px;
@@ -74,7 +114,7 @@
   <div id="map"></div>
 </div>
 
-  <div class="layer-control" style="margin-left: 1400px;margin-top:230px;">
+  <div class="layer-control" style="top: 230px; right: 30px;">
     <strong>災害レイヤー選択</strong>
     <label><input type="radio" name="hazard" value="shinsui" checked> 洪水</label>
     <label><input type="radio" name="hazard" value="takashio"> 高潮</label>
@@ -167,5 +207,13 @@
             });
         });
     </script>
+    
+    <script>
+	  // 初期状態で凡例を表示
+	  window.addEventListener('DOMContentLoaded', () => {
+	    const checkedRadio = document.querySelector('input[name="hazard"]:checked');
+	    if (checkedRadio) checkedRadio.dispatchEvent(new Event('change'));
+	  });
+</script>
 </body>
 </html>

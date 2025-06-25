@@ -65,7 +65,7 @@ input {
 }
 
 .function-container {
-	width:1250px;
+	width:1100px;
 	margin-left: 300px;
 }
 
@@ -171,7 +171,7 @@ footer {
 
 /* ★以下～前田作成箇所★ */
 /* ログアウトボタン */
-.styled-logout-btn {
+/* .styled-logout-btn {
   background: #eee;
   position: relative;
   display: inline-flex;
@@ -224,4 +224,4 @@ footer {
 
 .styled-logout-btn:hover::after {
   transform: rotate(45deg) translate(2px, -2px);
-}
+} */

@@ -39,7 +39,13 @@
 				function(e) {
 					const familyIdInput = document.getElementById("familyId");
 					const errorspan = document.getElementById("familyIderror");
-
+					
+					// サーバーからのエラー（JSPで出力された要素）を非表示にする
+				    const serverError = document.querySelector('span[style*="color:red"]:not(#familyIderror)');
+				    if (serverError) {
+				        serverError.style.display = 'none';
+				    }
+				    
 					if (familyIdInput.value.trim()==="") {
 						errorspan.textContent = "家族IDを入力してください。";
 						e.preventDefault(); // 送信をキャンセル

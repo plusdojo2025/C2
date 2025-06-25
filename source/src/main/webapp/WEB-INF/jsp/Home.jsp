@@ -37,7 +37,7 @@
               <select class="status-select" name="status">
                 <option value="OK" ${s.status == 'OK' ? 'selected' : ''}>😊無事</option>
                 <option value="SOS" ${s.status == 'SOS' ? 'selected' : ''}>🚨SOS</option>
-                <option value="WAIT" ${s.status == 'WAIT' ? 'selected' : ''}>🪫電池切れ</option>
+                <option value="NO_POWER" ${s.status == 'NO_POWER' ? 'selected' : ''}>🪫電池切れ</option>
               </select>
               <div style="text-align: center; margin-top: 30px;">
                 <button type="submit">✅ 更新する</button>
@@ -49,7 +49,7 @@
             <select class="status-select" disabled>
               <option value="OK" ${s.status == 'OK' ? 'selected' : ''}>😊無事</option>
               <option value="SOS" ${s.status == 'SOS' ? 'selected' : ''}>🚨SOS</option>
-              <option value="WAIT" ${s.status == '' ? 'selected' : ''}>🪫電池切れ</option>
+              <option value="NO_POWER" ${s.status == 'NO_POWER' ? 'selected' : ''}>🪫電池切れ</option>
             </select>
           </c:otherwise>
         </c:choose>

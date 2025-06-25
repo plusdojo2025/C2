@@ -19,6 +19,26 @@ header {
 	background-image:url('../img/stripe.png');
 }
 
+.button{
+	display: flex;
+	padding: 10px 20px;
+	gap: 10px;
+	border-radius: 10px;
+	border: none;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.favorite-button{
+	background-color:#0070c0;
+	color: white;
+	border-radius: 5px;
+	text-decoration: none;
+	padding: 10px 20px;
+	margin-left: 20px;
+}
+
+
 form {
   max-width: 600px;
   margin: 40px auto;

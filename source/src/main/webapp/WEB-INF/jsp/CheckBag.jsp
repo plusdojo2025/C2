@@ -61,6 +61,7 @@
 		</div>
 	</c:forEach>
 	</div>
+	<p>必須の備え：首相官邸ホームページより引用</p>
 </section>
 
 
@@ -97,7 +98,8 @@
 				<textarea  name="link[]">${bag.bagLink}</textarea>
 			</div>
 		</div>
-	</c:forEach>	
+	</c:forEach>
+		
 	</div>
 </section>
 </form>

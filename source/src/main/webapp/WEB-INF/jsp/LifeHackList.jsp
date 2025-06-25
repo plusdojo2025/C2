@@ -37,6 +37,12 @@
  </form>
 </div>
 
+<c:if test="${not empty noResultMessage}">
+  <p class="no-result">${noResultMessage}</p>
+</c:if>
+
+
+
 <div class="lifehack-article">
  
  <c:forEach var="e" items="${lifeList}" > 

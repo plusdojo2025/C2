@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.TblLifehackfavoriteDao;
 import dao.TblLifehacklistDao;
+import dto.IdPw;
 import dto.TblLifehackfavoriteDto;
 import dto.TblLifehacklistDto;
 
@@ -22,21 +23,45 @@ public class LifeHackListServlet extends CustomTemplateServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// ライフハック登録ページにフォワードする
-		
-		// ── 検索キーワード取得 ──(キーワードがない場合空文字)
-		String keyword = request.getParameter("keyword");
-        if (keyword == null) keyword = "";
-        
-        
-		//ライフハック一覧を表示する
-		// 検索処理を行う
-		TblLifehacklistDao lifeDao = new TblLifehacklistDao();
-		List<TblLifehacklistDto> lifeList = lifeDao.select(new TblLifehacklistDto(0, keyword, "", ""));
+	        throws ServletException, IOException {
 
-		// 検索結果をリクエストスコープに格納する
-		request.setAttribute("lifeList", lifeList);
+		
+		// 必ずセッションを取得（なければ作成）
+		HttpSession ses = request.getSession(true);
+		IdPw idpw = (IdPw) ses.getAttribute("mail"); 
+		// idpw があればメールを取り出し、なければ null にする
+		String mail = (idpw != null) ? idpw.getMail() : null;
+		// セッション用のメールアドレスにメールアドレスが入っているか確認する
+		System.out.println("mail:" + mail);
+		if (mail == null) {
+	        // 未ログイン時の処理（ログイン画面へリダイレクト）
+			// ログインしていないと判断した時の処理
+	        response.sendRedirect(request.getContextPath() + "/login");
+	        return;
+	    }
+
+		String keyword = request.getParameter("keyword");
+
+		List<TblLifehacklistDto> lifeList;
+		if (keyword == null) {
+		    // 初回アクセス：全件取得
+		    TblLifehacklistDao lifeDao = new TblLifehacklistDao();
+		    lifeList = lifeDao.select(new TblLifehacklistDto(0, "", "", ""));
+		} else if (keyword.trim().isEmpty()) {
+		    // 空白だけの検索：全件表示と同じ扱いにする
+		    TblLifehacklistDao lifeDao = new TblLifehacklistDao();
+		    lifeList = lifeDao.select(new TblLifehacklistDto(0, null, "", ""));
+		} else {
+		    // 通常のキーワード検索
+		    TblLifehacklistDao lifeDao = new TblLifehacklistDao();
+		    lifeList = lifeDao.select(new TblLifehacklistDto(0, keyword, "", ""));
+		    if (lifeList == null || lifeList.isEmpty()) {
+		        request.setAttribute("noResultMessage", "該当するライフハックはありません。");
+		    }
+		}
+
+
+
 		
 		//お気に入りIDリスト玉川追加
 		HttpSession session = request.getSession();
@@ -51,6 +76,8 @@ public class LifeHackListServlet extends CustomTemplateServlet {
 		// jsp/LifeHackList.jspにアクセスされて防災ライフハックの画面が表示される
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/LifeHackList.jsp");
 		dispatcher.forward(request, response);
+		
+		
 	}
 
 	@Override

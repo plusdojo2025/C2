@@ -43,22 +43,50 @@ public class RegistUserServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String familyId = request.getParameter("familyId");
 		
-		//エラーチェック
-		if(mail==null || password==null || name==null || familyId==null) {
-			request.setAttribute("登録失敗！","全ての項目を入力してください。");
+		//入力値のセット
+		request.setAttribute("mail", mail);
+		request.setAttribute("password", password);
+		request.setAttribute("name", name);
+		request.setAttribute("familyId", familyId);
 			
-			request.setAttribute("mail", mail);
-			request.setAttribute("password", password);
-			request.setAttribute("name", name);
-			request.setAttribute("familyId", familyId);
+		boolean hasError = false;
+		
+		//エラーチェック1:未入力
+		if (mail == null || password == null || name == null || familyId == null ||
+		        mail.trim().isEmpty() || password.trim().isEmpty() || name.trim().isEmpty() || familyId.trim().isEmpty()) {
+		        request.setAttribute("errorMessage", "全ての項目を入力してください。");
+		        hasError = true;
+		    }
+		
+		TblRegistuserDao registDao = new TblRegistuserDao();
+		
+		if (hasError) {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RegistUser.jsp");
+		dispatcher.forward(request, response);
+		return;
+		}
+		
 			
+		//重複チェック1（メールアドレスが既に登録済みの場合）
+		if (registDao.existsMail(mail)) {
+			request.setAttribute("error", "このメールアドレスは既に登録されています。");
+			request.setAttribute("mail", mail); // 入力保持
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RegistUser.jsp");
 			dispatcher.forward(request, response);
 			return;
 		}
 		
+		//重複チェック2（登録されていない家族IDが入力された場合）
+		if (!registDao.existsFamilyId(familyId)) {
+		    request.setAttribute("warning", "この家族IDは登録されていません。");
+		    request.setAttribute("familyId", familyId); // 入力保持
+		    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RegistUser.jsp");
+		    dispatcher.forward(request, response);
+		    return;
+		}
+			
+		
 		// 登録処理を行う
-		TblRegistuserDao registDao = new TblRegistuserDao();
 		if (registDao.insert(new TblRegistuserDto(0, mail, password, name, familyId))) { // 登録成功
 			
 			//ここからテンプレートコピー操作・安否確認初期値追加

@@ -20,10 +20,10 @@
       margin: 0;
     }
     #map {
-      width: 100%;
-      height: 100vh;
+      width: 80%;
+      height: 90vh;
       
-      border: 3px solid #fdc435;      /* 枠線 */
+      border: 3px solid #fdc435;      /* 枠線koko */
   	  background-color: #e6f0ff;
   	  border-radius: 20px;
     }
@@ -39,7 +39,12 @@
 	  font-size: 14px;
 	  
 	  
-
+	  background-color: #ABE1FA; /* 薄い黄色 */
+	  border: 3px solid #65BBE9;  /* 黄色の太い枠線 */
+	  border-radius: 30px;       /* 角丸 */
+	  padding: 10px;             /* 内側余白 */
+	  
+	  
 	  
     }
     
@@ -69,17 +74,31 @@
     
     
     #example-text{
-          border: 3px solid #fdc435;      /* 枠線 */
+          border: 3px solid #fdc435;      /* 枠線koko */
 		  background-color: #f9f9f9;   /* 背景色 */
 		  padding: 10px;
 		  border-radius: 20px;
+		  
+		    width: 500px;             /* 任意の固定幅 */
+			  height: 500px;            /* 任意の固定高さ */
+			   box-sizing: border-box;   /* padding込みでサイズを維持 */
+			  display: flex;
+			  align-items: center;      /* 垂直方向中央揃え */
+			  justify-content: center;  /* 水平方向中央揃え */
+    		overflow: hidden;
+    		/*margin-top: 30vh; */
     }
     
     
     
     #example-text img {
-    max-width:500px;
-    max-height:500px;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  display: block;
+    
     }
     
     #example-text p {
@@ -108,11 +127,15 @@
 <h1>ハザードマップ</h1>
 
 <div id="boxes">
+
+
+
   <div id="example-text">
     <p id="description"></p>
   </div>
   <div id="map"></div>
 </div>
+
 
   <div class="layer-control" style="top: 230px; right: 30px;">
     <strong>災害レイヤー選択</strong>
@@ -215,5 +238,16 @@
 	    if (checkedRadio) checkedRadio.dispatchEvent(new Event('change'));
 	  });
 </script>
+<p style="text-align: right;">© 国土地理院 災害ポータルサイト  © J-SHIS 地震ハザードステーション</p>
+
+
+</p>
 </body>
+<footer>
+  <h3 class="footertitle">&copy; 2025 WAKUSEI OMOIDE</h3>
+  <form action="${pageContext.request.contextPath}/LogoutServlet" method="get" class="logoutform" id="logout">
+  <!-- ★class追加 前田★ -->
+
+  </form>
+</footer>
 </html>

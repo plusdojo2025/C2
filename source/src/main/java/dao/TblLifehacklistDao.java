@@ -13,42 +13,46 @@ public class TblLifehacklistDao extends CustomTemplateDao<TblLifehacklistDto> {
 
 	@Override
 	public List<TblLifehacklistDto> select(TblLifehacklistDto dto) {
-		Connection conn = null;
-		List<TblLifehacklistDto> lifehack = new ArrayList<>();
+	    Connection conn = null;
+	    List<TblLifehacklistDto> lifehack = new ArrayList<>();
 
-		try {
-		conn = conn();
+	    try {
+	        conn = conn();
 
-			// SQL文を準備する
-			String sql = "SELECT * FROM tbl_lifehacklist WHERE title LIKE ?";
-			PreparedStatement pStmt = conn.prepareStatement(sql);
+	        PreparedStatement pStmt;
+	        String sql;
 
-			// SQL文を完成させる
-			pStmt.setString(1, "%" + dto.getTitle() + "%");
-			
-			// SQL文を実行し、結果表を取得する
-			ResultSet rs = pStmt.executeQuery();
+	        if (dto.getTitle() == null || dto.getTitle().trim().isEmpty()) {
+	            sql = "SELECT * FROM tbl_lifehacklist ORDER BY lifehackNumber ASC";
+	            pStmt = conn.prepareStatement(sql);
+	        } else {
+	            sql = "SELECT * FROM tbl_lifehacklist WHERE title LIKE ? ORDER BY lifehackNumber ASC";
+	            pStmt = conn.prepareStatement(sql);
+	            pStmt.setString(1, "%" + dto.getTitle() + "%");
+	        }
 
-			// 結果表をコレクションにコピーする
-			while (rs.next()) {
-				TblLifehacklistDto e = new TblLifehacklistDto(rs.getInt("lifehackNumber"), 
-								rs.getString("title"), 
-								rs.getString("photo"), 
-								rs.getString("textline")
-				);				
-				lifehack.add(e);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			lifehack = null;
-		} finally {
-			// データベースを切断
-			close(conn);
-		}
+	        ResultSet rs = pStmt.executeQuery();
 
-		// 結果を返す
-		return lifehack;
+	        while (rs.next()) {
+	            TblLifehacklistDto e = new TblLifehacklistDto(
+	                rs.getInt("lifehackNumber"),
+	                rs.getString("title"),
+	                rs.getString("photo"),
+	                rs.getString("textline")
+	            );
+	            lifehack.add(e);
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        lifehack = null;
+	    } finally {
+	        close(conn);
+	    }
+
+	    return lifehack;
 	}
+
 
 	@Override
 	public boolean insert(TblLifehacklistDto dto) {
@@ -67,6 +71,8 @@ public class TblLifehacklistDao extends CustomTemplateDao<TblLifehacklistDto> {
 		// TODO 自動生成されたメソッド・スタブ
 		return false;
 
-	}		
+	}	
+	
+	
 }
 

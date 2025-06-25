@@ -243,6 +243,11 @@ footer h3{
   padding: 10px;
 }
 
+.no-result {
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+}
 
 
 /*デザイン確認用ここまで*/

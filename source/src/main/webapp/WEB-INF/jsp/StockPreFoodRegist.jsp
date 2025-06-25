@@ -25,6 +25,8 @@
 	<button  id="add-prefood">追加</button>
 </div>
 
+<p style="margin-left:60px;">＊保存食は１つずつ更新してください。</p>
+
 <!-- エラーメッセージの表示 -->
 <c:if test="${not empty error}">
   <p style="color: red;">${error}</p>

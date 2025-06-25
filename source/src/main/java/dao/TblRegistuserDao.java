@@ -232,6 +232,47 @@ public class TblRegistuserDao extends CustomTemplateDao<TblRegistuserDto> {
 		}
 		return user;
 	}
-
 	//セッション関係追記ここまで
+
+	public boolean existsMail(String mail) { String sql = "SELECT 1 FROM tbl_registuser WHERE mail = ? LIMIT 1";
+
+    try (Connection conn = conn();
+         PreparedStatement pStmt = conn.prepareStatement(sql)) {
+
+        pStmt.setString(1, mail);
+
+        try (ResultSet rs = pStmt.executeQuery()) {
+            if (rs.next()) {
+                // 1行でもあれば存在する
+                return true;
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    // 見つからなかった or エラー時はfalseを返す
+    return false;
+		
+	}
+	
+	public boolean existsFamilyId(String FamilyId) { String sql = "SELECT 1 FROM tbl_registuser WHERE familyId = ? LIMIT 1";
+
+    try (Connection conn = conn();
+         PreparedStatement pStmt = conn.prepareStatement(sql)) {
+
+        pStmt.setString(1, FamilyId);
+
+        try (ResultSet rs = pStmt.executeQuery()) {
+            if (rs.next()) {
+                // 1行でもあれば存在する
+                return true;
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    // 見つからなかった or エラー時はfalseを返す
+    return false;
+		
+	}
 }

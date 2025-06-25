@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,16 @@
 <body>
 <h1>【ユーザーの追加】</h1>
 <h2>家族IDに新しいユーザーを登録</h2>
+<c:if test="${not empty error}">
+	<div style="display: flex; justify-content: center; margin-top: 10px;">
+    <p style="color:red;">${error}</p>
+    </div>
+</c:if>
+<c:if test="${not empty warning}">
+    <div style="text-align: center; margin-top: 10px;">
+        <p style="color:red;">${warning}</p>
+    </div>
+</c:if>
 	<form action="RegistUserServlet" method="post">
 		<div class="form">
 			<label for="familyId">家族ID（登録済みの家族IDを入力してください）</label><br> 

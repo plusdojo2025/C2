@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ログイン</title>
+<link rel="icon" href="${pageContext.request.contextPath}/img/MamoSona.png">
+<title>MamoとSona | ログイン</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/login.css">
 </head>

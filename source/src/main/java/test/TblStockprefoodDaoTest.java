@@ -23,7 +23,7 @@ public class TblStockprefoodDaoTest {
 	public static void main(String[] args) {
 		TblStockprefoodDao dao = new TblStockprefoodDao();
 		
-		
+/*		
 	// select()のテスト1
 		System.out.println("---------- select()のテスト1 ----------");
 		List<TblStockprefoodDto> cardListSel1 = dao.select(new TblStockprefoodDto(1,"",date,0,0));
@@ -71,6 +71,7 @@ public class TblStockprefoodDaoTest {
 		} else {
 			System.out.println("削除失敗！");
 		}
+		*/
 	}
 	
 	

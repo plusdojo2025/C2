@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>防災バックリスト</title>
+<link rel="icon" href="${pageContext.request.contextPath}/img/MamoSona.png">
+<title>MamoとSona | 防災バックリスト</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bagfood.css">
 </head>
 <body>

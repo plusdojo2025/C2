@@ -59,14 +59,14 @@ input {
 
 .alert-container {
 	display: flex;
-	margin-left: 300px;
+	margin-left: 200px;
 	margin-top: 50px;
 	gap:60px;
 }
 
 .function-container {
 	width:1100px;
-	margin-left: 300px;
+	margin-left: 200px;
 }
 
 .function-menu {
@@ -95,7 +95,7 @@ h1 {
   width: 1050px;
   max-height: 300px;        
   overflow-y: auto;  
-  margin-left: 300px;
+  margin-left: 200px;
   background-color: #fdc435;
   padding: 30px;
   border-radius: 10px;
@@ -171,7 +171,7 @@ footer {
 
 /* ★以下～前田作成箇所★ */
 /* ログアウトボタン */
-/* .styled-logout-btn {
+ .styled-logout-btn {
   background: #eee;
   position: relative;
   display: inline-flex;
@@ -224,4 +224,4 @@ footer {
 
 .styled-logout-btn:hover::after {
   transform: rotate(45deg) translate(2px, -2px);
-} */
+}

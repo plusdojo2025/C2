@@ -88,7 +88,7 @@
 </section>
 
     
-   <!-- <h3>過去の災害情報</h3>
+<h3>過去の災害情報</h3>
         <div class="new">
             <table class="news-table">
             <tr>
@@ -114,7 +114,7 @@
             </tr>
  
             </table>
-        </div> -->
+        </div> 
     
 <footer>
   <h3 class="footertitle">&copy; 2025 WAKUSEI OMOIDE</h3>

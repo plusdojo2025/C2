@@ -61,7 +61,7 @@
 		</div>
 	</c:forEach>
 	</div>
-	<p>引用元：首相官邸ホームページ</p>
+	<p class="inyou" style="text-align: right;">引用元：首相官邸ホームページ</p>
 </section>
 
 

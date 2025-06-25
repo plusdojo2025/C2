@@ -63,7 +63,7 @@
 <section>
 	<div class="alert-container">
 		<div>
-			<img src="${pageContext.request.contextPath}/img/wethermap.png" style="max-width: 500px; margin-top:100px;">
+			<img src="${pageContext.request.contextPath}/img/mapwether.png" style="max-width: 500px; margin-top:100px;">
 			
 		</div>
 		<div>
@@ -72,6 +72,7 @@
 			<a href="https://t.co/Rm1kbViXwy">https://t.co/Rm1kbViXwy</a> 
 			<a href="https://t.co/mnURygzTXJ">pic.twitter.com/mnURygzTXJ</a></p>&mdash; 気象庁防災情報 (@JMA_bousai) 
 			<a href="https://twitter.com/JMA_bousai/status/1933053109670195615?ref_src=twsrc%5Etfw">June 12, 2025</a></blockquote> 
+			<p>出典：気象庁防災情報（@JMA_bousai）／X（旧Twitter）</p>
 			<script  src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 		</div>
 	</div>

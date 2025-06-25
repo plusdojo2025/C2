@@ -18,6 +18,8 @@
 	</div>
 </header>
 
+<div class="stripe-container"></div>
+
 <div class="bag-title">
 	<h1 style=" margin-left: 30px;">保存食管理</h1>
 	<button  id="add-prefood">追加</button>

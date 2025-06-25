@@ -18,6 +18,9 @@
 		</a>
 	</div>
 </header>
+
+<div class="stripe-container"></div>
+
 <!-- 変更内容をポストする -->
 <form action="${pageContext.request.contextPath}/CheckBagServlet" method="post">
 

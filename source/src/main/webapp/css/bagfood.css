@@ -17,6 +17,11 @@ header {
 	justify-content:center;
 }
 
+.stripe-container {
+	height: 20px;
+	background-image:url('../img/stripe.png');
+}
+
 .grid-container{
 	 width:1400px;
 	 margin: auto;

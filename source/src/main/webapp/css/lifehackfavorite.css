@@ -130,7 +130,8 @@ footer {
   align-items: center;
   position: relative;
 }
-footer h3{
+h3 {
+	font-size: 25px;
 	text-align: center; 
 	
 }
